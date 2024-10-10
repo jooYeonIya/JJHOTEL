@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-    <h1>Hotel</h1>
+    <h1>JJHotel</h1>
     </>
   )
 }
