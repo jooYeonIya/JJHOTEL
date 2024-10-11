@@ -8,13 +8,13 @@ function Kakao() {
     const container = document.getElementById('map') //지도를 담을 영역의 DOM 레퍼런스
     const options = { //지도를 생성할 때 필요한 기본 옵션
       center: new kakao.maps.LatLng(37.3389178, 127.1091677), //지도의 중심좌표.
-      // draggable: false,   //지도 이동 및 확대축소 방지
+      draggable: false,   //지도 이동 및 확대축소 방지
       level: 3 //지도의 레벨(확대, 축소 정도)
     }
   
     const map = new kakao.maps.Map(container, options) //지도 생성 및 객체 리턴
     
-    const markerPosition  = new kakao.maps.LatLng(37.3389178, 127.1091677)  // 마커가 표시될 위치
+    const markerPosition = new kakao.maps.LatLng(37.3389178, 127.1091677)  // 마커가 표시될 위치
     const marker = new kakao.maps.Marker({  // 마커 생성
         position: markerPosition
     })
