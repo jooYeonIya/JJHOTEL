@@ -11,7 +11,6 @@ function App() {
     <div className="wrapper">
       <div className="contentWrapper">
         <Header />
-        <p>CONTENTS</p>
       </div>
       <Footer />
     </div>
