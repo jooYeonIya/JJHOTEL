@@ -1,0 +1,14 @@
+/* 배경 이미지 화면에 꽉 차게 설정 */
+.about {
+  margin: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/about_information.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.text {
+  align-content: center;
+}
