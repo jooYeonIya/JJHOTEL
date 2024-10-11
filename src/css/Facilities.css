@@ -1,0 +1,32 @@
+/* 배경 이미지 화면에 꽉 차게 설정 */
+.facilities_dining {
+  margin: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/facilities_dining.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.facilities_pool {
+  margin: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/facilities_pool.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.facilities_text {
+  align-content: center;
+  color: white;
+}
+
+pre {
+  margin: auto;
+  font-size: large;
+  width: 100vh;
+  white-space: pre-wrap;
+}
