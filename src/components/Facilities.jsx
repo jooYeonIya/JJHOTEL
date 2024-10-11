@@ -1,7 +1,7 @@
 import '../css/Facilities.css'
 import { useState, useEffect } from 'react'
 
-function About() {
+function Facilities() {
   const [scrollPosition, setScrollPosition] = useState(0)
   const onScroll = () => {
     setScrollPosition(window.scrollY)
@@ -44,4 +44,4 @@ function About() {
   )
 }
 
-export default About
+export default Facilities
