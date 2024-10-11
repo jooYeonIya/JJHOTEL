@@ -1,6 +1,7 @@
 import TitleLabel from "./TitleLabel"
 import ReservationCalendar from "./ReservationCalendar"
 import CustomButton from "./CustomButton"
+import Counter from "./Counter"
 
 function Reservation() {
 
@@ -11,6 +12,10 @@ function Reservation() {
       <ReservationCalendar />
       <br />
       <CustomButton title="예약하기"/>  
+      <br />
+      <Counter title="인원"/>
+      <br />
+      <Counter title="객실"/>
     </>
   )
 }
