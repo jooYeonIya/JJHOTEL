@@ -3,7 +3,7 @@ import '../css/Footer.css'
 function Footer() {
   return (
     <>
-      <footer>
+      <div className="footer">
         <hr />
         <img src="src\images\logo.png" alt="logo" width="20px" height="20px" /> JJ HOTEL
         <div>
@@ -11,7 +11,7 @@ function Footer() {
           <p>031-606-9311</p>
         </div>
         <hr />
-      </footer>
+      </div>
     </>
   )
 }

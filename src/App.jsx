@@ -8,9 +8,14 @@ function App() {
 
   return (
     <>
-    <Header />
-    <p>CONTENTS</p>
-    <Footer />
+    <div className="wrapper">
+      <div className="contentWrapper">
+        <Header />
+        <p>CONTENTS</p>
+      </div>
+      <Footer />
+    </div>
+      
     </>
   )
 }
