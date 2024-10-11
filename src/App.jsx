@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './css/App.css'
+import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -11,6 +11,7 @@ function App() {
     <div className="wrapper">
       <div className="contentWrapper">
         <Header />
+        
       </div>
       <Footer />
     </div>
