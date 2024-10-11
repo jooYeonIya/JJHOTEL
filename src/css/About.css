@@ -5,10 +5,13 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  /* padding-bottom: calc(height/width * 100%); */
   background-image: url("../images/about_information.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  /* object-fit: cover; */
+}
+
+
+.text {
+  align-content: center;
 }
 
