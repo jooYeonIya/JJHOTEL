@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import TitleLable from "./TitleLabel"
 import { titles } from "../text/titles"
+import { useLocation } from "react-router-dom"
 
-function Rooms({ isFiltered }) {
-  const [title, setTitle] = useState({
-    title: "",
-    subTitle: ""
-  })
+function Rooms() {
+  const location = useLocation()
+  const isFiltered = location.state?.isFiltered
+  const [title, setTitle] = useState({ title: "", subTitle: ""  })
   const [rooms, setRooms] = useState([])
 
   useEffect(() => {
