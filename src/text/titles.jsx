@@ -7,5 +7,10 @@ export const titles = {
   filteredRooms: {
     title: "Reservation",
     subTitle: "객실 선택"
+  },
+
+  inputCustomInfo: {
+    title: "Reservation",
+    subTitle: "고객 정보 입력"
   }
 }

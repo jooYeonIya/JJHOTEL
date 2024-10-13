@@ -1,7 +1,10 @@
+import { titles } from "../text/titles"
+import TitleLabel from "./TitleLabel"
+
 export default function ReservationInputCustomInfo() {
   return (
     <>
-      ReservationInputCustomInfo
+      <TitleLabel title={titles.inputCustomInfo.title} subTitle={titles.inputCustomInfo.subTitle} />
     </>
   )
 }
