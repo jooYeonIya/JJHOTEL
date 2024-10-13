@@ -39,6 +39,17 @@ export default function RoomDescription() {
             height={100}/>
         )}
       </div>
+      <div id="infomaiton">
+        <p>객실 정보</p>
+        size: {room.size}
+        Bed type: {room.bedType}
+        Room Features: {room.features}
+        price: {room.price}
+      </div>
+      <div id="service">
+        <p>객실 서비스</p>
+        {room.service.split(",").map((data) => <li>{data.trim()}</li>)}
+      </div>
     </>
   )
 }
@@ -51,6 +62,12 @@ async function getRoomInfo(roomId) {
     imageURL1: "src/images/facilities_dining.jpg",
     imageURL2: "src/images/about_information.jpg",
     imageURL3: "src/images/facilities_pool.jpg",
-    imageURL4: "src/images/facilities_dining.jpg" }
+    imageURL4: "src/images/facilities_dining.jpg",
+    size: "37m",
+    bedType: "더블 or 트윈",
+    features: "베드룸1, 베스룸1", 
+    price: "80,000",
+    service: "에어컨, 미니바, 와이파이, 미니냉장고"
+  }
   return mockRoom
 }
