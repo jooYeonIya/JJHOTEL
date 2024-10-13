@@ -2,29 +2,62 @@ import { useEffect, useState } from "react"
 import TitleLable from "./TitleLabel"
 import { titles } from "../text/titles"
 import { useLocation } from "react-router-dom"
+import CustomButton from "./CustomButton"
 
 function Rooms() {
   const location = useLocation()
   const isFiltered = location.state?.isFiltered
-  const [title, setTitle] = useState({ title: "", subTitle: ""  })
+  const [title, setTitle] = useState({ title: "", subTitle: "" })
   const [rooms, setRooms] = useState([])
 
   useEffect(() => {
     // Reservation 예약하기 버튼을 클릭했을 때 화면 이동
     if (isFiltered) {
       setTitle(titles.filteredRooms)
+      getFilteredRooms().then(setRooms)
 
-    // Header의 Rooms를 클릭했을 때 화면 이동
+      // Header의 Rooms를 클릭했을 때 화면 이동
     } else {
       setTitle(titles.rooms)
+      getAllRooms().then(setRooms)
     }
-  }, [])
+  }, [isFiltered])
 
   return (
     <>
-      <TitleLable title={title.title} subTitle={title.subTitle}/>
+      <TitleLable title={title.title} subTitle={title.subTitle} />
+
+      {rooms.map((room) =>
+        <div>
+          <div id="leftSection">
+            <img src={room.imageURL} alt="" width={200} height={100}/>
+          </div>
+          <div id="rightSection">
+            <p>{room.name}</p>
+            <CustomButton title={"상세 보기"} />
+            {isFiltered && <CustomButton title={"예약하기"} />}
+          </div>
+        </div>
+      )}
     </>
   )
 }
 
 export default Rooms
+
+async function getAllRooms() {
+  const mockRooms = [
+    { id: 1, name: "Deluxe", imageURL: "src/images/facilities_dining.jpg"},
+    { id: 2, name: "Suite", imageURL: "src/images/facilities_dining.jpg"},
+    { id: 3, name: "Standard", imageURL: "src/images/facilities_dining.jpg"}
+  ]
+  return mockRooms
+}
+
+async function getFilteredRooms() {
+  const mockRooms = [
+    { id: 1, name: "Deluxe", imageURL: "src/images/facilities_dining.jpg"},
+    { id: 2, name: "Suite", imageURL: "src/images/facilities_dining.jpg"}
+  ]
+  return mockRooms
+}
