@@ -17,7 +17,7 @@ function Header() {
             <Link to="/facilities">Facilities</Link> <br />
             <Routes>
               <Route path="/about" element={<About />}/>
-              <Route path="/rooms" element={<Rooms />}/>
+              <Route path="/rooms" element={<Rooms isFiltered={false}/>}/>
               <Route path="/reservation" element={<Reservation />}/>
               <Route path="/facilities" element={<Facilities />}/>
             </Routes>
