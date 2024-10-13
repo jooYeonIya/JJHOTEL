@@ -14,7 +14,7 @@ function Header() {
           <BrowserRouter>
             <Link to="/">JJ HOTEL</Link> <br />
             <Link to="/about">About</Link> <br />
-            <Link to={{pathname: "/rooms", state: {isFiltered: false}}}>Rooms</Link> <br />
+            <Link to={{pathname: "/rooms", state: {isFiltered: false, reservationInfo: ""}}}>Rooms</Link> <br />
             <Link to="/reservation">Reservation</Link> <br />
             <Link to="/facilities">Facilities</Link> <br />
             <Link to={{pathname: "/roomDescription", state: {roomId: ""}}} /> <br />

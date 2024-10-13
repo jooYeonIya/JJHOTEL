@@ -8,10 +8,12 @@ function Rooms() {
   const location = useLocation()
   const navigate = useNavigate()
   const isFiltered = location.state?.isFiltered
+  const reservationInfo = location.state?.reservationInfo
   const [title, setTitle] = useState({ title: "", subTitle: "" })
   const [rooms, setRooms] = useState([])
 
   useEffect(() => {
+    console.log(reservationInfo)
     // Reservation 예약하기 버튼을 클릭했을 때 화면 이동
     if (isFiltered) {
       setTitle(titles.filteredRooms)
