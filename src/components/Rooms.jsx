@@ -13,7 +13,6 @@ function Rooms() {
   const [rooms, setRooms] = useState([])
 
   useEffect(() => {
-    console.log(reservationInfo)
     // Reservation 예약하기 버튼을 클릭했을 때 화면 이동
     if (isFiltered) {
       setTitle(titles.filteredRooms)
@@ -27,11 +26,11 @@ function Rooms() {
   }, [isFiltered])
 
   const moveToRoomDescription = (roomId) => {
-    navigate('/roomDescription', { state: { roomId: roomId  } })
+    navigate('/roomDescription', { state: { roomId } })
   }
 
   const moveToReservationInputCustomInfo = (roomId) => {
-    navigate('/inputCustomInfo', { state: { roomId: roomId  } })
+    navigate('/inputCustomInfo', { state: { roomId, reservationInfo } })
   }
 
   return (

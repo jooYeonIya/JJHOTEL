@@ -18,7 +18,7 @@ function Header() {
             <Link to="/reservation">Reservation</Link> <br />
             <Link to="/facilities">Facilities</Link> <br />
             <Link to={{pathname: "/roomDescription", state: {roomId: ""}}} /> <br />
-            <Link to={{pathname: "/inputCustomInfo", state: {roomId: ""}}} />
+            <Link to={{pathname: "/inputCustomInfo", state: {roomId: "", reservationInfo: ""}}} />
             <Routes>
               <Route path="/about" element={<About />}/>
               <Route path="/rooms" element={<Rooms isFiltered={false}/>}/>
