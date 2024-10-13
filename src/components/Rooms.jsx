@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import TitleLable from "./TitleLabel"
 import { titles } from "../text/titles"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import CustomButton from "./CustomButton"
 
 function Rooms() {
   const location = useLocation()
+  const navigate = useNavigate()
   const isFiltered = location.state?.isFiltered
   const [title, setTitle] = useState({ title: "", subTitle: "" })
   const [rooms, setRooms] = useState([])
@@ -23,6 +24,10 @@ function Rooms() {
     }
   }, [isFiltered])
 
+  const moveToRoomDescription = (roomId) => {
+    navigate('/roomDescription', { state: { roomId: roomId  } })
+  }
+
   return (
     <>
       <TitleLable title={title.title} subTitle={title.subTitle} />
@@ -34,7 +39,7 @@ function Rooms() {
           </div>
           <div id="rightSection">
             <p>{room.name}</p>
-            <CustomButton title={"상세 보기"} />
+            <CustomButton title={"상세 보기"} onClicked={() => moveToRoomDescription(room.id)}/>
             {isFiltered && <CustomButton title={"예약하기"} />}
           </div>
         </div>
