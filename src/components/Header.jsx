@@ -4,6 +4,7 @@ import Rooms from "./Rooms";
 import Reservation from "./Reservation";
 import Facilities from "./Facilities";
 import RoomDescription from "./RoomDescription";
+import ReservationInputCustomInfo from "./ReservationInputCustomInfo";
 
 function Header() {
   return (
@@ -16,14 +17,15 @@ function Header() {
             <Link to={{pathname: "/rooms", state: {isFiltered: false}}}>Rooms</Link> <br />
             <Link to="/reservation">Reservation</Link> <br />
             <Link to="/facilities">Facilities</Link> <br />
-            <Link to={{pathname: "/roomDescription", state: {roomId: ""}}}></Link> <br />
-
+            <Link to={{pathname: "/roomDescription", state: {roomId: ""}}} /> <br />
+            <Link to={{pathname: "/inputCustomInfo", state: {roomId: ""}}} />
             <Routes>
               <Route path="/about" element={<About />}/>
               <Route path="/rooms" element={<Rooms isFiltered={false}/>}/>
               <Route path="/reservation" element={<Reservation />}/>
               <Route path="/facilities" element={<Facilities />}/>
               <Route path="/roomDescription" element={<RoomDescription />}/>
+              <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />
             </Routes>
           </BrowserRouter>
           

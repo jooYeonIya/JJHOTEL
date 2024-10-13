@@ -28,6 +28,10 @@ function Rooms() {
     navigate('/roomDescription', { state: { roomId: roomId  } })
   }
 
+  const moveToReservationInputCustomInfo = (roomId) => {
+    navigate('/inputCustomInfo', { state: { roomId: roomId  } })
+  }
+
   return (
     <>
       <TitleLable title={title.title} subTitle={title.subTitle} />
@@ -40,7 +44,7 @@ function Rooms() {
           <div id="rightSection">
             <p>{room.name}</p>
             <CustomButton title={"상세 보기"} onClicked={() => moveToRoomDescription(room.id)}/>
-            {isFiltered && <CustomButton title={"예약하기"} />}
+            {isFiltered && <CustomButton title={"예약하기"} onClicked={() => moveToReservationInputCustomInfo(room.id)} />}
           </div>
         </div>
       )}
