@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom"
 import { titles } from "../text/titles"
-import TitleLabel from "./TitleLabel"
-import RoomInfo from "./RoomInfo"
-import CustomInfo from "./CustomInfo"
+import TitleLabel from "../components/TitleLabel"
+import RoomInfo from "../components/RoomInfo"
+import CustomInfo from "../components/CustomInfo"
 
 export default function ReservationInputCustomInfo() {
   const location = useLocation()

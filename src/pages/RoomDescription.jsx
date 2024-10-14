@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom"
-import TitleLabel from "./TitleLabel"
+import TitleLabel from "../components/TitleLabel"
 import { useEffect, useState } from "react"
 
 export default function RoomDescription() {

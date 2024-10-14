@@ -1,10 +1,10 @@
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
-import About from "./About";
-import Rooms from "./Rooms";
-import Reservation from "./Reservation";
-import Facilities from "./Facilities";
-import RoomDescription from "./RoomDescription";
-import ReservationInputCustomInfo from "./ReservationInputCustomInfo";
+import About from "../pages/About";
+import Rooms from "../pages/Rooms";
+import Reservation from "../pages/Reservation";
+import Facilities from "../pages/Facilities";
+import RoomDescription from "../pages/RoomDescription";
+import ReservationInputCustomInfo from "../pages/ReservationInputCustomInfo";
 
 function Header() {
   return (
