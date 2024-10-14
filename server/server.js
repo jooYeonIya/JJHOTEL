@@ -2,6 +2,8 @@ import express from 'express'
 import mysql from 'mysql'
 import cors from 'cors'
 
+const nodemailer = require('nodemailer')
+
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -45,12 +47,38 @@ app.post('/reservation', (req, res) => {
                         console.log(error)
                     } else {
                         console.log("results")
+                        sendEamil(email, id)
                         return res.status(200).send({id});
                     }
                 })
         }
     })
 })
+
+const sendEamil = ({email, id}) => {   
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'jooyenstudyios@gmail.com',
+        pass: 'Kosta@293'
+      }
+    }) 
+    
+    const mailOptions = {
+      from: 'jooyenstudyios@gmail.com',
+      to: `${email}`,
+      subject: 'test',
+      text: `test ${id}`
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error)
+      } else {
+        console.log("success")
+      }
+    })
+  }
 
 // 전체 객실 불러오기
 app.get('/rooms', function (req, res) {
