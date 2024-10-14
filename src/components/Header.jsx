@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Rooms from "../pages/Rooms";
 import Reservation from "../pages/Reservation";
+import CheckReservation from "../pages/CheckReservation";
 import Facilities from "../pages/Facilities";
 import RoomDescription from "../pages/RoomDescription";
 import ReservationInputCustomInfo from "../pages/ReservationInputCustomInfo";
@@ -41,8 +42,8 @@ function Header() {
               <span className="navbarMenu" to="/reservation">Reservation</span> 
               {hide.showDropdown && (
                 <div className="dropdown">
-                  <Link to="/reservation/doreservation">{category[0]}</Link>
-                  <Link to="/reservation/check">{category[1]}</Link>
+                  <Link to="/doreservation">{category[0]}</Link>
+                  <Link to="/checkreservation">{category[1]}</Link>
                 </div>
               )}
             </div>
@@ -55,7 +56,8 @@ function Header() {
             <Route path="/" element={<Home />}/>
             <Route path="/about" element={<About />}/>
             <Route path="/rooms" element={<Rooms />}/>
-            <Route path="/reservation/doreservation" element={<Reservation />}/>
+            <Route path="/doreservation" element={<Reservation />}/>
+            <Route path="/checkreservation" element={<CheckReservation />}/>
             <Route path="/facilities" element={<Facilities />}/>
             <Route path="/roomDescription" element={<RoomDescription />}/>
             <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />}/>

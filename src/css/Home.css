@@ -1,0 +1,18 @@
+
+.subject_image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.subject_image img {
+  max-height: initial;
+  margin-top: -80%;
+  opacity: 0.7;
+}
+
+.hover_image_container {
+  max-height: initial;
+  margin-top: -80%;
+  opacity: 0.7;
+}
