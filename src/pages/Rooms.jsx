@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import TitleLable from "./TitleLabel"
+import TitleLabel from "../components/TitleLabel"
 import { titles } from "../text/titles"
 import { useLocation, useNavigate } from "react-router-dom"
-import CustomButton from "./CustomButton"
+import CustomButton from "../components/CustomButton"
 
 function Rooms() {
   const location = useLocation()
@@ -35,7 +35,7 @@ function Rooms() {
 
   return (
     <>
-      <TitleLable title={title.title} subTitle={title.subTitle} />
+      <TitleLabel title={title.title} subTitle={title.subTitle} />
 
       {rooms.map((room) =>
         <div>
