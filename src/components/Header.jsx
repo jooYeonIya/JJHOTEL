@@ -10,7 +10,6 @@ import RoomDescription from "../pages/RoomDescription";
 import ReservationInputCustomInfo from "../pages/ReservationInputCustomInfo";
 import "../css/Header.css"
 
-
 function Header() {
   const category = ["예약하기", "예약확인"]
   const [hide, setHide] = useState({

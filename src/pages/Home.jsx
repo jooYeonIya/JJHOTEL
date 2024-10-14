@@ -1,86 +1,61 @@
-import React, { useState } from 'react'
-import '../css/Home.css'
+import React, { useState } from 'react';
+import '../css/Home.css';
 
 function Home() {
-  // const [isListHover, setIsListHover] = useState({
-  //   abouthover: false,
-  //   roomshover: false,
-  //   reservationhover: false,
-  //   facilitieshover: false,
-  //   ishover: false
-  // })
-  // const mouseEvent = (bool) => {
-  //   setIsListHover(prevState => ({
-  //     ...prevState,
-  //     ishover: bool
-  //   }))
-  // }
+  // 배경 이미지 상태 관리
+  const [backgroundImage, setBackgroundImage] = useState("src/images/home_about.jpg");
 
-  const [hoverImage, setHoverImage] = useState("src/images/home_about.jpg")
+  // 마우스 오버 시 배경 이미지 변경 함수
   const handleMouseEnter = (imageSrc) => {
-    setHoverImage(imageSrc)
-  }
-  const handleMouseLeave = () => {
-    setHoverImage("src/images/home_about.jpg")
-  }
+    setBackgroundImage(imageSrc);
+  };
 
+  // 마우스가 떠났을 때 기본 배경으로 돌아가기
+  const handleMouseLeave = () => {
+    setBackgroundImage("src/images/home_about.jpg");
+  };
 
   return (
     <>
       <div>        
         <img src={"src/images/hotel_main.jpg"} alt="home_main" width="100%" height="100%"/>
       </div>
-      <h2>All About </h2>
-      <h1>JJ HOTEL</h1>
+      <h1>Welcome to JJ HOTEL</h1>
 
+      {/* 한 개의 배경화면 */}
+      <div className="main_image_container">
+        {/* 변경되는 배경화면 */}
+        <img src={backgroundImage} alt="background" className="background_image" />
 
-      <div className="hover_image_container" style={{display: 'flex', justifyContent: 'space-between', gap: '10px', marginTop: '20px'}}>
-        <div className="item_wrapper">
-            <div className="hover_section" 
-              onMouseEnter={() => handleMouseEnter("src/images/home_about.jpg")} 
-              onMouseLeave={handleMouseLeave}
-              style={{flex: '1', textAlign: 'center', padding: '20px'}}>
-          <a href="/about">
-            About
-          </a>
-            </div>
+        {/* 네 개의 구역 위에 텍스트 링크 */}
+        <div className="overlay_grid">
+          <div className="grid_section"
+               onMouseEnter={() => handleMouseEnter("src/images/home_about.jpg")}
+               onMouseLeave={handleMouseLeave}>
+            <a href="/about">About</a>
+          </div>
 
-          <a href="/rooms">
-            <div className="hover_section"
-              onMouseEnter={() => handleMouseEnter("src/images/home_rooms.jpg")} 
-              onMouseLeave={handleMouseLeave}
-              style={{flex: '1', textAlign: 'center', padding: '20px'}}>
-            Rooms
-            </div>
-          </a>
+          <div className="grid_section"
+               onMouseEnter={() => handleMouseEnter("src/images/home_rooms.jpg")}
+               onMouseLeave={handleMouseLeave}>
+            <a href="/rooms">Rooms</a>
+          </div>
 
-          <a href="/doreservation">
-            <div className="hover_section"
-              onMouseEnter={() => handleMouseEnter("src/images/home_reservation.jpg")} 
-              onMouseLeave={handleMouseLeave}
-              style={{backgroundColor:'pink', flex: '1', textAlign: 'center', padding: '20px'}}>
-            Reservation
-            </div>
-          </a>
+          <div className="grid_section"
+               onMouseEnter={() => handleMouseEnter("src/images/home_reservation.jpg")}
+               onMouseLeave={handleMouseLeave}>
+            <a href="/doreservation">Reservation</a>
+          </div>
 
-          <a href="/facilities">
-            <div className="hover_section"
-              onMouseEnter={() => handleMouseEnter("src/images/home_facilities.jpg")} 
-              onMouseLeave={handleMouseLeave}
-              style={{backgroundColor:'orange', flex: '1', textAlign: 'center', padding: '20px'}}>
-            Facilities
-            </div>
-          </a>
-
+          <div className="grid_section"
+               onMouseEnter={() => handleMouseEnter("src/images/home_facilities.jpg")}
+               onMouseLeave={handleMouseLeave}>
+            <a href="/facilities">Facilities</a>
+          </div>
         </div>
       </div>
-
-      <div style={{marginTop: '20px'}}>
-        <img src="{hoverImage}" alt="hover_content" width="100%" height="300px"/>
-
-      </div>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
