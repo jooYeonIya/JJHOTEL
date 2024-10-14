@@ -13,6 +13,7 @@ function Reservation() {
     roomCount: 1,
     checkInDate: new Date(),
     checkOutDate: addDays(new Date(), 1),
+    reservationDate: new Date()
   })
 
   const updateCustomCount = (count) => {

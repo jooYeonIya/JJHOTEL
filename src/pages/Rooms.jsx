@@ -17,7 +17,7 @@ function Rooms() {
     // Reservation 예약하기 버튼을 클릭했을 때 화면 이동
     if (isFiltered) {
       setTitle(titles.filteredRooms)
-      getFilteredRooms().then(setRooms)
+      getFilteredRooms()
 
       // Header의 Rooms를 클릭했을 때 화면 이동
     } else {
@@ -40,11 +40,8 @@ function Rooms() {
   }
   
   async function getFilteredRooms() {
-    const mockRooms = [
-      { id: 1, name: "Deluxe", imageURL: "src/images/facilities_dining.jpg"},
-      { id: 2, name: "Suite", imageURL: "src/images/facilities_dining.jpg"}
-    ]
-    return mockRooms
+    axios.get("http://localhost:3003/rooms")
+    .then((res) => setRooms(res.data))
   }
 
   return (
