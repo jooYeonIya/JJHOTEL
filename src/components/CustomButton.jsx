@@ -1,7 +1,7 @@
-export default function CustomButton({ title }) {
+export default function CustomButton({ title, onClicked }) {
     return (
         <>
-            <button>{title}</button>
+            <button onClick={onClicked}>{title}</button>
         </>
     )
 }
