@@ -1,0 +1,56 @@
+.navbar {
+  width: 100%;
+  background-color: rgb(175, 211, 226);
+  padding: 15px 0px;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.navbarMenu {
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.navbarMenu:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+
+
+
+.nav {
+  height: 30px;
+  overflow: hidden;
+  transition: 0.25s ease-in-out;
+}
+
+.nav:hover {
+  height: 30px;
+  cursor: pointer;
+}
+
+
+
+.dropdown {
+  top: 100%;
+  padding: 5px;
+}
+
+.reservationMenu {
+  position: relative;
+}
+
+.reservationMenu:hover .dropdown {
+  display: flex;
+}
+
+.dropdown a {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+}
