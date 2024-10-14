@@ -3,17 +3,26 @@ import '../css/Home.css';
 
 function Home() {
   // 배경 이미지 상태 관리
-  const [backgroundImage, setBackgroundImage] = useState("src/images/home_about.jpg");
+  const [backgroundImage, setBackgroundImage] = useState("src/images/home_about.jpg")
+  //마지막으로 오버된 이미지 저장
+  const [lastImage, setLastImage] = useState("src/images/home_about.jpg") 
 
-  // 마우스 오버 시 배경 이미지 변경 함수
+  //배경 이미지 변경 함수
   const handleMouseEnter = (imageSrc) => {
-    setBackgroundImage(imageSrc);
-  };
+    setBackgroundImage(imageSrc)
+    setLastImage(imageSrc) // 오버될 때 마지막 이미지 저장
+  }
 
-  // 마우스가 떠났을 때 기본 배경으로 돌아가기
   const handleMouseLeave = () => {
-    setBackgroundImage("src/images/home_about.jpg");
-  };
+    setBackgroundImage(lastImage) // 마우스가 떠나면 마지막으로 오버된 이미지로 유지
+  }
+
+  const sections = [
+    { name: "About", link: "/about", image: "src/images/home_about.jpg" },
+    { name: "Rooms", link: "/rooms", image: "src/images/home_rooms.jpg" },
+    { name: "Reservation", link: "/doreservation", image: "src/images/home_reservation.jpg" },
+    { name: "Facilities", link: "/facilities", image: "src/images/home_facilities.jpg" }
+  ];
 
   return (
     <>
@@ -27,35 +36,21 @@ function Home() {
         {/* 변경되는 배경화면 */}
         <img src={backgroundImage} alt="background" className="background_image" />
 
-        {/* 네 개의 구역 위에 텍스트 링크 */}
         <div className="overlay_grid">
-          <div className="grid_section"
-               onMouseEnter={() => handleMouseEnter("src/images/home_about.jpg")}
-               onMouseLeave={handleMouseLeave}>
-            <a href="/about">About</a>
-          </div>
-
-          <div className="grid_section"
-               onMouseEnter={() => handleMouseEnter("src/images/home_rooms.jpg")}
-               onMouseLeave={handleMouseLeave}>
-            <a href="/rooms">Rooms</a>
-          </div>
-
-          <div className="grid_section"
-               onMouseEnter={() => handleMouseEnter("src/images/home_reservation.jpg")}
-               onMouseLeave={handleMouseLeave}>
-            <a href="/doreservation">Reservation</a>
-          </div>
-
-          <div className="grid_section"
-               onMouseEnter={() => handleMouseEnter("src/images/home_facilities.jpg")}
-               onMouseLeave={handleMouseLeave}>
-            <a href="/facilities">Facilities</a>
-          </div>
+          {sections.map((section, index) => (
+            <div
+              key={index}
+              className="grid_section"
+              onMouseEnter={() => handleMouseEnter(section.image)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <a href={section.link}>{section.name}</a>
+            </div>
+          ))}
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
