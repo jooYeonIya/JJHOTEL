@@ -1,8 +1,7 @@
 import express from 'express'
-import mysql from 'mysql'
 import cors from 'cors'
-
-const nodemailer = require('nodemailer')
+import mysql from 'mysql2'
+import nodemailer from 'nodemailer'
 
 const app = express()
 app.use(cors())
@@ -47,7 +46,7 @@ app.post('/reservation', (req, res) => {
                         console.log(error)
                     } else {
                         console.log("results")
-                        sendEamil(email, id)
+                        sendEamil(id, customerInfo, formattedCheckInDate, formattedCheckOutDate)
                         return res.status(200).send({id});
                     }
                 })
@@ -55,20 +54,27 @@ app.post('/reservation', (req, res) => {
     })
 })
 
-const sendEamil = ({email, id}) => {   
+const sendEamil = (id, customerInfo, checkInDate, checkOutDate) => {   
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'jooyenstudyios@gmail.com',
-        pass: 'Kosta@293'
+        user: 'conn0204@gmail.com',
+        pass: 'tuwd tbdr aucd ohdb'
       }
     }) 
     
     const mailOptions = {
-      from: 'jooyenstudyios@gmail.com',
-      to: `${email}`,
-      subject: 'test',
-      text: `test ${id}`
+      from: 'conn0204@gmail.com',
+      to: `${customerInfo.email}`,
+      subject: '예약 확인 메일입니다.',
+      html: `
+      <p>${customerInfo.name} 님 안녕하세요. JJ 호텔입니다.</p>
+      <br>
+      <p>이용 날짜: <strong>${checkInDate} ~ ${checkOutDate}</strong></p>
+      <p>예약 번호: <strong>${id}</strong></p>
+      <br>
+      <p>저희 호텔을 이용해주셔서 감사합니다. 예약이 완료되었습니다.</p>
+    `
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
