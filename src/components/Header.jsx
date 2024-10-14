@@ -32,7 +32,7 @@ function Header() {
             <img src="src\images\logo.png" alt="logo" width="20px" height="20px" />
             <Link className="navbarMenu" to="/">JJ HOTEL</Link> <br />
             <Link className="navbarMenu" to="/about">About</Link> 
-            <Link className="navbarMenu" to="/rooms">Rooms</Link> 
+            <Link className="navbarMenu" to={{pathname: "/rooms", state: {isFiltered: false, reservationInfo: ""}}}>Rooms</Link> 
             <div
               className="navbarMenu reservationMenu"
               onMouseEnter={() => mouseEvent(true)}  
@@ -47,15 +47,19 @@ function Header() {
               )}
             </div>
             <Link className="navbarMenu" to="/facilities">Facilities</Link> 
+            <Link to={{pathname: "/roomDescription", state: {roomId: ""}}}/> <br />
+            <Link to={{pathname: "/inputCustomInfo", state: {roomId: "", reservationInfo: ""}}}/> <br />
           </div>
           
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/about" element={<About />}/>
             <Route path="/rooms" element={<Rooms />}/>
-            {/* <Route path="/" element={<Reservation />}/> */}
             <Route path="/reservation/doreservation" element={<Reservation />}/>
             <Route path="/facilities" element={<Facilities />}/>
+            <Route path="/roomDescription" element={<RoomDescription />}/>
+            <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />}/>
+
           </Routes>
         </BrowserRouter>
         
