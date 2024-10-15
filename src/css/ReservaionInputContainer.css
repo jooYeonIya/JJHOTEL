@@ -1,0 +1,33 @@
+.reservationCalendar {
+    display: none;
+}
+
+.reservationCalendarIsVisible {
+    display: block; 
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(175, 211, 226, 0.5);
+}
+
+.inputContainer div {
+    margin: 0px 24px;
+}
+
+.smallFont, .largeFont {
+    margin: 0; 
+  }
+
+.smallFont {
+    font-size: 12px;
+    margin: 20px 0px 0px 0px; 
+}
+
+.largeFont {
+    font-size: 20px;
+    margin: 0px 0px 20px 0px; 
+    font-weight: bold;
+}
