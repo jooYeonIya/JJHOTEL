@@ -11,7 +11,6 @@ function Home() {
       <Header isEvent={true}/>
       <MainImageContainder />
       <ImagesContainer />
-      <Footer />
     </>
   )
 }
