@@ -9,7 +9,7 @@ app.use(express.json())
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    port: 3307,
+    port: 3306,
     user: 'root',
     password: '1111',
     database: 'jjhotel'
@@ -147,6 +147,24 @@ app.post('/roomDescription', (req, res) => {
   let roomId = req.body.roomId
   let sql = 'select * from room where roomId = ?'
   connection.query(sql, [roomId], function (error, results) {
+    if (error) {
+      console.log(error)
+    } else {
+      res.send(results)
+    }
+  })
+})
+
+// 입력받은 고객 정보와 일치하는 정보 가져오기
+app.get('/checkreservation', function (req, res) {
+  const { name, reservationId } = req.query
+  let sql = `
+SELECT checkInDate, checkOutDate, (checkOutDate - checkInDate) as n, name, id, roomName, numberOfPeople
+from reservation r join room on r.roomId = room.roomId 
+where r.id = ? and r.name = ? 
+`
+
+  connection.query(sql, [reservationId, name], function (error, results) {
     if (error) {
       console.log(error)
     } else {
