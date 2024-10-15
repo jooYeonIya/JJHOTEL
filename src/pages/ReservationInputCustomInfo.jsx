@@ -4,6 +4,7 @@ import { titles } from "../text/titles"
 import TitleLabel from "../components/TitleLabel"
 import RoomInfo from "../components/RoomInfo"
 import CustomInfo from "../components/CustomInfo"
+import Header from "../components/Header"
 import axios from "axios"
 
 export default function ReservationInputCustomInfo() {
@@ -28,6 +29,7 @@ export default function ReservationInputCustomInfo() {
 
   return (
     <>
+      <Header isEvent={true}/>
       <TitleLabel title={titles.inputCustomInfo.title} subTitle={titles.inputCustomInfo.subTitle} />
       <RoomInfo roomId={roomId} reservationInfo={reservationInfo} onChangeTotalPrice={getTotalPrice}/><br />
       <CustomInfo isReservation={true} onSave={saveRservation}/>

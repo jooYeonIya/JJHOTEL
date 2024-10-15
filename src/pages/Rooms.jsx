@@ -3,7 +3,9 @@ import TitleLabel from "../components/TitleLabel"
 import { titles } from "../text/titles"
 import { useLocation, useNavigate } from "react-router-dom"
 import CustomButton from "../components/CustomButton"
+import Header from "../components/Header"
 import axios from "axios"
+import { tr } from "date-fns/locale"
 
 function Rooms() {
   const location = useLocation()
@@ -54,7 +56,8 @@ function Rooms() {
   }
 
   return (
-    <>
+    <div className="container">
+      <Header isEvent={true}/>
       <TitleLabel title={title.title} subTitle={title.subTitle} />
 
       {rooms.map((room) =>
@@ -69,7 +72,7 @@ function Rooms() {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import "../css/Header.css"
 
-function Header() {
+function Header({isEvent}) {
   const category = ["예약하기", "예약확인"]
 
   const [isScrolled, setIsScrolled] = useState(false)
@@ -24,19 +24,21 @@ function Header() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) { 
-        setIsScrolled(true);
+        setIsScrolled(true)
       } else {
-        setIsScrolled(false);
+        setIsScrolled(false)
       }
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    
+    if(isEvent === true) {
+      return () => {
+        window.addEventListener("scroll", handleScroll)
+      }
+    } else {
     // 컴포넌트 언마운트 시 스크롤 이벤트 제거
     // 언마운트: 컴포넌트가 렌더링되었다가 화면에서 사라질 때(예: 다른 페이지로 이동할 때)
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, []);
 
   return (

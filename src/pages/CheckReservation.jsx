@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import ReservationInfo from "../components/ReservationInfo"
 import CustomButton from "../components/CustomButton"
+import Header from "../components/Header"
+import '../css/CheckReservation.css'
 
 function CheckReservation() {
   const [name, setName] = useState("")
@@ -30,13 +32,16 @@ function CheckReservation() {
   }, [reservationData])
   
   return(
-    <>
+    <div>
+      <Header isEvent={true}/>
+      <div className="container">
       <p>고객 정보</p>
       성명 <input type="text" value={name} onChange={(e) => setName(e.target.value)} /><br />
       예약번호 <input type="text" value={reservationId} onChange={(e) => setReservationId(e.target.value)} /><br />
       <CustomButton title="예약 조회" onClicked={checkReservation}/>
       {isClicked && reservationData && <ReservationInfo reservation={reservationData}/>}
-    </>
+      </div>
+    </div>
   )
 }
 
