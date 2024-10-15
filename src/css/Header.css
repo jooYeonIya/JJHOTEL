@@ -2,49 +2,44 @@
   width: 100%;
   padding: 15px 0px;
   text-align: center;
-
   display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 50px;
+  height: 100px;
 }
 
 .navbarMenu {
-  margin: 10px;
-  text-decoration: none;
-  color: black;
+  margin: 10px 20px;
 }
 
-.navbarMenu:hover {
-  text-decoration: underline;
-  font-weight: bold;
+.navbarFirstLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.nav {
-  height: 30px;
-  overflow: hidden;
-  transition: 0.25s ease-in-out;
+.navbarFirstLine img {
+  margin: 0px 8px;
 }
 
-.nav:hover {
-  height: 30px;
-  cursor: pointer;
-}
-
-.dropdown {
-  top: 100%;
-  padding: 5px;
+.navbarSecondLine {
+  display: flex;
+  justify-content: space-around;
 }
 
 .reservationMenu {
   position: relative;
+  display: flex;  
+  justify-content: center;
 }
 
-.reservationMenu:hover .dropdown {
+.dropdown {
+  position: absolute;
+  top: 100%;
   display: flex;
-}
+  white-space: nowrap;  
+ }
 
 .dropdown a {
-  padding: 5px 10px;
-  text-decoration: none;
-  color: black;
+  padding: 0px 10px;
 }

@@ -14,5 +14,18 @@
 /*footer 하단에 고정하기 위한 wrapper flex 설정*/
 .contentWrapper {
   flex: 1;
-  padding-bottom: 20px;
+}
+
+a {
+  text-decoration: none; 
+  color: #000;
+}
+
+a:visited {
+  text-decoration: none;  
+}
+
+a:hover {
+  color: #000; 
+  text-decoration: none; 
 }

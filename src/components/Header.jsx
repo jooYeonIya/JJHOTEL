@@ -11,7 +11,7 @@ function Header() {
     checkreserve: false,
     showDropdown: false   //드롭다운 메뉴의 보임 상태를 제어하기 위한 상태
   })
-  
+
   const mouseEvent = (bool) => {
     setHide(prevState => ({
       ...prevState,
@@ -23,26 +23,33 @@ function Header() {
     <>
       <div>
         <div className="navbar">
-          <img src="src\images\logo.png" alt="logo" width="20px" height="20px" />
-          <Link className="navbarMenu" to="/">JJ HOTEL</Link> <br />
-          <Link className="navbarMenu" to="/about">About</Link>
-          <Link className="navbarMenu" to={{ pathname: "/rooms", state: { isFiltered: false, reservationInfo: "" } }}>Rooms</Link>
-          <div
-            className="navbarMenu reservationMenu"
-            onMouseEnter={() => mouseEvent(true)}
-            onMouseLeave={() => mouseEvent(false)}
-          >
-            <span className="navbarMenu" to="/reservation">Reservation</span>
-            {hide.showDropdown && (
-              <div className="dropdown">
-                <Link to="/doreservation">{category[0]}</Link>
-                <Link to="/checkreservation">{category[1]}</Link>
-              </div>
-            )}
+
+          {/* 메뉴 첫 번째 라인 */}
+          <div className="navbarFirstLine">
+            <img src="src\images\logo.png" alt="logo" width="20px" height="20px" />
+            <Link to="/">JJ HOTEL</Link>
           </div>
-          <Link className="navbarMenu" to="/facilities">Facilities</Link>
-          <Link to={{ pathname: "/roomDescription", state: { roomId: "" } }} /> <br />
-          <Link to={{ pathname: "/inputCustomInfo", state: { roomId: "", reservationInfo: "" } }} /> <br />
+
+          {/* 메뉴 두 번째 라인 */}
+          <div className="navbarSecondLine">
+            <Link className="navbarMenu" to="/about">About</Link>
+            <Link className="navbarMenu" to={{pathname: "/rooms", state: { isFiltered: false, reservationInfo: ""}}}>Rooms</Link>
+            <div className="reservationMenu"
+              onMouseEnter={() => mouseEvent(true)}
+              onMouseLeave={() => mouseEvent(false)}>
+              <span className="navbarMenu">Reservation</span>
+              {hide.showDropdown && (
+                <div className="dropdown">
+                  <Link to="/doreservation">{category[0]}</Link>
+                  <Link to="/checkreservation">{category[1]}</Link>
+                </div>
+              )}
+            </div>
+            <Link className="navbarMenu" to="/facilities">Facilities</Link>
+          </div>
+
+          <Link to={{pathname: "/roomDescription", state: {roomId: "" }}} />
+          <Link to={{pathname: "/inputCustomInfo", state: {roomId: "", reservationInfo: ""}}} />
         </div>
       </div>
     </>
