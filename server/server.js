@@ -97,3 +97,41 @@ app.get('/rooms', function (req, res) {
         }
     })
 })
+
+// 조건에 맞는 객실 불러오기
+app.post('/filteredRooms', function (req, res) {
+  let { reservationInfo } = req.body
+  let { customCount, roomCount, checkInDate, checkOutDate } = reservationInfo
+
+  const checkInDateLocal = new Date(checkInDate);
+  checkInDateLocal.setDate(checkInDateLocal.getDate() + 1);  
+  const formattedCheckInDate = checkInDateLocal.toISOString().slice(0, 10);
+  
+  const checkOutDateLocal = new Date(checkOutDate);
+  checkOutDateLocal.setDate(checkOutDateLocal.getDate() + 1);  
+  const formattedCheckOutDate = checkOutDateLocal.toISOString().slice(0, 10);
+
+  let sql = `
+SELECT r.roomId, r.roomName, r.maxNumberOfPeople, r.price, r.imageURL1, 
+       (r.roomCount - COALESCE(SUM(CASE 
+                                      WHEN (res.checkInDate < ? AND res.checkOutDate > ?) 
+                                      THEN res.roomCount 
+                                      ELSE 0 
+                                    END), 0)) AS avaRooms
+FROM room r
+LEFT JOIN reservation res ON r.roomId = res.roomId
+WHERE r.maxNumberOfPeople >= ?
+GROUP BY r.roomId, r.roomName, r.maxNumberOfPeople, r.price, r.roomCount
+HAVING avaRooms >= ?;
+`
+
+connection.query(sql,
+  [formattedCheckOutDate, formattedCheckInDate, customCount, roomCount],
+  (error, results) => {
+    if (error) {
+      console.log(error)
+    } else {
+      res.send(results)
+    }
+  })
+})

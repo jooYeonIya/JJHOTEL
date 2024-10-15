@@ -40,8 +40,17 @@ function Rooms() {
   }
   
   async function getFilteredRooms() {
-    axios.get("http://localhost:3003/rooms")
-    .then((res) => setRooms(res.data))
+    // 예약 정보에서 checkInDate와 checkOutDate를 ISO 형식으로 변환
+    const formattedReservationInfo = {
+        ...reservationInfo,
+        checkInDate: new Date(reservationInfo.checkInDate).toISOString(),
+        checkOutDate: new Date(reservationInfo.checkOutDate).toISOString()
+    }
+
+    axios.post("http://localhost:3003/filteredRooms", { reservationInfo: formattedReservationInfo })
+    .then((res) => {
+        setRooms(res.data);
+    })
   }
 
   return (
