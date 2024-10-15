@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "../css/Header.css"
 
 function Header() {
   const category = ["예약하기", "예약확인"]
+
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const [hide, setHide] = useState({
     doreserve: false,
@@ -19,10 +21,28 @@ function Header() {
     }))
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) { 
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    
+    // 컴포넌트 언마운트 시 스크롤 이벤트 제거
+    // 언마운트: 컴포넌트가 렌더링되었다가 화면에서 사라질 때(예: 다른 페이지로 이동할 때)
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <div>
-        <div className="navbar">
+        <div className={`navbar ${isScrolled ? "scrolled" : ""}`}>
 
           {/* 메뉴 첫 번째 라인 */}
           <div className="navbarFirstLine">
