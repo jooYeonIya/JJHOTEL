@@ -17,7 +17,6 @@ export default function RoomDescription() {
   async function getRoomInfo(roomId) {
     axios.post("http://localhost:3003/roomDescription", { roomId })
     .then(res => {
-      console.log(res.data)
       let room = res.data[0]
       setRoom(room)
       setMainImage(room.imageURL1)
