@@ -1,22 +1,19 @@
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import Home from "../pages/Home";
-import About from "../pages/About";
-import Rooms from "../pages/Rooms";
-import Reservation from "../pages/Reservation";
-import CheckReservation from "../pages/CheckReservation";
-import Facilities from "../pages/Facilities";
-import RoomDescription from "../pages/RoomDescription";
-import ReservationInputCustomInfo from "../pages/ReservationInputCustomInfo";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import "../css/Header.css"
 
 function Header() {
   const category = ["예약하기", "예약확인"]
+
+  const [isScrolled, setIsScrolled] = useState(false)
+
   const [hide, setHide] = useState({
     doreserve: false,
     checkreserve: false,
     showDropdown: false   //드롭다운 메뉴의 보임 상태를 제어하기 위한 상태
   })
+
   const mouseEvent = (bool) => {
     setHide(prevState => ({
       ...prevState,
@@ -24,21 +21,43 @@ function Header() {
     }))
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) { 
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    
+    // 컴포넌트 언마운트 시 스크롤 이벤트 제거
+    // 언마운트: 컴포넌트가 렌더링되었다가 화면에서 사라질 때(예: 다른 페이지로 이동할 때)
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-    <div>
-        <BrowserRouter>
-          <div className="navbar">
+      <div>
+        <div className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+
+          {/* 메뉴 첫 번째 라인 */}
+          <div className="navbarFirstLine">
             <img src="src\images\logo.png" alt="logo" width="20px" height="20px" />
-            <Link className="navbarMenu" to="/">JJ HOTEL</Link> <br />
-            <Link className="navbarMenu" to="/about">About</Link> 
-            <Link className="navbarMenu" to={{pathname: "/rooms", state: {isFiltered: false, reservationInfo: ""}}}>Rooms</Link> 
-            <div
-              className="navbarMenu reservationMenu"
-              onMouseEnter={() => mouseEvent(true)}  
-              onMouseLeave={() => mouseEvent(false)}  
-            >
-              <span className="navbarMenu" to="/reservation">Reservation</span> 
+            <Link to="/">JJ HOTEL</Link>
+          </div>
+
+          {/* 메뉴 두 번째 라인 */}
+          <div className="navbarSecondLine">
+            <Link className="navbarMenu" to="/about">About</Link>
+            <Link className="navbarMenu" to={{pathname: "/rooms", state: { isFiltered: false, reservationInfo: ""}}}>Rooms</Link>
+            <div className="reservationMenu"
+              onMouseEnter={() => mouseEvent(true)}
+              onMouseLeave={() => mouseEvent(false)}>
+              <span className="navbarMenu">Reservation</span>
               {hide.showDropdown && (
                 <div className="dropdown">
                   <Link to="/doreservation">{category[0]}</Link>
@@ -46,27 +65,15 @@ function Header() {
                 </div>
               )}
             </div>
-            <Link className="navbarMenu" to="/facilities">Facilities</Link> 
-            <Link to={{pathname: "/roomDescription", state: {roomId: ""}}}/> <br />
-            <Link to={{pathname: "/inputCustomInfo", state: {roomId: "", reservationInfo: ""}}}/> <br />
+            <Link className="navbarMenu" to="/facilities">Facilities</Link>
           </div>
-          
-          <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/about" element={<About />}/>
-            <Route path="/rooms" element={<Rooms />}/>
-            <Route path="/doreservation" element={<Reservation />}/>
-            <Route path="/checkreservation" element={<CheckReservation />}/>
-            <Route path="/facilities" element={<Facilities />}/>
-            <Route path="/roomDescription" element={<RoomDescription />}/>
-            <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />}/>
 
-          </Routes>
-        </BrowserRouter>
-        
-    </div>
+          <Link to={{pathname: "/roomDescription", state: {roomId: "" }}} />
+          <Link to={{pathname: "/inputCustomInfo", state: {roomId: "", reservationInfo: ""}}} />
+        </div>
+      </div>
     </>
-  );
+  )
 }
 
-export default Header;
+export default Header

@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+
+import "../css/Counter.css"
 
 export default function Counter({ title, onChangeCounter }) {
   const [counter, setCounter] = useState(1)
@@ -17,11 +19,13 @@ export default function Counter({ title, onChangeCounter }) {
   }
 
   return (
-    <>
+    <div className="counterContainer">
       {title}
-      <button onClick={plusCounter}>+</button>
+      <div className="counterControl">
+      <button className="counterButton" onClick={plusCounter}>+</button>
       {counter}
-      <button onClick={minusCounter}>-</button>
-    </>
+      <button className="counterButton"  onClick={minusCounter}>-</button>
+      </div>
+    </div>
   )
 }

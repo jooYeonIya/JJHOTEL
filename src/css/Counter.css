@@ -1,0 +1,23 @@
+.counterContainer {
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+  }
+  
+  .counterControl {
+    display: flex;
+    align-items: center;
+  }
+  
+  .counterButton {
+    width: 30px;
+    height: 30px;
+    background-color: #f6f1f1; 
+    border: 1px solid #ccc; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 10px;
+  }
