@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function RoomInfo({ roomId, reservationInfo }) {
+export default function RoomInfo({ roomId, reservationInfo, onChangeTotalPrice }) {
   const [room, setRoom] = useState(null)
 
   useEffect(() => {
@@ -10,7 +10,9 @@ export default function RoomInfo({ roomId, reservationInfo }) {
   const getTotalPrice = () => {
     if (room && reservationInfo) {
       const roomPrice = Number(room.price.replace(/,/g, ""))
-      return roomPrice * Number(reservationInfo.roomCount)
+      const totalPrice = roomPrice * Number(reservationInfo.roomCount)
+      onChangeTotalPrice(totalPrice)
+      return totalPrice
     }
     return 0
   }
