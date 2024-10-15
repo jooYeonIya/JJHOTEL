@@ -1,4 +1,14 @@
-/* 배경 이미지 화면에 꽉 차게 설정 */
+.facilities_container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 110vh;
+  background-color: rgba(0, 0, 0, 0.7); /* 반투명 회색 (rgba에서 0.5는 투명도 설정) */
+  z-index: 1; /* 텍스트 등 다른 요소보다 낮은 레이어에 위치 */
+}
+
 .facilities_dining {
   margin: 0;
   top: 0;
@@ -13,15 +23,23 @@
   margin: 0;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 110vh;
   background-image: url("../images/facilities_pool.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .facilities_text {
+  position: relative; /* 가상 요소보다 위에 위치하게 함 */
+  z-index: 2;
   align-content: center;
   color: white;
+  font-size:x-large;
+  
+}
+
+.facilities_text h1 {
+  padding-top: 200px;
 }
 
 pre {
