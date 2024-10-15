@@ -39,39 +39,41 @@ function Rooms() {
 
   async function getAllRooms() {
     axios.get("http://localhost:3003/rooms")
-    .then((res) => setRooms(res.data))
+      .then((res) => setRooms(res.data))
   }
-  
+
   async function getFilteredRooms() {
     // 예약 정보에서 checkInDate와 checkOutDate를 ISO 형식으로 변환
     const formattedReservationInfo = {
-        ...reservationInfo,
-        checkInDate: new Date(reservationInfo.checkInDate).toISOString(),
-        checkOutDate: new Date(reservationInfo.checkOutDate).toISOString()
+      ...reservationInfo,
+      checkInDate: new Date(reservationInfo.checkInDate).toISOString(),
+      checkOutDate: new Date(reservationInfo.checkOutDate).toISOString()
     }
 
     axios.post("http://localhost:3003/filteredRooms", { reservationInfo: formattedReservationInfo })
-    .then((res) => {
+      .then((res) => {
         setRooms(res.data);
-    })
+      })
   }
 
   return (
     <div className="container">
       <TitleLabel title={title.title} subTitle={title.subTitle} />
 
-      {rooms.map((room) =>
-        <div key={room.roomId}>
-          <div id="leftSection">
-            <img src={room.imageURL1} alt="" width={200} height={100}/>
+      <div className="section">
+        {rooms.map((room) =>
+          <div key={room.roomId} className="roomItem">
+            <div className="leftSection">
+              <img src={room.imageURL1} alt="" className="roomImage" />
+            </div>
+            <div className="rightSection">
+              <p>{room.roomName}</p>
+              <CustomButton title={"상세 보기"} onClicked={() => moveToRoomDescription(room.roomId)} />
+              {isFiltered && <CustomButton title={"예약하기"} onClicked={() => moveToReservationInputCustomInfo(room.roomId)} />}
+            </div>
           </div>
-          <div id="rightSection">
-            <p>{room.roomName}</p>
-            <CustomButton title={"상세 보기"} onClicked={() => moveToRoomDescription(room.roomId)}/>
-            {isFiltered && <CustomButton title={"예약하기"} onClicked={() => moveToReservationInputCustomInfo(room.roomId)} />}
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }
