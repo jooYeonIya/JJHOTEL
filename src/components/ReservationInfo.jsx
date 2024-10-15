@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import CustomButton from "./CustomButton"
 
 function ReservationInfo({ reservation }) {
-  const {checkInDate, checkOutDate, n, roomName, numberOfPeople} = reservation
+  const {n, roomName, numberOfPeople} = reservation
   const [isDelete, setIsDelete] = useState(null)
 
   // 날짜 포맷팅 함수
@@ -16,13 +16,20 @@ function ReservationInfo({ reservation }) {
     setIsDelete(true)
   }
 
+  const useConfirm = () => {
+    if (window.confirm("예약을 취소하시겠습니까?")) {
+      deleteReservation()
+      alert("예약이 취소되었습니다.")
+    }
+  }
+
   return(
     <>
       <h2>예약 정보 </h2>
       <p>이용 날짜 : {formatDate(reservation.checkInDate)} ~ {formatDate(reservation.checkOutDate)} ({n}박)</p>
       <p>객실 타입 : {roomName}</p>
       <p>인원 : {numberOfPeople}명</p>
-      <CustomButton title={"예약 취소"} onClicked={deleteReservation}/>
+      <CustomButton title={"예약 취소"} onClicked={useConfirm}/>
       {isDelete && <p>예약이 취소되었습니다.</p>}
     </>
   )
