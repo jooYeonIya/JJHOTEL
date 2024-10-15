@@ -1,23 +1,24 @@
-import { useState } from 'react'
-import './css/App.css'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+
+// components
 import Header from './components/Header'
 import Footer from './components/Footer'
 
+// css
+import './css/App.css';
+
 function App() {
-
-
   return (
-    <>
-    <div className="wrapper">
-      <div className="contentWrapper">
-        <Header />
-        
+    <StrictMode>
+      <div className="wrapper">
+        <div className="contentWrapper">
+          <Header />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-      
-    </>
+    </StrictMode>
   )
 }
 
-export default App
+createRoot(document.getElementById('root')).render(<App />)
