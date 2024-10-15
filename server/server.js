@@ -141,3 +141,16 @@ connection.query(sql,
     }
   })
 })
+
+// 객실 상세 내용 불러오기
+app.post('/roomDescription', (req, res) => {
+  let roomId = req.body.roomId
+  let sql = 'select * from room where roomId = ?'
+  connection.query(sql, [roomId], function (error, results) {
+    if (error) {
+      console.log(error)
+    } else {
+      res.send(results)
+    }
+  })
+})
