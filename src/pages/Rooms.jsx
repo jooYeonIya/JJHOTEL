@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { titles } from "../text/titles"
 import { useLocation, useNavigate } from "react-router-dom"
 
+import Header from "../components/Header"
 import TitleLabel from "../components/TitleLabel"
 import CustomButton from "../components/CustomButton"
 import axios from "axios"
@@ -57,24 +58,26 @@ function Rooms() {
   }
 
   return (
-    <div className="container">
-      <TitleLabel title={title.title} subTitle={title.subTitle} />
-
-      <div className="section">
-        {rooms.map((room) =>
-          <div key={room.roomId} className="roomItem">
-            <div className="leftSection">
-              <img src={room.imageURL1} alt="" className="roomImage" />
+    <>
+      <Header isEvent={true} />
+      <div className="container">
+        <TitleLabel title={title.title} subTitle={title.subTitle} />
+        <div className="section">
+          {rooms.map((room) =>
+            <div key={room.roomId} className="roomItem">
+              <div className="leftSection">
+                <img src={room.imageURL1} alt="" className="roomImage" />
+              </div>
+              <div className="rightSection">
+                <p>{room.roomName}</p>
+                <CustomButton title={"상세 보기"} onClicked={() => moveToRoomDescription(room.roomId)} />
+                {isFiltered && <CustomButton title={"예약하기"} onClicked={() => moveToReservationInputCustomInfo(room.roomId)} />}
+              </div>
             </div>
-            <div className="rightSection">
-              <p>{room.roomName}</p>
-              <CustomButton title={"상세 보기"} onClicked={() => moveToRoomDescription(room.roomId)} />
-              {isFiltered && <CustomButton title={"예약하기"} onClicked={() => moveToReservationInputCustomInfo(room.roomId)} />}
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

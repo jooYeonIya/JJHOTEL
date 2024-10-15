@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom"
 import TitleLabel from "../components/TitleLabel"
 import { useEffect, useState } from "react"
+import Header from "../components/Header"
 import axios from "axios"
 
 export default function RoomDescription() {
@@ -32,6 +33,7 @@ export default function RoomDescription() {
 
   return(
     <>
+      <Header isEvent={true}/>
       <TitleLabel title={room.roomName} subTitle={room.description} />
 
       <div id="mainImage">

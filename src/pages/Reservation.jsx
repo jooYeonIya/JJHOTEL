@@ -2,6 +2,8 @@ import TitleLabel from "../components/TitleLabel"
 import ReservationCalendar from "../components/ReservationCalendar"
 import CustomButton from "../components/CustomButton"
 import Counter from "../components/Counter"
+import Header from "../components/Header"
+
 import { addDays } from "date-fns"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
@@ -44,15 +46,18 @@ function Reservation() {
 
   return (
     <>
-      <TitleLabel title={"Reservation"} subTitle={"날짜 및 인원 선택"}></TitleLabel>
-      <br />
-      <ReservationCalendar onChangeDate={updateDate}/>
-      <br />
-      <CustomButton title="예약하기" onClicked={moveToRoomsPage} />
-      <br />
-      <Counter title="인원" onChangeCounter={updateCustomCount}/>
-      <br />
-      <Counter title="객실" onChangeCounter={updateRoomCount} />
+      <Header isEvent={true}/>
+      <div className="container">
+        <TitleLabel title={"Reservation"} subTitle={"날짜 및 인원 선택"}></TitleLabel>
+        <br />
+        <ReservationCalendar onChangeDate={updateDate}/>
+        <br />
+        <CustomButton title="예약하기" onClicked={moveToRoomsPage} />
+        <br />
+        <Counter title="인원" onChangeCounter={updateCustomCount}/>
+        <br />
+        <Counter title="객실" onChangeCounter={updateRoomCount} />
+      </div>
     </>
   )
 }

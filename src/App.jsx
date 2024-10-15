@@ -12,12 +12,12 @@ import Facilities from "./pages/Facilities";
 import RoomDescription from "./pages/RoomDescription";
 import ReservationInputCustomInfo from "./pages/ReservationInputCustomInfo";
 
-// components
-import Header from './components/Header'
-import Footer from './components/Footer'
 
 // css
 import './css/App.css';
+
+//components
+import Footer from './components/Footer';
 
 // App.jsx는 전체 구조 와 라우팅 및 페이지 전환 관리
 function App() {
@@ -25,7 +25,6 @@ function App() {
     <StrictMode>
       <BrowserRouter>
         <div className="wrapper">
-          <Header />
           <div className="contentWrapper">
             <Routes>
               <Route path="/" element={<Home />} />

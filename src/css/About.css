@@ -1,4 +1,10 @@
-/* 배경 이미지 화면에 꽉 차게 설정 */
+.header {
+  position: relative; /* 가상 요소보다 위에 위치하게 함 */
+  z-index: 2;
+  align-content: center;
+  color: white;
+}
+
 .about {
   margin: 0;
   top: 0;
@@ -7,8 +13,28 @@
   background-image: url("../images/about_information.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  
+}
+
+.about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* 반투명 회색 (rgba에서 0.5는 투명도 설정) */
+  z-index: 1; /* 텍스트 등 다른 요소보다 낮은 레이어에 위치 */
 }
 
 .text {
+  position: relative; /* 가상 요소보다 위에 위치하게 함 */
+  z-index: 2;
   align-content: center;
+  color: white;
+  font-size: x-large;
+}
+
+.text h1 {
+  padding-top: 200px;
 }
