@@ -25,9 +25,15 @@ app.post('/reservation', (req, res) => {
     let { customCount, roomCount, checkInDate, checkOutDate, reservationDate } = reservationInfo
     let { name, email } = customerInfo
 
-    const formattedCheckInDate = new Date(checkInDate).toISOString().slice(0, 10)
-    const formattedCheckOutDate = new Date(checkOutDate).toISOString().slice(0, 10)
     const formattedReservationDate = new Date(reservationDate).toISOString().slice(0, 10)
+
+    const checkInDateLocal = new Date(checkInDate);
+    checkInDateLocal.setDate(checkInDateLocal.getDate() + 1);  
+    const formattedCheckInDate = checkInDateLocal.toISOString().slice(0, 10);
+    
+    const checkOutDateLocal = new Date(checkOutDate);
+    checkOutDateLocal.setDate(checkOutDateLocal.getDate() + 1);  
+    const formattedCheckOutDate = checkOutDateLocal.toISOString().slice(0, 10);
 
     let selectSql = 'select * from reservation where reservationDate = ?'
 
