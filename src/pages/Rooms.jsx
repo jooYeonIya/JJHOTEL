@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
-import TitleLabel from "../components/TitleLabel"
 import { titles } from "../text/titles"
 import { useLocation, useNavigate } from "react-router-dom"
+
+import TitleLabel from "../components/TitleLabel"
 import CustomButton from "../components/CustomButton"
 import axios from "axios"
+
+import "../css/Rooms.css"
 
 function Rooms() {
   const location = useLocation()
@@ -54,7 +57,7 @@ function Rooms() {
   }
 
   return (
-    <>
+    <div className="container">
       <TitleLabel title={title.title} subTitle={title.subTitle} />
 
       {rooms.map((room) =>
@@ -69,7 +72,7 @@ function Rooms() {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 
