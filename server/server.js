@@ -44,9 +44,9 @@ app.post('/reservation', (req, res) => {
             const count = results.length + 1
             const id = `${formattedReservationDate}-${count}`
 
-            let sql = 'INSERT INTO reservation() VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+            let sql = 'INSERT INTO reservation() VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
             connection.query(sql,
-                [id, roomId, formattedCheckInDate, formattedCheckOutDate, customCount, formattedReservationDate, name, email, totalPrice],
+                [id, roomId, formattedCheckInDate, formattedCheckOutDate, customCount, formattedReservationDate, name, email, totalPrice, roomCount],
                 (error, results) => {
                     if (error) {
                         console.log(error)
