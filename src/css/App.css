@@ -5,13 +5,14 @@
   text-align: center;
 }
 
-/*footer 하단에 고정하기 위한 wrapper flex 설정*/
-.contentWrapper {
-  flex: 1;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+/*footer 하단에 고정하기 위한 wrapper flex 설정*/
+.contentWrapper {
+  flex: 1;
+  padding-bottom: 20px;
 }

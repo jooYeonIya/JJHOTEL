@@ -25,8 +25,8 @@ function App() {
     <StrictMode>
       <BrowserRouter>
         <div className="wrapper">
+          <Header />
           <div className="contentWrapper">
-            <Header />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
