@@ -1,13 +1,5 @@
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import Home from "../pages/Home";
-import About from "../pages/About";
-import Rooms from "../pages/Rooms";
-import Reservation from "../pages/Reservation";
-import CheckReservation from "../pages/CheckReservation";
-import Facilities from "../pages/Facilities";
-import RoomDescription from "../pages/RoomDescription";
-import ReservationInputCustomInfo from "../pages/ReservationInputCustomInfo";
 import "../css/Header.css"
 
 function Header() {
@@ -27,7 +19,6 @@ function Header() {
   return (
     <>
     <div>
-        <BrowserRouter>
           <div className="navbar">
             <img src="src\images\logo.png" alt="logo" width="20px" height="20px" />
             <Link className="navbarMenu" to="/">JJ HOTEL</Link> <br />
@@ -51,18 +42,7 @@ function Header() {
             <Link to={{pathname: "/inputCustomInfo", state: {roomId: "", reservationInfo: ""}}}/> <br />
           </div>
           
-          <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/about" element={<About />}/>
-            <Route path="/rooms" element={<Rooms />}/>
-            <Route path="/doreservation" element={<Reservation />}/>
-            <Route path="/checkreservation" element={<CheckReservation />}/>
-            <Route path="/facilities" element={<Facilities />}/>
-            <Route path="/roomDescription" element={<RoomDescription />}/>
-            <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />}/>
 
-          </Routes>
-        </BrowserRouter>
         
     </div>
     </>

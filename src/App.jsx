@@ -1,5 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Rooms from "./pages/Rooms";
+import Reservation from "./pages/Reservation";
+import CheckReservation from "./pages/CheckReservation";
+import Facilities from "./pages/Facilities";
+import RoomDescription from "./pages/RoomDescription";
+import ReservationInputCustomInfo from "./pages/ReservationInputCustomInfo";
 
 // components
 import Header from './components/Header'
@@ -8,15 +19,28 @@ import Footer from './components/Footer'
 // css
 import './css/App.css';
 
+// App.jsx는 전체 구조 와 라우팅 및 페이지 전환 관리
 function App() {
   return (
     <StrictMode>
-      <div className="wrapper">
-        <div className="contentWrapper">
-          <Header />
+      <BrowserRouter>
+        <div className="wrapper">
+          <div className="contentWrapper">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/rooms" element={<Rooms />} />
+              <Route path="/doreservation" element={<Reservation />} />
+              <Route path="/checkreservation" element={<CheckReservation />} />
+              <Route path="/facilities" element={<Facilities />} />
+              <Route path="/roomDescription" element={<RoomDescription />} />
+              <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />
+            </Routes>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </BrowserRouter>
     </StrictMode>
   )
 }
