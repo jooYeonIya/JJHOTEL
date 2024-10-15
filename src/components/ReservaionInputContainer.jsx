@@ -5,8 +5,6 @@ import CustomButton from "./CustomButton"
 import ReservationCalendar from "./ReservationCalendar"
 import Counter from "./Counter"
 
-import "../css/ReservaionInputContainer.css"
-
 export default function ReservaionInputContainer() {
     const [checkInDate, setCheckIndate] = useState(new Date())
     const [checkOutDate, setCheckOutdate] = useState(addDays(new Date(), 1))
