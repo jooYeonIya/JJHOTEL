@@ -172,3 +172,22 @@ where r.id = ? and r.name = ?
     }
   })
 })
+
+// 예약 내역 삭제하기 (name = '취소♪')
+app.post('/checkreservation/delete', function (req, res) {
+  const { name, id } = req.body
+
+  let sql = `
+update reservation 
+set name = '취소♪' 
+where id = ? and name = ?
+`
+
+  connection.query(sql, [id, name], function (error, results) {
+    if (error) {
+      console.log(error)
+    } else {
+      res.send(results)
+    }
+  })
+})
