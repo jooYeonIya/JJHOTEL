@@ -32,9 +32,13 @@ export default function ReservaionInputContainer() {
     return (
         <>
             <div className={isVisible ? "reservationCalendarIsVisible" : "reservationCalendar"} >
-                <ReservationCalendar onChangeDate={updateDate} />
-                <Counter title="인원" onChangeCounter={updateCustomCount} />
-                <Counter title="객실" onChangeCounter={updateRoomCount} />
+                <div className="leftSide">
+                    <ReservationCalendar onChangeDate={updateDate} />
+                </div>
+                <div className="rightSide">
+                    <Counter title="인원" onChangeCounter={updateCustomCount} />
+                    <Counter title="객실" onChangeCounter={updateRoomCount} />
+                </div>
             </div>
 
             <div className="inputContainer" onClick={toggleRservationCalendar}>
