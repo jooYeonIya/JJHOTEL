@@ -1,0 +1,51 @@
+/* 전체 컨테이너 */
+.container {
+  padding-top: 120px;
+}
+
+.section {
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+/* 방 정보를 가로로 배치 */
+.roomItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  background-color: #f6f1f1;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 왼쪽 섹션: 이미지 */
+.leftSection {
+  width: 60%;
+}
+
+.roomImage {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 오른쪽 섹션: 방 정보 */
+.rightSection {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: auto;
+}
+
+.rightSection button {
+  max-width: 100px;
+  margin: 10px auto;
+}
+
+.rightSection p {
+  font-weight: bold;
+  font-size: 18px;
+}

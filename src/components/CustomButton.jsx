@@ -1,7 +1,9 @@
+import "../css/CustomButton.css"
+
 export default function CustomButton({ title, onClicked }) {
     return (
         <>
-            <button onClick={onClicked}>{title}</button>
+            <button className="customButton" onClick={onClicked}>{title}</button>
         </>
     )
 }
