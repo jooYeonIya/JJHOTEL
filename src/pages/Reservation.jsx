@@ -3,7 +3,7 @@ import ReservationCalendar from "../components/ReservationCalendar"
 import CustomButton from "../components/CustomButton"
 import Counter from "../components/Counter"
 import Header from "../components/Header"
-import '../css/Reservation.css'
+
 import { addDays } from "date-fns"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
