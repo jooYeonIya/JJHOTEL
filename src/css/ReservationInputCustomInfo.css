@@ -1,0 +1,29 @@
+/*RoomInfo*/
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px; 
+    margin: 0 auto; 
+    border: 1px solid #f6f1f1;
+  }
+  
+  .infoRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+  }
+
+  .infoLabel {
+    width: 10%;
+    font-weight: bold;
+    background-color: #f6f1f1;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+
+  .infoValue {
+    width: 50%;
+    text-align: left;
+    padding: 0 50px;
+  }

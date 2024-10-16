@@ -6,6 +6,7 @@ import RoomInfo from "../components/RoomInfo"
 import CustomInfo from "../components/CustomInfo"
 import Header from "../components/Header"
 import axios from "axios"
+import "../css/ReservationInputCustomInfo.css"
 
 export default function ReservationInputCustomInfo() {
   const location = useLocation()
@@ -15,8 +16,8 @@ export default function ReservationInputCustomInfo() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const saveRservation = async (customerInfo) => {
-    let response  = await axios.post("http://localhost:3003/reservation", {roomId, reservationInfo, customerInfo, totalPrice})
-    
+    let response = await axios.post("http://localhost:3003/reservation", { roomId, reservationInfo, customerInfo, totalPrice })
+
     if (response.status == 200) {
       alert(`예약되었습니다. 예약번호는 ${response.data.id} 입니다`)
       navigate('/')
@@ -29,10 +30,12 @@ export default function ReservationInputCustomInfo() {
 
   return (
     <>
-      <Header isEvent={true}/>
-      <TitleLabel title={titles.inputCustomInfo.title} subTitle={titles.inputCustomInfo.subTitle} />
-      <RoomInfo roomId={roomId} reservationInfo={reservationInfo} onChangeTotalPrice={getTotalPrice}/><br />
-      <CustomInfo isReservation={true} onSave={saveRservation}/>
+      <Header isEvent={true} />
+      <div className="container">
+        <TitleLabel title={titles.inputCustomInfo.title} subTitle={titles.inputCustomInfo.subTitle} />
+        <RoomInfo roomId={roomId} reservationInfo={reservationInfo} onChangeTotalPrice={getTotalPrice} />
+        <CustomInfo onSave={saveRservation} />
+      </div>
     </>
   )
 }
