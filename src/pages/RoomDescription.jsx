@@ -41,7 +41,7 @@ export default function RoomDescription() {
         <TitleLabel title={room.roomName} subTitle={room.description} />
 
         <div className="mainImage">
-          <img src={mainImage} alt="" width={400} height={300} />
+          <img src={mainImage} alt=""/>
         </div>
         <div className="subImages">
           {subImages.map((image) =>
@@ -49,8 +49,6 @@ export default function RoomDescription() {
               src={image}
               alt=""
               onClick={() => changeMainImage(image)}
-              width={100}
-              height={100}
               className={image === mainImage ? "selectedImage" : ""} />
           )}
         </div>

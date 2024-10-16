@@ -77,14 +77,40 @@
     margin: 8px 0;
 }
 
+.mainImage {
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.mainImage img{
+    max-width: 100%;
+    height: auto;
+}
+
+.subImages {
+    margin: 10px auto 40px auto;
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+}
+
 .subImages img {
     filter: grayscale(100%);
     opacity: 0.7;
     transition: all 0.3s ease;
+    cursor: pointer;
+    width: 24.5%;
+    height: auto;
+}
+
+.subImages img:hover {
+    transform: scale(1.05);
 }
 
 .selectedImage {
     filter: none !important;
     opacity: 1 !important;
-    border: 2px solid #146c94;
 }
