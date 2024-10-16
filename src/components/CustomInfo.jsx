@@ -5,14 +5,22 @@ export default function CustomInfo({ onSave }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailPattern.test(email)
+  }
+  
   const saveRservation = () => {
-    const customerInfo = { name, email }
-
-    if (!customerInfo.name || !customerInfo.email) {
-      alert("성함 또는 이메일을 입력해 주세요")
-    } else {
-      onSave(customerInfo)
+    if (!name.trim() || !email.trim()) {
+      return alert("성함 또는 이메일을 입력해 주세요")
     }
+  
+    if (!validateEmail(email)) {
+      return alert("이메일 양식을 맞춰주세요")
+    }
+  
+    const customerInfo = { name, email }
+    onSave(customerInfo)
   }
 
   return (
