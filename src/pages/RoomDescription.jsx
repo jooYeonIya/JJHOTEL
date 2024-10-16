@@ -50,7 +50,8 @@ export default function RoomDescription() {
               alt=""
               onClick={() => changeMainImage(image)}
               width={100}
-              height={100} />
+              height={100}
+              className={image === mainImage ? "selectedImage" : ""} />
           )}
         </div>
 

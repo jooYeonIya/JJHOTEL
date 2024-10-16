@@ -76,3 +76,15 @@
 .servieRigth li {
     margin: 8px 0;
 }
+
+.subImages img {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.selectedImage {
+    filter: none !important;
+    opacity: 1 !important;
+    border: 2px solid #146c94;
+}
