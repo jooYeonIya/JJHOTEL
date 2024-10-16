@@ -2,6 +2,11 @@
     padding-top: 120px;
 }
 
+#subTitle {
+    margin: 40px auto;
+    max-width: 1000px;
+}
+
 .infomaitonBox {
     background-color: #f6f1f1;
     display: flex;
