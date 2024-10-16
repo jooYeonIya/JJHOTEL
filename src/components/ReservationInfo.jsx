@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import CustomButton from "./CustomButton"
+import '../css/ReservationInfo.css'
 
 function ReservationInfo({ reservation }) {
   const navigate = useNavigate()
@@ -37,14 +38,26 @@ function ReservationInfo({ reservation }) {
   }
 
   return(
-    <>
-      <h2>예약 정보 </h2>
-      <p>이용 날짜 : {formatDate(reservation.checkInDate)} ~ {formatDate(reservation.checkOutDate)} ({reservation.n}박)</p>
-      <p>객실 타입 : {reservation.roomName}</p>
-      <p>인원 : {reservation.numberOfPeople}명</p>
-      <CustomButton title={"예약 취소"} onClicked={useConfirm}/>
-      {isDelete && <p>예약이 취소되었습니다.</p>}
-    </>
+      <div className="cancel_container">
+        <h2>예약 정보 </h2>
+        <div className="label_container">
+          <div className="label_row">
+            <label className="label_text">이용 날짜</label>
+            <label className="label_info">{formatDate(reservation.checkInDate)} ~ {formatDate(reservation.checkOutDate)} ({reservation.n}박)</label>
+          
+          </div>
+          <div className="label_row">
+            <label className="label_text">객실 타입</label>  
+            <label className="label_info">{reservation.roomName}</label>
+          </div>
+          <div className="label_row">
+            <label className="label_text">인원</label>
+            <label className="label_info">{reservation.numberOfPeople}명</label>
+            <CustomButton title={"예약 취소"} onClicked={useConfirm}/>
+          </div>
+        </div>
+        {isDelete && <p>예약이 취소되었습니다.</p>}
+      </div>
   )
 }
 
