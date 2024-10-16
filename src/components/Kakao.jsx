@@ -20,7 +20,7 @@ function Kakao() {
     })
     marker.setMap(map)  // 마커가 지도 위에 표시되도록 설정
 
-    const iwContent = '<div className="text" style="padding:5px; align-content: center;">JJ HOTEL</div>' // 인포윈도우에 표출될 내용
+    const iwContent = '<div className="text" style="padding:5px; width:140px;">JJ HOTEL</div>' // 인포윈도우에 표출될 내용
     const iwPosition = new kakao.maps.LatLng(37.3389178, 127.1091677) //인포윈도우 표시 위치
 
     // 인포윈도우 생성
