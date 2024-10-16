@@ -21,7 +21,7 @@
 }
 
 .navbarMenu:hover {
-  color: #f6f1f1;
+  color: #afd3e2;
   text-decoration: underline;
 }
 
@@ -60,6 +60,6 @@
 }
 
 .dropdown a:hover {
-  color: #f6f1f1;
+  color: #afd3e2;
   text-decoration: underline;
 }
