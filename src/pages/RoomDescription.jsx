@@ -85,17 +85,24 @@ export default function RoomDescription() {
           </div>
         </div>
 
-        <div className="service">
-          <p>객실 서비스</p>
-          <li>미니바</li>
-          <li>커피/티 메이커</li>
-          <li>미니 냉장고</li>
-          <li>에어컨</li>
-          <li>Wi-Fi</li>
-          <li>스마트 TV</li>
-          <li>어메니티</li>
-          <li>브러시</li>
-          <li>헤어 드라이기</li>
+        <div className="serviceBox">
+          <div className="infomaitonLeft">
+            <p>객실 서비스</p>
+          </div>
+
+          <div className="servieRigth">
+            <ul>
+              <li>미니바</li>
+              <li>커피/티 메이커</li>
+              <li>미니 냉장고</li>
+              <li>에어컨</li>
+              <li>Wi-Fi</li>
+              <li>스마트 TV</li>
+              <li>어메니티</li>
+              <li>브러시</li>
+              <li>헤어 드라이기</li>
+            </ul>
+          </div>
         </div>
       </div>
     </>
