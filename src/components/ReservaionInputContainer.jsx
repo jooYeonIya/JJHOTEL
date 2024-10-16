@@ -1,33 +1,51 @@
 import { useState } from "react"
 import { addDays } from "date-fns"
+import { useNavigate } from "react-router-dom"
 
 import CustomButton from "./CustomButton"
 import ReservationCalendar from "./ReservationCalendar"
 import Counter from "./Counter"
 
 export default function ReservaionInputContainer() {
-    const [checkInDate, setCheckIndate] = useState(new Date())
-    const [checkOutDate, setCheckOutdate] = useState(addDays(new Date(), 1))
-    const [customerCount, setCustomerCount] = useState(2)
-    const [roomCount, setRoomCount] = useState(1)
+    const navigate = useNavigate()
     const [isVisible, setIsVisible] = useState(false)
+    const [reservationInfo, setReservationInfo] = useState({
+        customCount: 2,
+        roomCount: 1,
+        checkInDate: new Date(),
+        checkOutDate: addDays(new Date(), 1),
+        reservationDate: new Date()
+      })
 
     const updateCustomCount = (count) => {
-        setCustomerCount(count)
+        setReservationInfo(prevState => ({
+            ...prevState,
+            customCount: count
+          }))
     }
 
     const updateRoomCount = (count) => {
-        setRoomCount(count)
+        setReservationInfo(prevState => ({
+            ...prevState,
+            roomCount: count
+          }))
     }
 
     const updateDate = (checkIn, checkOut) => {
-        setCheckIndate(checkIn)
-        setCheckOutdate(checkOut)
+        setReservationInfo(prevState => ({
+            ...prevState,
+            checkInDate: checkIn,
+            checkOutDate: checkOut
+          }))
     }
 
     const toggleRservationCalendar = () => {
         setIsVisible(!isVisible)
     }
+
+    const moveToRoomsPage = () => {
+        navigate('/rooms', { state: { isFiltered: true, reservationInfo } })
+      }
 
     return (
         <>
@@ -41,29 +59,29 @@ export default function ReservaionInputContainer() {
                 </div>
             </div>
 
-            <div className="inputContainer" onClick={toggleRservationCalendar}>
-                <div className="checkIn">
+            <div className="inputContainer">
+                <div className="checkIn" onClick={toggleRservationCalendar}>
                     <p className="smallFont">체크인</p>
-                    <p className="largeFont">{checkInDate.toLocaleDateString()}</p>
+                    <p className="largeFont">{reservationInfo.checkInDate.toLocaleDateString()}</p>
                 </div>
 
-                <div className="checkOut">
+                <div className="checkOut" onClick={toggleRservationCalendar}>
                     <p className="smallFont">체크아웃</p>
-                    <p className="largeFont">{checkOutDate.toLocaleDateString()}</p>
+                    <p className="largeFont">{reservationInfo.checkOutDate.toLocaleDateString()}</p>
                 </div>
 
-                <div className="customerCount">
+                <div className="customerCount" onClick={toggleRservationCalendar}>
                     <p className="smallFont">인원</p>
-                    <p className="largeFont">{customerCount}</p>
+                    <p className="largeFont">{reservationInfo.customCount}</p>
                 </div>
 
-                <div className="roomCount">
+                <div className="roomCount" onClick={toggleRservationCalendar}>
                     <p className="smallFont">객실</p>
-                    <p className="largeFont">{roomCount}</p>
+                    <p className="largeFont">{reservationInfo.roomCount}</p>
                 </div>
 
                 <div className="button">
-                    <CustomButton title="예약하기"></CustomButton>
+                    <CustomButton title="예약하기" onClicked={moveToRoomsPage}/>
                 </div>
             </div>
         </>
