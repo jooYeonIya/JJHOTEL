@@ -8,6 +8,8 @@ import { addDays } from "date-fns"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
+import "../css/Reservation.css"
+
 function Reservation() {
   const navigate = useNavigate()
   const [reservationInfo, setReservationInfo] = useState({
@@ -46,17 +48,22 @@ function Reservation() {
 
   return (
     <>
-      <Header isEvent={true}/>
+      <Header isEvent={true} />
       <div className="container">
         <TitleLabel title={"Reservation"} subTitle={"날짜 및 인원 선택"}></TitleLabel>
-        <br />
-        <ReservationCalendar onChangeDate={updateDate}/>
-        <br />
-        <CustomButton title="예약하기" onClicked={moveToRoomsPage} />
-        <br />
-        <Counter title="인원" onChangeCounter={updateCustomCount}/>
-        <br />
-        <Counter title="객실" onChangeCounter={updateRoomCount} />
+        
+        <div className="calendarContainer">
+
+          <div className="calendarSection">
+            <ReservationCalendar onChangeDate={updateDate} />
+          </div>
+        
+          <div className="calendaRightSection">
+            <Counter title="인원" onChangeCounter={updateCustomCount} />
+            <Counter title="객실" onChangeCounter={updateRoomCount} />
+            <CustomButton title="예약하기" onClicked={moveToRoomsPage} />
+          </div>
+        </div>
       </div>
     </>
   )
