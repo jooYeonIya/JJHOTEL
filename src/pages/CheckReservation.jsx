@@ -34,7 +34,7 @@ function CheckReservation() {
   return(
     <div>
       <Header isEvent={true}/>
-      <div className="container">
+      <div className="checkreserve_container">
         <h2>고객 정보</h2>
         <div className="input_container">
           <div className="input_row">
