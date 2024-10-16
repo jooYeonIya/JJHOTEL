@@ -12,7 +12,7 @@ function ReservationInfo({ reservation }) {
   const formatDate = (dateString) => {
     const date = new Date(dateString)
     date.setDate(date.getDate() + 1)
-    return date.toISOString().split("T")[0]
+    return date.toLocaleDateString()
   }
 
   //예약 취소 함수
@@ -43,8 +43,9 @@ function ReservationInfo({ reservation }) {
         <div className="label_container">
           <div className="label_row">
             <label className="label_text">이용 날짜</label>
-            <label className="label_info">{formatDate(reservation.checkInDate)} ~ {formatDate(reservation.checkOutDate)} ({reservation.n}박)</label>
-          
+            <label className="label_info">
+              {formatDate(reservation.checkInDate)} ~ {formatDate(reservation.checkOutDate)} ({reservation.n}박)
+            </label>
           </div>
           <div className="label_row">
             <label className="label_text">객실 타입</label>  
