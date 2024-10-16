@@ -32,6 +32,8 @@ export default function RoomInfo({ roomId, reservationInfo, onChangeTotalPrice }
 
   return (
     <>
+    <div className="roomInfo"><p>객실 정보</p></div>
+
       <div className="infoSection">
 
         <div className="infoRow">

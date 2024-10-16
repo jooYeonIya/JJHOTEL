@@ -5,25 +5,83 @@
     max-width: 800px; 
     margin: 0 auto; 
     border: 1px solid #f6f1f1;
-  }
-  
-  .infoRow {
+}
+
+.infoRow {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 0;
-  }
+    padding: 20px 0;
+}
 
-  .infoLabel {
+.infoLabel {
     width: 10%;
     font-weight: bold;
     background-color: #f6f1f1;
     padding: 5px 10px;
     border-radius: 8px;
-  }
+}
 
-  .infoValue {
+.infoValue {
     width: 50%;
     text-align: left;
     padding: 0 50px;
-  }
+}
+
+/*CustomInfo*/
+.customInfoContainer {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.roomInfo {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.customInfoContainer p, .roomInfo p {
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.customInfoSection{
+    display: flex;
+    flex-direction: row;
+    max-width: 800px; 
+    margin: 0 auto; 
+    border: 1px solid #f6f1f1;
+}
+
+.infoSectionLeft {
+    width: 70%;
+    flex-direction: column;
+}
+
+.infoSectionRight{
+    width: 20%;
+    margin: auto;
+}
+
+.customInfoLabel {
+    font-weight: bold;
+    text-align: right;
+    width: 10%;
+}
+
+.customInfoValue {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    box-sizing: border-box;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.customInfoContainer pre {
+    font-size: 12px;
+    margin: 10px;
+    text-align: left;
+    color: #666666;
+}

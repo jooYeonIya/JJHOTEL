@@ -17,11 +17,30 @@ export default function CustomInfo({ onSave }) {
 
   return (
     <>
-      <p>고객 정보</p>
-      성명 <input type="text" value={name} onChange={(e) => setName(e.target.value)} /><br />
-      이메일 <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} /><br />
-      *입력하신 이메일로 예약번호가 전송됩니다
-      <CustomButton title="입력완료" onClicked={saveRservation} />
+      <div className="customInfoContainer">
+        <p>고객 정보</p>
+        <pre>*입력하신 이메일로 예약번호가 전송됩니다</pre>
+        <div className="customInfoSection">
+          
+          <div className="infoSectionLeft">
+            <div className="infoRow">
+              <label className="customInfoLabel">성명</label>
+              <input className="customInfoValue" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+
+            <div className="infoRow">
+              <label className="customInfoLabel">이메일</label>
+              <input className="customInfoValue" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+          </div>
+
+          <div className="infoSectionRight">
+            <CustomButton title="입력완료" onClicked={saveRservation} />
+          </div>
+        </div>
+
+
+      </div>
     </>
   )
 }
