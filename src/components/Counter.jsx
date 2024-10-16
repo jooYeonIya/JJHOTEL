@@ -2,8 +2,8 @@ import { useState } from "react"
 
 import "../css/Counter.css"
 
-export default function Counter({ title, onChangeCounter }) {
-  const [counter, setCounter] = useState(1)
+export default function Counter({ title, onChangeCounter, initCount }) {
+  const [counter, setCounter] = useState(Number(initCount))
 
   const plusCounter = () => {
     const newCounter = counter + 1

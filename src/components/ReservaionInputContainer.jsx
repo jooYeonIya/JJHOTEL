@@ -54,8 +54,8 @@ export default function ReservaionInputContainer() {
                     <ReservationCalendar onChangeDate={updateDate} />
                 </div>
                 <div className="rightSide">
-                    <Counter title="인원" onChangeCounter={updateCustomCount} />
-                    <Counter title="객실" onChangeCounter={updateRoomCount} />
+                    <Counter title="인원" onChangeCounter={updateCustomCount} initCount="2" />
+                    <Counter title="객실" onChangeCounter={updateRoomCount} initCount="1" />
                 </div>
             </div>
 

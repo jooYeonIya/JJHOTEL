@@ -59,8 +59,8 @@ function Reservation() {
           </div>
         
           <div className="calendaRightSection">
-            <Counter title="인원" onChangeCounter={updateCustomCount} />
-            <Counter title="객실" onChangeCounter={updateRoomCount} />
+            <Counter title="인원" onChangeCounter={updateCustomCount} initCount="2" />
+            <Counter title="객실" onChangeCounter={updateRoomCount} initCount="1" />
             <CustomButton title="예약하기" onClicked={moveToRoomsPage} />
           </div>
         </div>
