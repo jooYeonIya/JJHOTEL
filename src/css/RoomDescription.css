@@ -1,0 +1,49 @@
+.container {
+    padding-top: 120px;
+}
+
+.infomaitonBox {
+    background-color: #f6f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+.infomaitonLeft {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 40%;
+}
+
+.infomaitonRigth {
+    font-size: 18px;
+    text-align: left;
+    width: 60%;
+}
+
+.infomaitonRigth ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.infomaitonBox li {
+    flex-basis: 45%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.infomaitonBox li strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.infomaitonBox li p {
+    margin: 0;
+}
