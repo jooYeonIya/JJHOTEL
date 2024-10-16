@@ -6,9 +6,13 @@ export default function Counter({ title, onChangeCounter, initCount }) {
   const [counter, setCounter] = useState(Number(initCount))
 
   const plusCounter = () => {
-    const newCounter = counter + 1
-    setCounter(newCounter)
-    onChangeCounter(newCounter)
+    const flag = initCount === "1" ? 10 : 8
+
+    if (counter < flag) {
+      const newCounter = counter + 1
+      setCounter(newCounter)
+      onChangeCounter(newCounter)
+    }
   }
 
   const minusCounter = () => {
