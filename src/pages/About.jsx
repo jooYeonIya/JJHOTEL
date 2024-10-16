@@ -1,7 +1,6 @@
 import "../css/About.css";
 import { useState, useEffect } from "react";
-import Kakao from "../components/Kakao";
-import Header from '../components/Header'
+import HeaderWhite from '../components/HeaderWhite'
 
 function About() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -15,7 +14,7 @@ function About() {
 
   return (
     <>
-      <Header isEvent={false}/>
+      <HeaderWhite />
       <div className="about">
         {scrollPosition ? (
           <Kakao />

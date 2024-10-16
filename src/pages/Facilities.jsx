@@ -1,6 +1,6 @@
 import '../css/Facilities.css'
 import { useState, useEffect } from 'react'
-import Header from '../components/Header'
+import HeaderWhite from '../components/HeaderWhite'
 
 function Facilities() {
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -14,7 +14,7 @@ function Facilities() {
 
   return (
     <div className="facilities_container">
-      <Header isEvent={false}/>
+      <HeaderWhite />
       <div className={scrollPosition ? "facilities_pool" : "facilities_dining"}>
         {scrollPosition ? 
         <div className="facilities_text" >
