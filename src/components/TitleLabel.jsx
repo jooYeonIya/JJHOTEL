@@ -6,7 +6,7 @@ export default function TitleLabel({ title, subTitle }) {
             <br />
             <div id="title">{title}</div>
             <div id="subTitle">
-                {subTitle.split("\n").map((line, index) => (
+                {subTitle.split("/").map((line, index) => (
                     <span key={index}>
                         {line}
                         <br />
