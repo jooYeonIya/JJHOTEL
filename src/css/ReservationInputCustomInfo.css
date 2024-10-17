@@ -73,7 +73,8 @@
 .customInfoValue {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 60%;
+    padding: 5px; 
     box-sizing: border-box;
     font-weight: bold;
     margin-left: 20px;

@@ -37,14 +37,18 @@ function CheckReservation() {
       <div className="checkreserve_container">
         <h2>고객 정보</h2>
         <div className="input_container">
-          <div className="input_row">
+          <div className="check_container_left">
+            <div className="input_row">
             <label className="input_label">성명</label>
             <input className="input_name" type="text" value={name} onChange={(e) => setName(e.target.value)} /><br />
-          </div>
+            </div>
           
-          <div className="input_row">
-            <label className="input_label">예약번호</label>
-            <input className="input_id" type="text" value={reservationId} onChange={(e) => setReservationId(e.target.value)} /><br />
+            <div className="input_row">
+              <label className="input_label">예약번호</label>
+              <input className="input_id" type="text" value={reservationId} onChange={(e) => setReservationId(e.target.value)} /><br />
+            </div>
+          </div>
+          <div className="check_container_right">
             <CustomButton title="예약 조회" onClicked={checkReservation}/>
           </div>
         </div>

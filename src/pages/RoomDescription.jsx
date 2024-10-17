@@ -62,7 +62,7 @@ export default function RoomDescription() {
             <ul>
               <li>
                 <strong>size</strong>
-                <p>{room.size}m</p>
+                <p>{room.size}㎡</p>
               </li>
               <li>
                 <strong>Bed type</strong>

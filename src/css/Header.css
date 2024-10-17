@@ -13,6 +13,7 @@
 
 .navbar.scrolled {
   background-color: rgba(255, 255, 255, 1); 
+  border-bottom: 1px solid #ccc;
 }
 
 .navbarMenu {
@@ -23,6 +24,10 @@
 .navbarMenu:hover {
   color: #afd3e2;
   text-decoration: underline;
+}
+
+.reservationMenu .navbarMenu {
+  text-decoration: none;
 }
 
 .navbarFirstLine {
