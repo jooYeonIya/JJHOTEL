@@ -1,11 +1,16 @@
 /* MainImageContainer.jsx css */
 .mainImageContainder {
   position: relative;
-  width: 100vw;
-  /* 뷰포트 너비 */
-  height: 100vh;
-  /* 뷰포트 높이 */
+  width: 100%; /* 뷰포트 너비 */
+  height: 100vh; /* 뷰포트 높이 */
   overflow: hidden;
+}
+
+.main_image_container img {
+  width: 100vw;
+  min-width: 1165px;
+  height: auto;
+  object-fit: cover;
 }
 
 .reservationInputContainer {

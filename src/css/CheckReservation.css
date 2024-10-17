@@ -9,10 +9,9 @@
 
 .input_container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 5px;
-  min-width: 450px;
-  max-width: 650px;
+  min-width: 478px;
   padding: 30px;
   border-radius: 12px;
   background-color: white;
@@ -22,7 +21,7 @@
 .input_id, .input_name {
   display: flex;
   flex-direction: row;
-  width: 180px; 
+  width: 200px; 
   padding: 5px; 
   margin-left: 20px;
   margin-bottom: 10px;
@@ -30,14 +29,10 @@
   font-weight: bold;
 }
 
-.input_name {
-  margin-left: 51px;
-}
-
 .input_row {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .checkreserve_container button {
@@ -45,6 +40,18 @@
 }
 
 .input_label {
+  text-align: right;
+  width: 25%;
   margin-bottom: 5px;
   font-weight: bold;
+}
+
+.check_container_left {
+  width: 70%;
+  flex-direction: column;
+}
+
+.check_container_right {
+  width: 25%;
+  margin: auto;
 }

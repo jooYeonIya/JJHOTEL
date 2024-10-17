@@ -48,7 +48,10 @@ export default function RoomInfo({ roomId, reservationInfo, onChangeTotalPrice }
 
         <div className="infoRow">
           <div className="infoLabel">이용 날짜</div>
-          <div className="infoValue">{reservationInfo.checkInDate.toLocaleDateString()} - {reservationInfo.checkOutDate.toLocaleDateString()}</div>
+          <div className="infoValue">
+            {reservationInfo.checkInDate.toLocaleDateString()} ~ {reservationInfo.checkOutDate.toLocaleDateString()}
+            ({reservationInfo.checkOutDate.getDate() - reservationInfo.checkInDate.getDate()}박)
+          </div>
         </div>
 
         <div className="infoRow">
