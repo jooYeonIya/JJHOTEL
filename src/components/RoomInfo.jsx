@@ -15,12 +15,22 @@ export default function RoomInfo({ roomId, reservationInfo, onChangeTotalPrice }
         setRoom(room)
       })
   }
+  
+  const getTotalNights = (checkInDate, checkOutDate) => {
+    const oneDay = 24 * 60 * 60 * 1000; 
+    const checkInTime = checkInDate.getTime();
+    const checkOutTime = checkOutDate.getTime();
+  
+    const nights = Math.round((checkOutTime - checkInTime) / oneDay);
+  
+    return nights;
+  };
 
   const getTotalPrice = () => {
     if (room && reservationInfo) {
       const roomPrice = Number(room.price)
       const roomCount = Number(reservationInfo.roomCount)
-      const nights = reservationInfo.checkOutDate.getDate() - reservationInfo.checkInDate.getDate();
+      const nights = getTotalNights(reservationInfo.checkInDate, reservationInfo.checkOutDate)
       const totalPrice = roomPrice * roomCount * nights
       onChangeTotalPrice(totalPrice)
       return totalPrice

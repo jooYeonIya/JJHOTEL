@@ -2,18 +2,23 @@ import { useState } from "react"
 
 import "../css/Counter.css"
 
-export default function Counter({ title, onChangeCounter }) {
-  const [counter, setCounter] = useState(1)
+export default function Counter({ title, onChangeCounter, initCount }) {
+  const [counter, setCounter] = useState(Number(initCount))
 
   const plusCounter = () => {
-    const newCounter = counter + 1
-    setCounter(newCounter)
-    onChangeCounter(newCounter)
+    const flag = initCount === "1" ? 10 : 8
+
+    if (counter < flag) {
+      const newCounter = counter + 1
+      setCounter(newCounter)
+      onChangeCounter(newCounter)
+    }
   }
 
   const minusCounter = () => {
-    if (counter > 0) {
-      setCounter(counter - 1)
+    if (counter > 1) {
+      const newCounter = counter - 1
+      setCounter(newCounter)
       onChangeCounter(newCounter)
     }
   }

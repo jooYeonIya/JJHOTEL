@@ -27,7 +27,7 @@
 .reservationCalendarIsVisible {
   display: flex;
   background-color: white;
-  max-width: 1000px; 
+  max-width: 1000px;
   margin: 20px auto;
   padding: 20px;
   border-radius: 10px;
@@ -118,4 +118,20 @@
 .grid_section:hover {
   background-color: rgba(0, 0, 0, 0.5);
   /* hover 시 배경색 진하게 */
+}
+
+@media (max-width: 800px) {
+  .reservationCalendarIsVisible {
+    flex-direction: column;
+    align-items: center;
+    max-width: 90%;
+  }
+
+  .rdrCalendarWrapper {
+    width: 80%;
+  }
+
+  .calendaRightSection {
+    width: 100%;
+  }
 }

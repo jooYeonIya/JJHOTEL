@@ -61,7 +61,7 @@ export default function RoomDescription() {
           <div className="infomaitonRigth">
             <ul>
               <li>
-                <strong>size</strong>
+                <strong>Size</strong>
                 <p>{room.size}㎡</p>
               </li>
               <li>
@@ -73,8 +73,8 @@ export default function RoomDescription() {
                 <p>베드룸1, 베스룸1</p>
               </li>
               <li>
-                <strong>price</strong>
-                <p>{room.price}원</p>
+                <strong>Price</strong>
+                <p>{room.price.toLocaleString()}원</p>
               </li>
               <li>
                 <strong>최대 수용 인원</strong>
