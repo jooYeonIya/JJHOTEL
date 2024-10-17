@@ -1,6 +1,6 @@
-.calendarContainer{
+.calendarContainer {
     display: flex;
-    max-width: 1000px; 
+    max-width: 1000px;
     margin: 20px auto;
     border-radius: 10px;
     border: 1px solid #e0e0e0;
@@ -9,14 +9,31 @@
 }
 
 /* 캘린더 오버라이딩 */
-.rdrCalendarWrapper  {
+.rdrCalendarWrapper {
     margin: 10px;
 }
 
-.rdrStartEdge, .rdrEndEdge, .rdrInRange {
+.rdrStartEdge,
+.rdrEndEdge,
+.rdrInRange {
     background-color: #19a7ce;
 }
 
 .calendaRightSection {
     margin: auto;
+}
+
+@media (max-width: 800px) {
+    .calendarContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rdrCalendarWrapper {
+        width: 100%;
+    }
+
+    .calendaRightSection {
+        width: 100%;
+    }
 }

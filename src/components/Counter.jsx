@@ -17,7 +17,8 @@ export default function Counter({ title, onChangeCounter, initCount }) {
 
   const minusCounter = () => {
     if (counter > 1) {
-      setCounter(counter - 1)
+      const newCounter = counter - 1
+      setCounter(newCounter)
       onChangeCounter(newCounter)
     }
   }

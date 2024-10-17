@@ -15,20 +15,20 @@ export default function ReservaionInputContainer() {
         checkInDate: new Date(),
         checkOutDate: addDays(new Date(), 1),
         reservationDate: new Date()
-      })
+    })
 
     const updateCustomCount = (count) => {
         setReservationInfo(prevState => ({
             ...prevState,
             customCount: count
-          }))
+        }))
     }
 
     const updateRoomCount = (count) => {
         setReservationInfo(prevState => ({
             ...prevState,
             roomCount: count
-          }))
+        }))
     }
 
     const updateDate = (checkIn, checkOut) => {
@@ -36,7 +36,7 @@ export default function ReservaionInputContainer() {
             ...prevState,
             checkInDate: checkIn,
             checkOutDate: checkOut
-          }))
+        }))
     }
 
     const toggleRservationCalendar = () => {
@@ -45,7 +45,7 @@ export default function ReservaionInputContainer() {
 
     const moveToRoomsPage = () => {
         navigate('/rooms', { state: { isFiltered: true, reservationInfo } })
-      }
+    }
 
     return (
         <>
@@ -81,7 +81,7 @@ export default function ReservaionInputContainer() {
                 </div>
 
                 <div className="button">
-                    <CustomButton title="예약하기" onClicked={moveToRoomsPage}/>
+                    <CustomButton title="예약하기" onClicked={moveToRoomsPage} />
                 </div>
             </div>
         </>
