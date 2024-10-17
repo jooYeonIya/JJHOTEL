@@ -15,6 +15,15 @@ function ReservationInfo({ reservation }) {
     return date.toLocaleDateString()
   }
 
+  const getTotalNights = (checkInDate, checkOutDate) => {
+    const oneDay = 24 * 60 * 60 * 1000; 
+    const checkInTime = new Date(checkInDate).getTime()
+    const checkOutTime = new Date(checkOutDate).getTime()
+  
+    const nights = Math.round((checkOutTime - checkInTime) / oneDay)
+    return nights
+  }
+
   //예약 취소 함수
   const deleteReservation = (name, id) => {
   
@@ -44,7 +53,8 @@ function ReservationInfo({ reservation }) {
           <div className="label_row">
             <label className="label_text">이용 날짜</label>
             <label className="label_info">
-              {formatDate(reservation.checkInDate)} ~ {formatDate(reservation.checkOutDate)} ({reservation.n}박)
+              {formatDate(reservation.checkInDate)} ~ {formatDate(reservation.checkOutDate)} 
+              ({getTotalNights(reservation.checkInDate, reservation.checkOutDate)}박)
             </label>
           </div>
           <div className="label_row">

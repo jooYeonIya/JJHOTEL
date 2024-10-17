@@ -18,13 +18,13 @@ export default function RoomInfo({ roomId, reservationInfo, onChangeTotalPrice }
   
   const getTotalNights = (checkInDate, checkOutDate) => {
     const oneDay = 24 * 60 * 60 * 1000; 
-    const checkInTime = checkInDate.getTime();
-    const checkOutTime = checkOutDate.getTime();
+    const checkInTime = checkInDate.getTime()
+    const checkOutTime = checkOutDate.getTime()
   
-    const nights = Math.round((checkOutTime - checkInTime) / oneDay);
+    const nights = Math.round((checkOutTime - checkInTime) / oneDay)
   
-    return nights;
-  };
+    return nights
+  }
 
   const getTotalPrice = () => {
     if (room && reservationInfo) {
@@ -50,7 +50,7 @@ export default function RoomInfo({ roomId, reservationInfo, onChangeTotalPrice }
           <div className="infoLabel">이용 날짜</div>
           <div className="infoValue">
             {reservationInfo.checkInDate.toLocaleDateString()} ~ {reservationInfo.checkOutDate.toLocaleDateString()}
-            ({reservationInfo.checkOutDate.getDate() - reservationInfo.checkInDate.getDate()}박)
+            ({getTotalNights(reservationInfo.checkInDate, reservationInfo.checkOutDate)}박)
           </div>
         </div>
 
