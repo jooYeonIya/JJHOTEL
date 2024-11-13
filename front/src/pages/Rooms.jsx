@@ -52,7 +52,7 @@ function Rooms() {
       checkOutDate: new Date(reservationInfo.checkOutDate).toISOString()
     }
 
-    axios.post("http://localhost:3003/filteredRooms", { reservationInfo: formattedReservationInfo })
+    axios.post("http://localhost:8080/room/filtered", formattedReservationInfo)
       .then((res) => {
         setRooms(res.data);
       })

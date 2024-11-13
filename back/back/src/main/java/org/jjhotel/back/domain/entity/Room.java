@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -31,4 +33,6 @@ public class Room {
   @Column(length = 100)
   private String imageURL4;
   private int roomCount;
+  @OneToMany(mappedBy = "room")
+  private List<Reservation> reservations;
 }
