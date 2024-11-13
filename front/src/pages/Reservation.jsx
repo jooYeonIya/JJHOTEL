@@ -13,17 +13,17 @@ import "../css/Reservation.css"
 function Reservation() {
   const navigate = useNavigate()
   const [reservationInfo, setReservationInfo] = useState({
-    customCount: 1,
+    guestCount: 2,
     roomCount: 1,
     checkInDate: new Date(),
     checkOutDate: addDays(new Date(), 1),
     reservationDate: new Date()
   })
 
-  const updateCustomCount = (count) => {
+  const updateGuestCount = (count) => {
     setReservationInfo(prevState => ({
       ...prevState,
-      customCount: count
+      guestCount: count
     }))
   }
 
@@ -59,7 +59,7 @@ function Reservation() {
           </div>
         
           <div className="calendaRightSection">
-            <Counter title="인원" onChangeCounter={updateCustomCount} initCount="2" />
+            <Counter title="인원" onChangeCounter={updateGuestCount} initCount="2" />
             <Counter title="객실" onChangeCounter={updateRoomCount} initCount="1" />
             <CustomButton title="예약하기" onClicked={moveToRoomsPage} />
           </div>
