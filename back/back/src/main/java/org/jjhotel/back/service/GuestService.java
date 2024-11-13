@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 public class GuestService {
     private final GuestRepository guestRepository;
 
-    public GuestCreateDto createGuest(GuestCreateDto guestCreateDto) {
+    public void createGuest(GuestCreateDto guestCreateDto) {
 
         if (guestRepository.existsById(guestCreateDto.getGuestId())) {
             throw new NotUniqueGuestIdException("이미 존재하는 ID입니다.");
@@ -35,9 +35,7 @@ public class GuestService {
                 guestCreateDto.getPassword(),
                 guestCreateDto.getGuestName(),
                 guestCreateDto.getGuestEmail());
-        Guest saved = guestRepository.save(guest);
-
-        return GuestCreateDto.of(saved);
+        guestRepository.save(guest);
     }
 
     private boolean isValidEmail(String email) {
