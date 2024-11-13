@@ -18,9 +18,10 @@ export default function RoomDescription() {
   }, [roomId])
 
   async function getRoomInfo(roomId) {
-    axios.post("http://localhost:3003/roomDescription", { roomId })
+    console.log("RoomDescription.jsx roomId: ", roomId)
+    axios.get(`http://localhost:8080/room/detail/${roomId}`, { roomId })
       .then(res => {
-        let room = res.data[0]
+        let room = res.data
         setRoom(room)
         setMainImage(room.imageURL1)
         setSubImages([room.imageURL1, room.imageURL2, room.imageURL3, room.imageURL4])
@@ -62,7 +63,7 @@ export default function RoomDescription() {
             <ul>
               <li>
                 <strong>Size</strong>
-                <p>{room.size}㎡</p>
+                <p>{room.roomSize}㎡</p>
               </li>
               <li>
                 <strong>Bed type</strong>
@@ -74,11 +75,11 @@ export default function RoomDescription() {
               </li>
               <li>
                 <strong>Price</strong>
-                <p>{room.price.toLocaleString()}원</p>
+                <p>{room.roomPrice.toLocaleString()}원</p>
               </li>
               <li>
                 <strong>최대 수용 인원</strong>
-                <p>{room.maxNumberOfPeople}명</p>
+                <p>{room.maxGuests}명</p>
               </li>
             </ul>
           </div>
