@@ -63,7 +63,7 @@ function Header({isEvent}) {
               {hide.showDropdown && (
                 <div className="dropdown">
                   <Link to="/doreservation">{category[0]}</Link>
-                  <Link to="/checkreservation">{category[1]}</Link>
+                  <Link to="/reservation/check">{category[1]}</Link>
                 </div>
               )}
             </div>

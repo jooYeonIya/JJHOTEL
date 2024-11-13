@@ -31,7 +31,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/rooms" element={<Rooms />} />
               <Route path="/doreservation" element={<Reservation />} />
-              <Route path="/checkreservation" element={<CheckReservation />} />
+              <Route path="/reservation/check" element={<CheckReservation />} />
               <Route path="/facilities" element={<Facilities />} />
               <Route path="/room/detail" element={<RoomDescription />} />
               <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />

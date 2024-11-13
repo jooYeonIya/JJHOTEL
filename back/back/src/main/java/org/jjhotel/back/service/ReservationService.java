@@ -1,8 +1,13 @@
 package org.jjhotel.back.service;
 
 import lombok.RequiredArgsConstructor;
+import org.jjhotel.back.domain.dto.ReservationInfoDto;
+import org.jjhotel.back.domain.dto.ReservationWithGuestInfoDto;
+import org.jjhotel.back.domain.entity.Reservation;
+import org.jjhotel.back.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,4 +16,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class ReservationService {
+    private final ReservationRepository reservationRepository;
+
+    public ReservationInfoDto getReservationInfo(ReservationWithGuestInfoDto reservationWithGuestInfoDto) {
+        Reservation reservation = reservationRepository.findByReservationId(reservationWithGuestInfoDto.getReservationId()).get();
+        ReservationInfoDto reservationInfoDto = ReservationInfoDto.of(reservation);
+        return reservationInfoDto;
+    }
+
 }

@@ -6,19 +6,18 @@ import Header from "../components/Header"
 import '../css/CheckReservation.css'
 
 function CheckReservation() {
-  const [name, setName] = useState("")
+  const [guestName, setGuestName] = useState("")
   const [reservationId, setReservationId] = useState("")
-  const [reservationData, setReservationData] = useState({})
+  const [reservationData, setReservationData] = useState(null)
   const [isClicked, setIsClicked] = useState(false)
 
   const checkReservation = (e) => {
     e.preventDefault()
   
-     axios.get(`http://localhost:3003/checkreservation?name=${name}&reservationId=${reservationId}`).then((json) => {
-      if(json.data.length > 0){   
-        setReservationData(json.data[0])
-        console.log(json.data.length)
-        console.log(reservationData)
+     axios.post("http://localhost:8080/reservation/check", {guestName, reservationId}).then((json) => {
+      if(Object.keys(json.data).length > 0){   
+        let reservation = json.data
+        setReservationData(reservation)
         setIsClicked(true)
       } else {
         setReservationData(null)
@@ -40,7 +39,7 @@ function CheckReservation() {
           <div className="check_container_left">
             <div className="input_row">
             <label className="input_label">성명</label>
-            <input className="input_name" type="text" value={name} onChange={(e) => setName(e.target.value)} /><br />
+            <input className="input_name" type="text" value={guestName} onChange={(e) => setGuestName(e.target.value)} /><br />
             </div>
           
             <div className="input_row">
