@@ -13,13 +13,13 @@ import org.jjhotel.back.domain.entity.Room;
 public class RoomListDto {
   private int roomId;
   private String roomName;
-  private String mageURL1;
+  private String imageURL1;
 
   public static RoomListDto of(Room room) {
     RoomListDto dto = new RoomListDto();
     dto.setRoomId(room.getRoomId());
     dto.setRoomName(room.getRoomName());
-    dto.setMageURL1(room.getImageURL1());
+    dto.setImageURL1(room.getImageURL1());
     return dto;
   }
 }

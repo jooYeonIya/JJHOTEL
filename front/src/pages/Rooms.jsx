@@ -39,7 +39,7 @@ function Rooms() {
   }
 
   async function getAllRooms() {
-    axios.get("http://localhost:3003/rooms")
+    axios.get("http://localhost:8080/room/all")
       .then((res) => setRooms(res.data))
   }
 
