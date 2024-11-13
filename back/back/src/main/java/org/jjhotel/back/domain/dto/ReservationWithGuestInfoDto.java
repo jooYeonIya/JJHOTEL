@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ReservationWithGuestInfoDto {
     private String guestName;
-    private String guestEmail;
+    private String reservationId;
 
 }

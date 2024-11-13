@@ -63,7 +63,7 @@ function ReservationInfo({ reservation }) {
           </div>
           <div className="label_row">
             <label className="label_text">예약 인원</label>
-            <label className="label_info">{reservation.numberOfPeople}명</label>
+            <label className="label_info">{reservation.guestCount}명</label>
             <CustomButton title={"예약 취소"} onClicked={useConfirm}/>
           </div>
         </div>

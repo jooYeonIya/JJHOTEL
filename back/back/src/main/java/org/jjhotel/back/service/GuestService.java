@@ -13,6 +13,7 @@ import org.jjhotel.back.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class GuestService {
         return new ReservationInfoDto(
                 reservation.getCheckInDate(),
                 reservation.getCheckOutDate(),
-                String.valueOf(reservation.getCheckOutDate().toEpochDay() - reservation.getCheckInDate().toEpochDay()), // totalNights
+                (int) ChronoUnit.DAYS.between(reservation.getCheckInDate(), reservation.getCheckOutDate()), // totalNights
                 reservation.getRoom().getRoomName(), // 방 이름
                 reservation.getGuestCount()
         );
