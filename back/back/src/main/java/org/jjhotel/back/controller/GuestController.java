@@ -15,8 +15,7 @@ public class GuestController {
     private final GuestService guestService;
 
     @PostMapping("/add")
-    public GuestCreateDto createGuest(@RequestBody GuestCreateDto guestCreateDto) {
-        return guestService.createGuest(guestCreateDto);
+    public void createGuest(@RequestBody GuestCreateDto guestCreateDto) {
+        guestService.createGuest(guestCreateDto);
     }
-
 }
