@@ -1,4 +1,4 @@
-package org.jjhotel.back.domain.entity;
+package org.jjhotel.back.domain.dto;
 
 
 import lombok.Getter;

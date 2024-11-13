@@ -1,12 +1,10 @@
 package org.jjhotel.back.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.jjhotel.back.domain.entity.GuestCreateDto;
+import org.jjhotel.back.domain.dto.ReservationInfoDto;
+import org.jjhotel.back.domain.dto.GuestCreateDto;
 import org.jjhotel.back.service.GuestService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,6 +14,12 @@ public class GuestController {
 
     @PostMapping("/add")
     public void createGuest(@RequestBody GuestCreateDto guestCreateDto) {
+
         guestService.createGuest(guestCreateDto);
+    }
+
+    @GetMapping("/reservation/check/{guestId}")
+    public ReservationInfoDto getGuestReservationInfo(@PathVariable String guestId) {
+        return guestService.getGuestReservationInfo(guestId);
     }
 }

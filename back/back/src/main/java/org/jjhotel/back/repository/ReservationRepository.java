@@ -4,5 +4,8 @@ import org.jjhotel.back.domain.entity.Reservation;
 import org.jjhotel.back.domain.entity.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface ReservationRepository extends JpaRepository<Reservation, String> {
+    Optional<Reservation> findByGuest_GuestId(String guestId);
 }
