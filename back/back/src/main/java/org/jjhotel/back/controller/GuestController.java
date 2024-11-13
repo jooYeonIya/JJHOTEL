@@ -1,6 +1,7 @@
 package org.jjhotel.back.controller;
 
 import lombok.RequiredArgsConstructor;
+
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
 import org.jjhotel.back.service.GuestService;
@@ -14,7 +15,6 @@ public class GuestController {
 
     @PostMapping("/add")
     public void createGuest(@RequestBody GuestCreateDto guestCreateDto) {
-
         guestService.createGuest(guestCreateDto);
     }
 
