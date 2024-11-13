@@ -8,7 +8,5 @@ import java.util.Optional;
 
 public interface RoomRepository extends JpaRepository<Room, Integer> {
   List<Room> findRoomsByMaxGuestsGreaterThanEqual(int maxGuests);
-
-public interface RoomRepository extends JpaRepository<Room, Integer> {
   Optional<Room> findByRoomId(int roomId);
 }
