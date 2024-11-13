@@ -31,7 +31,8 @@ function Rooms() {
   }, [isFiltered])
 
   const moveToRoomDescription = (roomId) => {
-    navigate('/roomDescription', { state: { roomId } })
+    navigate('/room/detail', { state: { roomId } })
+    console.log(roomId)
   }
 
   const moveToReservationInputCustomInfo = (roomId) => {
