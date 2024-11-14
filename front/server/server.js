@@ -156,15 +156,15 @@ app.get('/roomDescription', (req, res) => {
 })
 
 // 입력받은 고객 정보와 일치하는 정보 가져오기
-app.post('/checkreservation', function (req, res) {
-  const { guestName, reservationId } = req.query
+app.get('/checkreservation', function (req, res) {
+  const { name, reservationId } = req.query
   let sql = `
-SELECT r.checkInDate, r.checkOutDate, (r.checkOutDate - r.checkInDate) as n, g.guestName, r.reservationId, room.roomName, r.guestCount
-from reservation r join room on r.roomId = room.roomId join guest g on r.guestId = g.guestId
-where r.reservationId = ? and g.guestName = ? and r.isCanceled = false
+SELECT checkInDate, checkOutDate, (checkOutDate - checkInDate) as n, name, id, roomName, numberOfPeople
+from reservation r join room on r.roomId = room.roomId 
+where r.id = ? and r.name = ? 
 `
 
-  connection.query(sql, [reservationId, guestName], function (error, results) {
+  connection.query(sql, [reservationId, name], function (error, results) {
     if (error) {
       console.log(error)
     } else {
@@ -179,7 +179,7 @@ app.post('/checkreservation/delete', function (req, res) {
 
   let sql = `
 update reservation 
-set isCanceled = true
+set name = '취소♪' 
 where id = ? and name = ?
 `
 

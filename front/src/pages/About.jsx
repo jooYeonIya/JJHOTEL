@@ -1,6 +1,7 @@
 import "../css/About.css";
 import { useState, useEffect } from "react";
 import HeaderWhite from '../components/HeaderWhite'
+import Kakao from '../components/Kakao';
 
 function About() {
   const [scrollPosition, setScrollPosition] = useState(0);
