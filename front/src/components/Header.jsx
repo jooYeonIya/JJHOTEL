@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
+import { useAuth } from "../components/AuthContext"
 
 import "../css/Header.css"
 
 function Header({isEvent}) {
   const category = ["예약하기", "예약확인"]
-
   const [isScrolled, setIsScrolled] = useState(false)
+  const { isLoggedIn } = useAuth()
 
   const [hide, setHide] = useState({
     doreserve: false,
@@ -68,6 +69,8 @@ function Header({isEvent}) {
               )}
             </div>
             <Link className="navbarMenu" to="/facilities">Facilities</Link>
+            {isLoggedIn ? (<Link className="navbarMenu" to="/mypage">Mypage</Link>) 
+            : (<Link className="navbarMenu" to="/login">Login</Link>)}
           </div>
 
           <Link to={{pathname: "/room/detail", state: {roomId: "" }}} />

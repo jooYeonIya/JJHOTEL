@@ -13,8 +13,11 @@ import org.jjhotel.back.domain.dto.GuestCreateDto;
 import org.jjhotel.back.service.GuestService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RequestMapping("/guest")
 public class GuestController {
     private final GuestService guestService;
@@ -24,13 +27,19 @@ public class GuestController {
         guestService.createGuest(guestCreateDto);
     }
 
-    @GetMapping("/reservation/check/{guestId}")
-    public ReservationInfoDto getGuestReservationInfo(@PathVariable String guestId) {
-        return guestService.getGuestReservationInfo(guestId);
+    @GetMapping("/reservation/check")
+    public List<ReservationInfoDto> getGuestReservationInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return null;
+        }
+        String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
+        List<ReservationInfoDto> guestReservationInfo = guestService.getGuestReservationInfo(guestId);
+        return guestReservationInfo;
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody GuestLoginDto guestLoginDto, HttpServletRequest request, HttpServletResponse response) { //일단 스트링으로 반환
+    public boolean login(@RequestBody GuestLoginDto guestLoginDto, HttpServletRequest request, HttpServletResponse response) {
         boolean result = guestService.findGuest(guestLoginDto);
 
         if (result) {
@@ -40,10 +49,10 @@ public class GuestController {
             cookie.setMaxAge(30 * 60);
             cookie.setPath("/");
             response.addCookie(cookie);
-            return "성공";
+            return true;
         }
 
-        return "아이디 및 비밀번호를 확인해 주세요";
+        return false;
     }
 
     @GetMapping("/logout")

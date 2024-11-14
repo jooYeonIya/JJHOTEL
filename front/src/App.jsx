@@ -18,28 +18,35 @@ import './css/App.css';
 
 //components
 import Footer from './components/Footer';
+import Login from './pages/Login';
+import MyPage from './pages/MyPage';
+import { AuthProvider } from './components/AuthContext'
 
 // App.jsx는 전체 구조 와 라우팅 및 페이지 전환 관리
 function App() {
   return (
     <StrictMode>
-      <BrowserRouter>
-        <div className="wrapper">
-          <div className="contentWrapper">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/rooms" element={<Rooms />} />
-              <Route path="/doreservation" element={<Reservation />} />
-              <Route path="/checkreservation" element={<CheckReservation />} />
-              <Route path="/facilities" element={<Facilities />} />
-              <Route path="/room/detail" element={<RoomDescription />} />
-              <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />
-            </Routes>
+      <AuthProvider>
+        <BrowserRouter>
+          <div className="wrapper">
+            <div className="contentWrapper">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/rooms" element={<Rooms />} />
+                <Route path="/doreservation" element={<Reservation />} />
+                <Route path="/checkreservation" element={<CheckReservation />} />
+                <Route path="/facilities" element={<Facilities />} />
+                <Route path="/room/detail" element={<RoomDescription />} />
+                <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/mypage" element={<MyPage />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </AuthProvider>
     </StrictMode>
   )
 }
