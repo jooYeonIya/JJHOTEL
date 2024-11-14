@@ -28,6 +28,9 @@ function CheckReservation() {
         setReservationData(null)
         alert("예약 정보를 찾을 수 없습니다.")
       }
+    }).catch((error) => {
+      console.error("ERROR: ", error)
+      alert("입력한 예약 정보가 없습니다. 다시 입력해주세요.")
     })
   }
 
