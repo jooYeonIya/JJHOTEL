@@ -31,7 +31,7 @@ function Rooms() {
   }, [isFiltered])
 
   const moveToRoomDescription = (roomId) => {
-    navigate('/room/detail', { state: { roomId } })
+    navigate('/roomDescription', { state: { roomId } })
     console.log(roomId)
   }
 

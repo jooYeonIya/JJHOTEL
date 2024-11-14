@@ -33,7 +33,7 @@ function App() {
               <Route path="/doreservation" element={<Reservation />} />
               <Route path="/checkreservation" element={<CheckReservation />} />
               <Route path="/facilities" element={<Facilities />} />
-              <Route path="/room/detail" element={<RoomDescription />} />
+              <Route path="/roomDescription" element={<RoomDescription />} />
               <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />
             </Routes>
           </div>
