@@ -2,6 +2,7 @@ package org.jjhotel.back.service;
 
 import lombok.RequiredArgsConstructor;
 
+import org.jjhotel.back.domain.dto.GuestLoginDto;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.entity.Guest;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
@@ -44,22 +45,19 @@ public class GuestService {
         return guestCreateDto;
     }
 
-    public ReservationInfoDto getGuestReservationInfo(String guestId) {
-        // 예약 정보를 조회: guestId에 해당하는 예약을 찾음
-        Optional<Reservation> reservationOpt = reservationRepository.findByGuest_GuestId(guestId);
-        if (reservationOpt.isEmpty()) {
-            throw new RuntimeException("게스트Id로 예약정보를 찾지 못햇습니다.: " + guestId);
+    public List<ReservationInfoDto> getGuestReservationInfo(String guestId) {
+        List<Reservation> reservationList = reservationRepository.findByGuest_GuestId(guestId);
+        List<ReservationInfoDto> dtoList = new ArrayList<>();
+
+        for (Reservation reservation : reservationList) {
+            dtoList.add(ReservationInfoDto.of(reservation));
         }
 
-        // 예약 정보가 있으면 ReservationInfoDto로 변환하여 반환
-        Reservation reservation = reservationOpt.get();
-        return new ReservationInfoDto(
-                reservation.getCheckInDate(),
-                reservation.getCheckOutDate(),
-                (int) ChronoUnit.DAYS.between(reservation.getCheckInDate(), reservation.getCheckOutDate()), // totalNights
-                reservation.getRoom().getRoomName(), // 방 이름
-                reservation.getGuestCount(),
-                reservation.getReservationId()
-        );
+        return dtoList;
     }
+
+    public Boolean findGuest(GuestLoginDto guestLoginDto) {
+        Guest guest = guestRepository.findById(guestLoginDto.getGuestId()).orElse(null);
+        return guest != null && guest.getPassword().equals(guestLoginDto.getPassword());
+  }
 }

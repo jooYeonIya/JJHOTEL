@@ -1,5 +1,5 @@
 import CustomButton from "./CustomButton"
-import { useState } from "react";
+import { useState } from "react"
 
 export default function CustomInfo({ onSave }) {
   const [name, setName] = useState("");
@@ -46,8 +46,6 @@ export default function CustomInfo({ onSave }) {
             <CustomButton title="입력완료" onClicked={saveRservation} />
           </div>
         </div>
-
-
       </div>
     </>
   )
