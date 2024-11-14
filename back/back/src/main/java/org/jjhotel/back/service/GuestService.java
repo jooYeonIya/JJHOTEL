@@ -2,6 +2,7 @@ package org.jjhotel.back.service;
 
 import lombok.RequiredArgsConstructor;
 
+import org.jjhotel.back.domain.dto.GuestLoginDto;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.entity.Guest;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
@@ -72,4 +73,9 @@ public class GuestService {
                 reservation.getGuestCount()
         );
     }
+    
+    public Boolean findGuest(GuestLoginDto guestLoginDto) {
+        Guest guest = guestRepository.findById(guestLoginDto.getGuestId()).orElse(null);
+        return guest != null && guest.getPassword().equals(guestLoginDto.getPassword());
+  }
 }
