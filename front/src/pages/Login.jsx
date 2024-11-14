@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../components/AuthContext"
 import CustomButton from "../components/CustomButton"
 import Header from "../components/Header"
 
@@ -8,6 +9,7 @@ import "../css/ReservationInputCustomInfo.css"
 
 export default function Login() {
   const navigate = useNavigate()
+  const { checkLogin } = useAuth()
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
@@ -26,6 +28,7 @@ export default function Login() {
     axios.post("http://localhost:8080/guest/login", guestCreateDto, { withCredentials: true})
       .then((response) => {
         if (response.data) {
+          checkLogin()
           navigate('/mypage')  
         } else {
           alert("아이디 및 비밀번호를 확인해 주세요")

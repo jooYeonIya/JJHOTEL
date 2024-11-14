@@ -11,7 +11,7 @@ export default function MyPage() {
   const [reservationList, setReservationList] = useState([])
 
   const checkReservation = () => {
-    axios.get("http://localhost:8080/guest/reservation/check", { withCredentials: true})
+    axios.get("http://localhost:8080/guest/reservation/check", { withCredentials: true })
     .then((response) => {
       if (response.data.length > 0) {
         setIsClicked(true)
