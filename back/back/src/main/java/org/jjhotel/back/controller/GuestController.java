@@ -23,8 +23,9 @@ public class GuestController {
     private final GuestService guestService;
 
     @PostMapping("/add")
-    public void createGuest(@RequestBody GuestCreateDto guestCreateDto) {
+    public String createGuest(@RequestBody GuestCreateDto guestCreateDto) {
         guestService.createGuest(guestCreateDto);
+        return "redirect:/login";
     }
 
     @GetMapping("/reservation/check")

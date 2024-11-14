@@ -9,7 +9,7 @@ export default function RoomInfo({ roomId, reservationInfo, onChangeTotalPrice }
   }, [roomId])
 
   async function getRoomInfo(roomId) {
-    axios.post("http://localhost:3003/roomDescription", { roomId })
+    axios.post(`http://localhost:8080/room/detail/${roomId}`)
       .then(res => {
         let room = res.data[0]
         setRoom(room)

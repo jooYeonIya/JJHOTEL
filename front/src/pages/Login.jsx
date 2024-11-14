@@ -42,7 +42,7 @@ export default function Login() {
       <div className="container">
         <div className="customInfoContainer">
           <p>Login</p>
-          <pre>아직 회원이 아니세요? <a href="">SignIn</a></pre>
+          <pre>아직 회원이 아니세요? <a href="" onClick={() => navigate('/createguest')}>SignIn</a></pre>
           <div className="customInfoSection">
 
             <div className="infoSectionLeft">

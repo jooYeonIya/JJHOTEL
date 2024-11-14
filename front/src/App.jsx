@@ -21,6 +21,7 @@ import Footer from './components/Footer';
 import Login from './pages/Login';
 import MyPage from './pages/MyPage';
 import { AuthProvider } from './components/AuthContext'
+import CreateGuest from './pages/CreateGuest';
 
 // App.jsx는 전체 구조 와 라우팅 및 페이지 전환 관리
 function App() {
@@ -41,6 +42,7 @@ function App() {
                 <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/mypage" element={<MyPage />} />
+                <Route path="/createguest" element={<CreateGuest />} />
               </Routes>
             </div>
             <Footer />
