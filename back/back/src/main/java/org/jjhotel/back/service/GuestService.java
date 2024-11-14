@@ -73,7 +73,7 @@ public class GuestService {
                 reservation.getGuestCount()
         );
     }
-    
+
     public Boolean findGuest(GuestLoginDto guestLoginDto) {
         Guest guest = guestRepository.findById(guestLoginDto.getGuestId()).orElse(null);
         return guest != null && guest.getPassword().equals(guestLoginDto.getPassword());

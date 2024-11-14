@@ -45,4 +45,20 @@ public class GuestController {
 
         return "아이디 및 비밀번호를 확인해 주세요";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+
+        if (session != null) {
+            session.invalidate();
+
+            Cookie cookie = new Cookie(Constant.GUEST_COOKIE, null);
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+        }
+
+        return "일단 문자열 반환";
+    }
 }
