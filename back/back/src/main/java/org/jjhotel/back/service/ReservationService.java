@@ -20,6 +20,9 @@ public class ReservationService {
 
     public ReservationInfoDto getReservationInfo(ReservationWithGuestInfoDto reservationWithGuestInfoDto) {
         Reservation reservation = reservationRepository.findByReservationId(reservationWithGuestInfoDto.getReservationId()).get();
+        Reservation reservation = reservationRepository.findByReservationIdAndGuest_GuestName(
+                reservationWithGuestInfoDto.getReservationId(),
+                reservationWithGuestInfoDto.getGuestName()).get();
         ReservationInfoDto reservationInfoDto = ReservationInfoDto.of(reservation);
         return reservationInfoDto;
     }

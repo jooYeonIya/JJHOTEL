@@ -14,7 +14,12 @@ function CheckReservation() {
   const checkReservation = (e) => {
     e.preventDefault()
   
-     axios.post("http://localhost:8080/reservation/check", {guestName, reservationId}).then((json) => {
+    const reservationInfoWithGuestDto = {
+      guestName: guestName,
+      reservationId: reservationId
+    }
+
+     axios.post("http://localhost:8080/reservation/check", reservationInfoWithGuestDto).then((json) => {
       if(Object.keys(json.data).length > 0){   
         let reservation = json.data
         setReservationData(reservation)
