@@ -1,7 +1,10 @@
 package org.jjhotel.back.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jjhotel.back.constants.Constant;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.dto.ReservationWithGuestInfoDto;
 import org.jjhotel.back.domain.dto.RoomReservationDto;
@@ -28,9 +31,10 @@ public class ReservationController {
     }
 
     @PostMapping()
-    public String doReservation(@RequestBody RoomReservationDto info) {
-        // guestId 는 보안.. 작업하면서 .. 세션에서 가져오든.. 어떻게든..
-        String reservation = reservationService.doReservation(info, "asdf");
+    public String doReservation(@RequestBody RoomReservationDto info, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
+        String reservation = reservationService.doReservation(info, guestId);
         EmailMessage message = EmailMessage.builder()
             .to(info.getGuestEmail())
             .title("예약 확인 메일입니다.")
