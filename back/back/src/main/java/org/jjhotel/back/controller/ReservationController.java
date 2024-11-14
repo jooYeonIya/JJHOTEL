@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class ReservationController {
     private final ReservationService reservationService;
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/check")
     public ReservationInfoDto getReservationInfo(@RequestBody ReservationWithGuestInfoDto reservationWithGuestInfoDto) {
         ReservationInfoDto reservationInfo = reservationService.getReservationInfo(reservationWithGuestInfoDto);
         return reservationService.getReservationInfo(reservationWithGuestInfoDto);
+    }
+
+    @PatchMapping("/check/delete")
+    public String deleteReservation(@RequestBody ReservationWithGuestInfoDto reservationWithGuestInfoDto){
+        String reservationId = reservationWithGuestInfoDto.getReservationId();
+        reservationService.deleteReservation(reservationId);
+        return "redirect:/";
     }
 
 }

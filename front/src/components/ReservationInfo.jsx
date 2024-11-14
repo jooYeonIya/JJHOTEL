@@ -25,9 +25,10 @@ function ReservationInfo({ reservation }) {
   }
 
   //예약 취소 함수
-  const deleteReservation = (name, id) => {
-  
-    axios.post("http://localhost:3003/checkreservation/delete", {name, id}).then((json) => {
+  const deleteReservation = (reservationId) => {
+
+    axios.patch("http://localhost:8080/reservation/check/delete", {reservationId}).then((json) => {
+      console.log("예약 취소 버튼 클릭")
       if (json.status == 200) {
         console.log("예약 취소 버튼 클릭")
         alert("예약이 취소되었습니다.")
@@ -42,7 +43,7 @@ function ReservationInfo({ reservation }) {
 
   const useConfirm = () => {
     if (window.confirm("예약을 취소하시겠습니까?")) {
-      deleteReservation(reservation.name, reservation.id)
+      deleteReservation(reservation.reservationId)
     }
   }
 

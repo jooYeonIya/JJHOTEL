@@ -179,7 +179,7 @@ app.post('/checkreservation/delete', function (req, res) {
 
   let sql = `
 update reservation 
-set name = '취소♪' 
+set isCanceled = true
 where id = ? and name = ?
 `
 
