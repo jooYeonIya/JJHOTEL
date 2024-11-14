@@ -23,9 +23,7 @@ export default function Login() {
       password: pw
     }
 
-    console.log(guestCreateDto)
-
-    axios.post("http://localhost:8080/guest/login", guestCreateDto)
+    axios.post("http://localhost:8080/guest/login", guestCreateDto, { withCredentials: true})
       .then((response) => {
         if (response.data) {
           navigate('/mypage')  

@@ -13,9 +13,11 @@ import org.jjhotel.back.domain.dto.GuestCreateDto;
 import org.jjhotel.back.service.GuestService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RequestMapping("/guest")
 public class GuestController {
     private final GuestService guestService;
@@ -25,9 +27,15 @@ public class GuestController {
         guestService.createGuest(guestCreateDto);
     }
 
-    @GetMapping("/reservation/check/{guestId}")
-    public ReservationInfoDto getGuestReservationInfo(@PathVariable String guestId) {
-        return guestService.getGuestReservationInfo(guestId);
+    @GetMapping("/reservation/check")
+    public List<ReservationInfoDto> getGuestReservationInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return null;
+        }
+        String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
+        List<ReservationInfoDto> guestReservationInfo = guestService.getGuestReservationInfo(guestId);
+        return guestReservationInfo;
     }
 
     @PostMapping("/login")
