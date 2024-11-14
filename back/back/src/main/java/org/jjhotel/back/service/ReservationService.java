@@ -23,7 +23,10 @@ public class ReservationService {
                 reservationWithGuestInfoDto.getReservationId(),
                 reservationWithGuestInfoDto.getGuestName()).get();
         ReservationInfoDto reservationInfoDto = ReservationInfoDto.of(reservation);
-        return reservationInfoDto;
+        if (!reservation.isCanceled()) {
+            return reservationInfoDto;
+        }
+        return null;
     }
 
     public void deleteReservation(String reservationId) {
