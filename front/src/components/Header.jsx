@@ -68,6 +68,7 @@ function Header({isEvent}) {
               )}
             </div>
             <Link className="navbarMenu" to="/facilities">Facilities</Link>
+            <Link className="navbarMenu" to="/login">Login</Link>
           </div>
 
           <Link to={{pathname: "/room/detail", state: {roomId: "" }}} />
