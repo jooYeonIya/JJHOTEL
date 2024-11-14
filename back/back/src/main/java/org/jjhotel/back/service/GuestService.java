@@ -29,14 +29,10 @@ public class GuestService {
     private final GuestRepository guestRepository;
     private final ReservationRepository reservationRepository;
 
-    public void createGuest(GuestCreateDto guestCreateDto) {
+    public GuestCreateDto createGuest(GuestCreateDto guestCreateDto) {
 
         if (guestRepository.existsById(guestCreateDto.getGuestId())) {
             throw new NotUniqueGuestIdException("이미 존재하는 ID입니다.");
-        }
-
-        if (!isValidEmail(guestCreateDto.getGuestEmail())){
-            throw new NotValidEmailException("유효하지 않은 이메일 형식입니다.");
         }
 
         Guest guest = new Guest(
@@ -45,14 +41,7 @@ public class GuestService {
                 guestCreateDto.getGuestName(),
                 guestCreateDto.getGuestEmail());
         guestRepository.save(guest);
-    }
-
-    private boolean isValidEmail(String email) {
-        // 이메일 정규 표현식
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
+        return guestCreateDto;
     }
 
     public ReservationInfoDto getGuestReservationInfo(String guestId) {

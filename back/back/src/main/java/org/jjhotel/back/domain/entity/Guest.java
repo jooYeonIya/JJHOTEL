@@ -21,6 +21,6 @@ public class Guest {
   private String password;
   @Column(length = 20)
   private String guestName;
-  @Column(length = 20)
+  @Column(length = 45)
   private String guestEmail;
 }
