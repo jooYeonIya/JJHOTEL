@@ -14,7 +14,12 @@ function CheckReservation() {
   const checkReservation = (e) => {
     e.preventDefault()
   
-     axios.post("http://localhost:8080/reservation/check", {guestName, reservationId}).then((json) => {
+    const reservationInfoWithGuestDto = {
+      guestName: guestName,
+      reservationId: reservationId
+    }
+
+     axios.post("http://localhost:8080/reservation/check", reservationInfoWithGuestDto).then((json) => {
       if(Object.keys(json.data).length > 0){   
         let reservation = json.data
         setReservationData(reservation)
@@ -23,6 +28,9 @@ function CheckReservation() {
         setReservationData(null)
         alert("예약 정보를 찾을 수 없습니다.")
       }
+    }).catch((error) => {
+      console.error("ERROR: ", error)
+      alert("입력한 예약 정보가 없습니다. 다시 입력해주세요.")
     })
   }
 

@@ -19,6 +19,7 @@ public class ReservationInfoDto {
     private int totalNights;
     private String roomName;
     private int guestCount;
+    private String reservationId;
 
     public static ReservationInfoDto of(Reservation reservation) {
         LocalDate checkInDate = reservation.getCheckInDate();
@@ -30,7 +31,8 @@ public class ReservationInfoDto {
                 reservation.getCheckOutDate(),
                 totalNights,
                 reservation.getRoom().getRoomName(),
-                reservation.getGuestCount()
+                reservation.getGuestCount(),
+                reservation.getReservationId()
         );
         return reservationInfoDto;
     }

@@ -69,7 +69,8 @@ public class GuestService {
                 reservation.getCheckOutDate(),
                 (int) ChronoUnit.DAYS.between(reservation.getCheckInDate(), reservation.getCheckOutDate()), // totalNights
                 reservation.getRoom().getRoomName(), // 방 이름
-                reservation.getGuestCount()
+                reservation.getGuestCount(),
+                reservation.getReservationId()
         );
     }
 }

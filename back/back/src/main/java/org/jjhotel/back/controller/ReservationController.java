@@ -23,8 +23,13 @@ public class ReservationController {
 
     @PostMapping("/check")
     public ReservationInfoDto getReservationInfo(@RequestBody ReservationWithGuestInfoDto reservationWithGuestInfoDto) {
-        ReservationInfoDto reservationInfo = reservationService.getReservationInfo(reservationWithGuestInfoDto);
         return reservationService.getReservationInfo(reservationWithGuestInfoDto);
+    }
+
+    @PatchMapping("/check/delete/{reservationId}")
+    public String deleteReservation(@PathVariable("reservationId") String reservationId){
+        reservationService.deleteReservation(reservationId);
+        return "redirect:/";
     }
 
     @PostMapping()

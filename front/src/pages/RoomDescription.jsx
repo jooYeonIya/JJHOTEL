@@ -19,7 +19,7 @@ export default function RoomDescription() {
 
   async function getRoomInfo(roomId) {
     console.log("RoomDescription.jsx roomId: ", roomId)
-    axios.get(`http://localhost:8080/room/detail/${roomId}`, { roomId })
+    axios.get(`http://localhost:8080/room/detail/${roomId}`)
       .then(res => {
         let room = res.data
         setRoom(room)
@@ -42,7 +42,7 @@ export default function RoomDescription() {
         <TitleLabel title={room.roomName} subTitle={room.description} />
 
         <div className="mainImage">
-          <img src={mainImage} alt=""/>
+          <img src={mainImage} />
         </div>
         <div className="subImages">
           {subImages.map((image) =>

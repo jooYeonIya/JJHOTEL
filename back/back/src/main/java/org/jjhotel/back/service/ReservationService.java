@@ -27,9 +27,17 @@ public class ReservationService {
     private final RoomRepository roomRepository;
 
     public ReservationInfoDto getReservationInfo(ReservationWithGuestInfoDto reservationWithGuestInfoDto) {
-        Reservation reservation = reservationRepository.findByReservationId(reservationWithGuestInfoDto.getReservationId()).get();
+        Reservation reservation = reservationRepository.findByReservationIdAndGuest_GuestName(
+                reservationWithGuestInfoDto.getReservationId(),
+                reservationWithGuestInfoDto.getGuestName()).get();
         ReservationInfoDto reservationInfoDto = ReservationInfoDto.of(reservation);
-        return reservationInfoDto;
+        return reservation.isCanceled() ? null : reservationInfoDto;
+    }
+
+    public void deleteReservation(String reservationId) {
+        Reservation reservation = reservationRepository.findById(reservationId).get();
+        reservation.setCanceled(true);
+        reservationRepository.save(reservation);
     }
 
     public String doReservation(RoomReservationDto info, String guestId) {
