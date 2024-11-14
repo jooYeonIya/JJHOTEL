@@ -19,6 +19,7 @@ import './css/App.css';
 //components
 import Footer from './components/Footer';
 import Login from './pages/Login';
+import MyPage from './pages/MyPage';
 
 // App.jsx는 전체 구조 와 라우팅 및 페이지 전환 관리
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/room/detail" element={<RoomDescription />} />
               <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/mypage" element={<MyPage />} />
             </Routes>
           </div>
           <Footer />

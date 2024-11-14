@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/guest")
 public class GuestController {
     private final GuestService guestService;
@@ -30,7 +31,7 @@ public class GuestController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody GuestLoginDto guestLoginDto, HttpServletRequest request, HttpServletResponse response) { //일단 스트링으로 반환
+    public boolean login(@RequestBody GuestLoginDto guestLoginDto, HttpServletRequest request, HttpServletResponse response) {
         boolean result = guestService.findGuest(guestLoginDto);
 
         if (result) {
@@ -40,10 +41,10 @@ public class GuestController {
             cookie.setMaxAge(30 * 60);
             cookie.setPath("/");
             response.addCookie(cookie);
-            return "성공";
+            return true;
         }
 
-        return "아이디 및 비밀번호를 확인해 주세요";
+        return false;
     }
 
     @GetMapping("/logout")
