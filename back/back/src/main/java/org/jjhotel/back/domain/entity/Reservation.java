@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jjhotel.back.domain.dto.RoomReservationDto;
 
 import java.time.LocalDate;
 
@@ -30,4 +31,15 @@ public class Reservation {
   private int totalPrice;
   private int roomCount;
   private boolean isCanceled;
+
+  public static Reservation createReservation(RoomReservationDto dto, Room room, Guest guest) {
+    Reservation reservation = new Reservation();
+    reservation.setRoom(room);
+    reservation.setGuest(guest);
+    reservation.setGuestCount(dto.getGuestCount());
+    reservation.setTotalPrice(dto.getTotalPrice());
+    reservation.setRoomCount(dto.getRoomCount());
+    reservation.setCanceled(false);
+    return reservation;
+  }
 }
