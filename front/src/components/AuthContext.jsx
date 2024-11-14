@@ -7,10 +7,10 @@ export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const checkLogin = () => setIsLoggedIn(true)
-  const logout = () => setIsLoggedIn(false)
+  const doLogout = () => setIsLoggedIn(false)
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, checkLogin, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, checkLogin, doLogout }}>
       {children}
     </AuthContext.Provider>
   );
