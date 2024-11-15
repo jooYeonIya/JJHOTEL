@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+@CrossOrigin(origins = {"http://3.35.14.52", "http://www.jjhotel.kro.kr", "http://192.168.0.37:5173"})
 @RequestMapping("/reservation")
 public class ReservationController {
     private final ReservationService reservationService;

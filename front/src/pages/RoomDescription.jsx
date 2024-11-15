@@ -1,38 +1,42 @@
-import { useLocation } from "react-router-dom"
-import { useEffect, useState } from "react"
-import TitleLabel from "../components/TitleLabel"
-import Header from "../components/Header"
-import axios from "axios"
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import TitleLabel from "../components/TitleLabel";
+import Header from "../components/Header";
+import axios from "axios";
 
-import "../css/RoomDescription.css"
+import "../css/RoomDescription.css";
 
 export default function RoomDescription() {
-  const location = useLocation()
-  const roomId = location.state?.roomId
-  const [room, setRoom] = useState()
-  const [mainImage, setMainImage] = useState()
-  const [subImages, setSubImages] = useState([])
+  const location = useLocation();
+  const roomId = location.state?.roomId;
+  const [room, setRoom] = useState();
+  const [mainImage, setMainImage] = useState();
+  const [subImages, setSubImages] = useState([]);
 
   useEffect(() => {
-    getRoomInfo(roomId)
-  }, [roomId])
+    getRoomInfo(roomId);
+  }, [roomId]);
 
   async function getRoomInfo(roomId) {
-    console.log("RoomDescription.jsx roomId: ", roomId)
-    axios.get(`http://localhost:8080/room/detail/${roomId}`)
-      .then(res => {
-        let room = res.data
-        setRoom(room)
-        setMainImage(room.imageURL1)
-        setSubImages([room.imageURL1, room.imageURL2, room.imageURL3, room.imageURL4])
-      })
+    console.log("RoomDescription.jsx roomId: ", roomId);
+    axios.get(`http://3.35.14.52:8080/room/detail/${roomId}`).then((res) => {
+      let room = res.data;
+      setRoom(room);
+      setMainImage(room.imageURL1);
+      setSubImages([
+        room.imageURL1,
+        room.imageURL2,
+        room.imageURL3,
+        room.imageURL4,
+      ]);
+    });
   }
 
   const changeMainImage = (imageURL) => {
-    setMainImage(imageURL)
-  }
+    setMainImage(imageURL);
+  };
 
-  if (!room) return <p>Loading...</p>
+  if (!room) return <p>Loading...</p>;
 
   return (
     <>
@@ -45,13 +49,14 @@ export default function RoomDescription() {
           <img src={mainImage} />
         </div>
         <div className="subImages">
-          {subImages.map((image) =>
+          {subImages.map((image) => (
             <img
               src={image}
               alt=""
               onClick={() => changeMainImage(image)}
-              className={image === mainImage ? "selectedImage" : ""} />
-          )}
+              className={image === mainImage ? "selectedImage" : ""}
+            />
+          ))}
         </div>
 
         <div className="infomaitonBox">
@@ -106,5 +111,5 @@ export default function RoomDescription() {
         </div>
       </div>
     </>
-  )
+  );
 }

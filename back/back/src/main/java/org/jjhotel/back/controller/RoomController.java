@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")   //차후 글로벌 설정으로 변경 필요 (스프링 시큐리티 하면서 해도 될 것 같음)
+@CrossOrigin(origins = {"http://3.35.14.52", "http://www.jjhotel.kro.kr", "http://192.168.0.37:5173"})
 @RequestMapping("/room")
 @Slf4j
 public class RoomController {
