@@ -28,14 +28,14 @@ public class GuestController {
         return "redirect:/login";
     }
 
-    @GetMapping("/reservation/check")
-    public List<ReservationInfoDto> getGuestReservationInfo(HttpServletRequest request) {
+    @GetMapping("/reservation/check/{isCanceled}")
+    public List<ReservationInfoDto> getGuestReservationInfo(@PathVariable boolean isCanceled, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return null;
         }
         String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
-        List<ReservationInfoDto> guestReservationInfo = guestService.getGuestReservationInfo(guestId);
+        List<ReservationInfoDto> guestReservationInfo = guestService.getGuestReservationInfo(guestId, isCanceled);
         return guestReservationInfo;
     }
 

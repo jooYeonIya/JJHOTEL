@@ -45,8 +45,10 @@ public class GuestService {
         return guestCreateDto;
     }
 
-    public List<ReservationInfoDto> getGuestReservationInfo(String guestId) {
-        List<Reservation> reservationList = reservationRepository.findByGuest_GuestIdAndIsCanceledIsFalse(guestId);
+    public List<ReservationInfoDto> getGuestReservationInfo(String guestId, boolean isCanceled) {
+        List<Reservation> reservationList = isCanceled
+            ? reservationRepository.findByGuest_GuestIdAndIsCanceledIsTrue(guestId)
+            : reservationRepository.findByGuest_GuestIdAndIsCanceledIsFalse(guestId);
         List<ReservationInfoDto> dtoList = new ArrayList<>();
 
         for (Reservation reservation : reservationList) {
