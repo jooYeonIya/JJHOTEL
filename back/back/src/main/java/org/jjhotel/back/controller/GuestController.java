@@ -49,6 +49,13 @@ public class GuestController {
         String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
         return guestService.getMyInfo(guestId);
     }
+
+    @PutMapping("/update")
+    public GuestInfoDto updateMyInfo(@RequestBody GuestInfoDto guestInfoDto) {
+        String guestId = guestInfoDto.getGuestId();
+        return guestService.updateMyInfo(guestInfoDto);
+    }
+
     @PostMapping("/login")
     public boolean login(@RequestBody GuestLoginDto guestLoginDto, HttpServletRequest request, HttpServletResponse response) {
         boolean result = guestService.findGuest(guestLoginDto);

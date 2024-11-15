@@ -9,7 +9,6 @@ import org.jjhotel.back.domain.entity.Guest;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
 import org.jjhotel.back.domain.entity.Reservation;
 import org.jjhotel.back.exception.NotUniqueGuestIdException;
-import org.jjhotel.back.exception.NotValidEmailException;
 import org.jjhotel.back.repository.GuestRepository;
 import org.jjhotel.back.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
@@ -67,4 +66,16 @@ public class GuestService {
         GuestInfoDto guestInfoDto = GuestInfoDto.of(guest);
         return guestInfoDto;
     }
+
+    public GuestInfoDto updateMyInfo(GuestInfoDto guestInfoDto) {
+        Guest guest = guestRepository.findById(guestInfoDto.getGuestId()).orElse(null);
+        if (guest != null) {
+            guest.setGuestName(guestInfoDto.getGuestName());
+            guest.setGuestEmail(guestInfoDto.getGuestEmail());
+            guestRepository.save(guest);
+            return GuestInfoDto.of(guest);
+        }
+        return null;
+    }
+
 }
