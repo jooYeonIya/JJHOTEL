@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import CustomButton from "../components/CustomButton"
 import Header from "../components/Header"
 import '../css/CreateGuest.css'
 
 function CreateGuest() {
+  const navigate = useNavigate()
   const [guestId, setGuestId] = useState("")
   const [password, setPassword] = useState("")
   const [guestName, setGuestName] = useState("")
@@ -38,6 +40,7 @@ function CreateGuest() {
         let guest = json.data
         setGuestData(guest)
         alert("회원가입이 완료되었습니다.")
+        navigate('/login')
       } else {
         setGuestData(null)
         alert("회원가입을 실패했습니다. 다시 시도해주세요.")

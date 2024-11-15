@@ -2,6 +2,7 @@ package org.jjhotel.back.service;
 
 import lombok.RequiredArgsConstructor;
 
+import org.jjhotel.back.domain.dto.GuestInfoDto;
 import org.jjhotel.back.domain.dto.GuestLoginDto;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.entity.Guest;
@@ -60,4 +61,10 @@ public class GuestService {
         Guest guest = guestRepository.findById(guestLoginDto.getGuestId()).orElse(null);
         return guest != null && guest.getPassword().equals(guestLoginDto.getPassword());
   }
+
+    public GuestInfoDto getMyInfo(String guestId) {
+        Guest guest = guestRepository.findById(guestId).orElseThrow(() -> new IllegalArgumentException("No Guest"));
+        GuestInfoDto guestInfoDto = GuestInfoDto.of(guest);
+        return guestInfoDto;
+    }
 }

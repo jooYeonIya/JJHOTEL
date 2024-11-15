@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 import org.jjhotel.back.constants.Constant;
+import org.jjhotel.back.domain.dto.GuestInfoDto;
 import org.jjhotel.back.domain.dto.GuestLoginDto;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
@@ -25,7 +26,7 @@ public class GuestController {
     @PostMapping("/add")
     public String createGuest(@RequestBody GuestCreateDto guestCreateDto) {
         guestService.createGuest(guestCreateDto);
-        return "redirect:/login";
+        return "redirect:/guest/login";
     }
 
     @GetMapping("/reservation/check")
@@ -39,6 +40,15 @@ public class GuestController {
         return guestReservationInfo;
     }
 
+    @GetMapping("/myinfo")
+    public GuestInfoDto getMyInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return null;
+        }
+        String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
+        return guestService.getMyInfo(guestId);
+    }
     @PostMapping("/login")
     public boolean login(@RequestBody GuestLoginDto guestLoginDto, HttpServletRequest request, HttpServletResponse response) {
         boolean result = guestService.findGuest(guestLoginDto);
