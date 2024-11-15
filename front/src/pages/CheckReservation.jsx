@@ -11,27 +11,28 @@ function CheckReservation() {
   const [reservationData, setReservationData] = useState(null)
   const [isClicked, setIsClicked] = useState(false)
 
-  const checkReservation = (e) => {
+  const checkReservation = async (e) => {
     e.preventDefault()
   
     const reservationInfoWithGuestDto = {
       guestName: guestName,
       reservationId: reservationId
     }
-
-     axios.post("http://localhost:8080/reservation/check", reservationInfoWithGuestDto).then((json) => {
-      if(Object.keys(json.data).length > 0){   
-        let reservation = json.data
-        setReservationData(reservation)
+  
+    try {
+      const response = await axios.post("http://localhost:8080/reservation/check", reservationInfoWithGuestDto)
+  
+      if (response.data) {
+        setReservationData(response.data)
         setIsClicked(true)
       } else {
         setReservationData(null)
         alert("예약 정보를 찾을 수 없습니다.")
       }
-    }).catch((error) => {
-      console.error("ERROR: ", error)
+    } catch (error) {
+      console.error("ERROR:", error)
       alert("입력한 예약 정보가 없습니다. 다시 입력해주세요.")
-    })
+    }
   }
 
   useEffect(() => {

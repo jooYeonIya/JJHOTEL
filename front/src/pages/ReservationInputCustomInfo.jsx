@@ -14,9 +14,10 @@ export default function ReservationInputCustomInfo() {
   const roomId = location.state.roomId
   const reservationInfo = location.state.reservationInfo
   const [totalPrice, setTotalPrice] = useState(0)
-
+  const [loading, setLoading] = useState(false)
 
   const saveRservation = async (customerInfo) => {
+    setLoading(true)
     const roomReservationDto = {
       roomId: roomId,
       guestEmail: customerInfo.email,
@@ -38,6 +39,10 @@ export default function ReservationInputCustomInfo() {
 
   const getTotalPrice = (price) => {
     setTotalPrice(price)
+  }
+
+  if (loading) {
+    return <> {loading ? "전송 중..." : "이메일 전송"} </>
   }
 
   return (

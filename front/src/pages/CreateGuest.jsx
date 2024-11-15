@@ -4,6 +4,7 @@ import axios from "axios"
 import CustomButton from "../components/CustomButton"
 import Header from "../components/Header"
 import '../css/CreateGuest.css'
+import { useNavigate } from "react-router-dom"
 
 function CreateGuest() {
   const navigate = useNavigate()
@@ -12,6 +13,7 @@ function CreateGuest() {
   const [guestName, setGuestName] = useState("")
   const [guestEmail, setGuestEmail] = useState("")
   const [guestData, setGuestData] = useState(null)
+  const navigate = useNavigate()
 
   const createGuest = (e) => {
     e.preventDefault()
@@ -40,7 +42,7 @@ function CreateGuest() {
         let guest = json.data
         setGuestData(guest)
         alert("회원가입이 완료되었습니다.")
-        navigate('/login')
+        navigate("/login")
       } else {
         setGuestData(null)
         alert("회원가입을 실패했습니다. 다시 시도해주세요.")

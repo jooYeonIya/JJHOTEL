@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 export default function ImagesContainer() {
   // 배경 이미지 상태 관리
@@ -39,7 +40,7 @@ export default function ImagesContainer() {
               onMouseEnter={() => handleMouseEnter(section.image)}
               onMouseLeave={handleMouseLeave}
             >
-              <a href={section.link}>{section.name}</a>
+              <Link to={section.link}>{section.name}</Link>
             </div>
           ))}
         </div>
