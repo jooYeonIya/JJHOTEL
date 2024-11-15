@@ -28,7 +28,7 @@ export default function ReservationInputCustomInfo() {
       roomCount: reservationInfo.roomCount
     }
 
-    let response = await axios.post("http://localhost:8080/reservation", roomReservationDto)
+    let response = await axios.post("http://localhost:8080/reservation", roomReservationDto, {  withCredentials: true })
 
     if (response.status == 200) {
       alert(`예약되었습니다. 예약번호는 ${response.data} 입니다`)

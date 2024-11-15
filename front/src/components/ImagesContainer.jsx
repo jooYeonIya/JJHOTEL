@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 export default function ImagesContainer() {
   // 배경 이미지 상태 관리
-  const [backgroundImage, setBackgroundImage] = useState("src/images/home_about.jpg")
+  const [backgroundImage, setBackgroundImage] = useState("https://jjhotel.s3.ap-northeast-2.amazonaws.com/images/home_about.jpg")
   //마지막으로 오버된 이미지 저장
-  const [lastImage, setLastImage] = useState("src/images/home_about.jpg")
+  const [lastImage, setLastImage] = useState("https://jjhotel.s3.ap-northeast-2.amazonaws.com/images/home_about.jpg")
 
   //배경 이미지 변경 함수
   const handleMouseEnter = (imageSrc) => {
@@ -17,10 +17,10 @@ export default function ImagesContainer() {
   }
 
   const sections = [
-    { name: "About", link: "/about", image: "src/images/home_about.jpg" },
-    { name: "Rooms", link: "/rooms", image: "src/images/home_rooms.jpg" },
-    { name: "Reservation", link: "/doreservation", image: "src/images/home_reservation.jpg" },
-    { name: "Facilities", link: "/facilities", image: "src/images/home_facilities.jpg" }
+    { name: "About", link: "/about", image: "https://jjhotel.s3.ap-northeast-2.amazonaws.com/images/home_about.jpg" },
+    { name: "Rooms", link: "/rooms", image: "https://jjhotel.s3.ap-northeast-2.amazonaws.com/images/home_rooms.jpg" },
+    { name: "Reservation", link: "/doreservation", image: "https://jjhotel.s3.ap-northeast-2.amazonaws.com/images/home_reservation.jpg" },
+    { name: "Facilities", link: "/facilities", image: "https://jjhotel.s3.ap-northeast-2.amazonaws.com/images/home_facilities.jpg" }
   ]
 
   return (

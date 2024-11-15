@@ -4,7 +4,7 @@ import axios from "axios"
 import CustomButton from "./CustomButton"
 import '../css/ReservationInfo.css'
 
-function ReservationInfo({ reservation }) {
+function ReservationInfo({ reservation, isCanceld }) {
   const navigate = useNavigate()
   const [isDelete, setIsDelete] = useState(null)
 
@@ -49,7 +49,7 @@ function ReservationInfo({ reservation }) {
 
   return(
       <div className="cancel_container">
-        <h2>예약 정보 </h2>
+        <h2>{isCanceld ? "취소 정보" : "예약 정보"}</h2>
         <div className="label_container">
           <div className="label_row">
             <label className="label_text">이용 날짜</label>
@@ -65,7 +65,7 @@ function ReservationInfo({ reservation }) {
           <div className="label_row">
             <label className="label_text">예약 인원</label>
             <label className="label_info">{reservation.guestCount}명</label>
-            <CustomButton title={"예약 취소"} onClicked={useConfirm}/>
+            {!isCanceld && <CustomButton title={"예약 취소"} onClicked={useConfirm} />}
           </div>
         </div>
         {isDelete && <p>예약이 취소되었습니다.</p>}

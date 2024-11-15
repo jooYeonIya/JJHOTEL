@@ -29,7 +29,7 @@ function HeaderWhite() {
 
           {/* 메뉴 첫 번째 라인 */}
           <div className="navbarFirstLine">
-            <img src="src\images\logo.png" alt="logo" width="20px" height="20px" />
+            <img src="https://jjhotel.s3.ap-northeast-2.amazonaws.com/images/logo.png" alt="logo" width="20px" height="20px" />
             <Link to="/">JJ HOTEL</Link>
           </div>
 

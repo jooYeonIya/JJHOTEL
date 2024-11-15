@@ -6,7 +6,7 @@ function Footer() {
       <div className="footer">
         <hr />
         <div className="logo">
-          <img src="src\images\logo.png" alt="logo" width="20px" height="20px" />
+          <img src="https://jjhotel.s3.ap-northeast-2.amazonaws.com/images/logo.png" alt="logo" width="20px" height="20px" />
           <p>JJ HOTEL</p>
         </div>
         <div>

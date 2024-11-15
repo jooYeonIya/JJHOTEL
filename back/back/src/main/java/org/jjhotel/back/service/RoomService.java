@@ -1,12 +1,11 @@
 package org.jjhotel.back.service;
 
 import lombok.RequiredArgsConstructor;
-import org.jjhotel.back.domain.dto.ReservationInfo;
+import org.jjhotel.back.domain.dto.DoReservationInfoDto;
 import org.jjhotel.back.domain.dto.RoomFilterOutputDto;
 import org.jjhotel.back.domain.dto.RoomListDto;
 import org.jjhotel.back.domain.entity.Reservation;
 import org.jjhotel.back.domain.entity.Room;
-import org.jjhotel.back.repository.ReservationRepository;
 import org.jjhotel.back.repository.RoomRepository;
 import org.jjhotel.back.domain.dto.RoomDetailDto;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class RoomService {
     return roomListDto;
   }
 
-  public List<RoomFilterOutputDto> getFilterdRooms(ReservationInfo info) {
+  public List<RoomFilterOutputDto> getFilterdRooms(DoReservationInfoDto info) {
     // 1. 최대 인원 수 조건에 맞는 방 목록
     List<Room> rooms = roomRepository.findRoomsByMaxGuestsGreaterThanEqual(info.getGuestCount());
 

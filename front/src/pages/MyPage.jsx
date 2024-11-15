@@ -14,22 +14,25 @@ export default function MyPage() {
   const [reservationList, setReservationList] = useState([])
   const [isGuest, setIsGuest] = useState(false)
   const [guestInfo, setGuestInfo] = useState([])
+  const [reservationState, setReservationState] = useState({
+    isClicked: false,
+    hasData: false,
+    isCanceledCheck: false,
+    reservationList: []
+  })
   const { doLogout } = useAuth()
   const navigate = useNavigate()
 
-
-  const checkReservation = () => {
-    axios.get("http://localhost:8080/guest/reservation/check", { withCredentials: true })
-    .then((response) => {
-      if (response.data.length > 0) {
-        setIsClicked(true)
-        setNoData(false)
-        setReservationList(response.data)
-      } else {
-        setIsClicked(true)
-        setNoData(true)
-      }
-    })
+  const checkReservation = (isCanceled) => {
+    axios.get(`http://localhost:8080/guest/reservation/check/${isCanceled}`, { withCredentials: true })
+      .then((response) => {
+        setReservationState({
+          isClicked: true,
+          hasData: response.data.length > 0,
+          isCanceledCheck: isCanceled,
+          reservationList: response.data
+        })
+      })
   }
 
   const getMyInfo = () => {
@@ -49,23 +52,54 @@ export default function MyPage() {
     axios.get("http://localhost:8080/guest/logout", { withCredentials: true })
     .then(() => {
       doLogout()
-      navigate('/')  
+      navigate("/")
     })
+  }
+
+  const useConfirm = () => {
+    if (window.confirm("탈퇴하시겠습니까?")) {
+      deleteGuest()
+    }
+  }
+
+  const deleteGuest = async () => {
+    const isCanceled = false
+    const checkResponse = await axios.get(`http://localhost:8080/guest/reservation/check/${isCanceled}`, { withCredentials: true })
+    if (checkResponse.data.length > 0){
+      alert("예약 내역이 남아 있어 탈퇴할 수 없습니다")
+    } else {
+      const deleteResponse = await axios.patch("http://localhost:8080/guest/delete", null, { withCredentials: true })
+      if (deleteResponse.status === 200) {
+        alert("탈퇴가 완료되었습니다")
+        doLogout()
+        navigate("/")
+      } else {
+        alert("문제가 발생했습니다")
+      }
+    }
   }
 
   return (
     <>
       <Header isEvent={true} />
       <div className="container">
-        <CustomButton title="예약 내역 확인" onClicked={checkReservation} />
+        <CustomButton title="예약 내역 확인" onClicked={() => checkReservation(false)} />
+        <br />
+        <CustomButton title="취소 내역 확인" onClicked={() => checkReservation(true)} />
         <br />
         <CustomButton title="개인정보 확인" onClicked={getMyInfo} />
         <br />
         <CustomButton title="로그아웃" onClicked={logout} />
         <br />
-        {isClicked && reservationList.map((data, index) => (
-          <ReservationInfo key={index} reservation={data} />))}
-        {isClicked && noData && <TitleLabel title="" subTitle="예약 내역이 없습니다" />}
+        <CustomButton title="탈퇴하기" onClicked={useConfirm} />
+        <br />
+        {reservationState.isClicked && reservationState.hasData ? (
+          reservationState.reservationList.map((data, index) => (
+            <ReservationInfo key={index} reservation={data} isCanceld={reservationState.isCanceledCheck}/>
+          ))
+        ) : (
+          reservationState.isClicked && <TitleLabel title="" subTitle="이력이 없습니다" />
+        )}
       </div>
     </>
   )

@@ -25,17 +25,19 @@ export default function Login() {
       password: pw
     }
 
-    axios.post("http://localhost:8080/guest/login", guestCreateDto, { withCredentials: true})
+    axios.post("http://localhost:8080/guest/login", guestCreateDto, { withCredentials: true })
       .then((response) => {
-        if (response.data) {
+        if (response.status === 200) {
           checkLogin()
           navigate('/mypage')  
-        } else {
-          alert("아이디 및 비밀번호를 확인해 주세요")
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data)
         }
       })
   }
-
   return (
     <>
       <Header isEvent={true} />

@@ -13,12 +13,9 @@ import org.jjhotel.back.utilities.email.EmailMessage;
 import org.jjhotel.back.utilities.email.EmailService;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RequestMapping("/reservation")
 public class ReservationController {
     private final ReservationService reservationService;
@@ -38,7 +35,8 @@ public class ReservationController {
     @PostMapping()
     public String doReservation(@RequestBody RoomReservationDto info, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
+        Object attribute = session == null ? null : session.getAttribute(Constant.GUEST_SESSION);
+        String guestId = attribute == null ? "nonGuest" : attribute.toString();
         String reservation = reservationService.doReservation(info, guestId);
         EmailMessage message = EmailMessage.builder()
             .to(info.getGuestEmail())

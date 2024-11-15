@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ReservationInfo {
+public class DoReservationInfoDto {
   private LocalDate checkInDate;
   private LocalDate checkOutDate;
   private LocalDate reservationDate;

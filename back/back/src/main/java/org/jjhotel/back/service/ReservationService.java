@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -42,7 +43,7 @@ public class ReservationService {
 
     public String doReservation(RoomReservationDto info, String guestId) {
         Room room = roomRepository.findByRoomId(info.getRoomId()).get();
-        Guest guest = guestRepository.findById(guestId).get();
+        Guest guest = guestRepository.findById(guestId).orElse(null);
 
         LocalDate reservationDate = parseToLocalDate(info.getReservationDate());
         String formattedDate = reservationDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
