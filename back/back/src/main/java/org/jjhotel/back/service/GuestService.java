@@ -40,7 +40,8 @@ public class GuestService {
                 guestCreateDto.getGuestId(),
                 guestCreateDto.getPassword(),
                 guestCreateDto.getGuestName(),
-                guestCreateDto.getGuestEmail());
+                guestCreateDto.getGuestEmail(),
+                true);
         guestRepository.save(guest);
         return guestCreateDto;
     }

@@ -23,4 +23,5 @@ public class Guest {
   private String guestName;
   @Column(length = 45)
   private String guestEmail;
+  private boolean isActive;
 }
