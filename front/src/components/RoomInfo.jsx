@@ -38,7 +38,7 @@ export default function RoomInfo({ roomId, reservationInfo, onChangeTotalPrice }
     return 0
   }
 
-  if (!room) return <p>Loading...</p>
+  if (!room) return <p></p>
 
   return (
     <>
