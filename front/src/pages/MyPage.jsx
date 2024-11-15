@@ -6,8 +6,14 @@ import CustomButton from "../components/CustomButton"
 import Header from "../components/Header"
 import TitleLabel from "../components/TitleLabel"
 import ReservationInfo from "../components/ReservationInfo"
+// import GuestInfo from "./GuestInfo"
 
 export default function MyPage() {
+  const [isClicked, setIsClicked] = useState(false)
+  const [noData, setNoData] = useState(false)
+  const [reservationList, setReservationList] = useState([])
+  const [isGuest, setIsGuest] = useState(false)
+  const [guestInfo, setGuestInfo] = useState([])
   const [reservationState, setReservationState] = useState({
     isClicked: false,
     hasData: false,
@@ -27,6 +33,19 @@ export default function MyPage() {
           reservationList: response.data
         })
       })
+  }
+
+  const getMyInfo = () => {
+    axios.get("http://localhost:8080/guest/myinfo", { withCredentials: true })
+    .then((response) => {
+      if (Object.keys(response.data).length > 0) {
+        setIsGuest(true)
+        setGuestInfo(response.data)
+        navigate('/myinfo', { state: { guestInfo: response.data } })
+      } else {
+        setIsGuest(false)
+      }
+    })
   }
 
   const logout = () => {
@@ -67,6 +86,8 @@ export default function MyPage() {
         <CustomButton title="예약 내역 확인" onClicked={() => checkReservation(false)} />
         <br />
         <CustomButton title="취소 내역 확인" onClicked={() => checkReservation(true)} />
+        <br />
+        <CustomButton title="개인정보 확인" onClicked={getMyInfo} />
         <br />
         <CustomButton title="로그아웃" onClicked={logout} />
         <br />

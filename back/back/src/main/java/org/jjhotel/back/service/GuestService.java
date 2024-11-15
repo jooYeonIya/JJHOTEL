@@ -2,13 +2,13 @@ package org.jjhotel.back.service;
 
 import lombok.RequiredArgsConstructor;
 
+import org.jjhotel.back.domain.dto.GuestInfoDto;
 import org.jjhotel.back.domain.dto.GuestLoginDto;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.entity.Guest;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
 import org.jjhotel.back.domain.entity.Reservation;
 import org.jjhotel.back.exception.NotUniqueGuestIdException;
-import org.jjhotel.back.exception.NotValidEmailException;
 import org.jjhotel.back.repository.GuestRepository;
 import org.jjhotel.back.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
@@ -62,6 +62,23 @@ public class GuestService {
     public Guest findGuest(GuestLoginDto guestLoginDto) {
         return guestRepository.findByGuestIdAndIsActiveIsTrue(guestLoginDto.getGuestId()).orElse(null);
   }
+
+    public GuestInfoDto getMyInfo(String guestId) {
+        Guest guest = guestRepository.findById(guestId).orElseThrow(() -> new IllegalArgumentException("No Guest"));
+        GuestInfoDto guestInfoDto = GuestInfoDto.of(guest);
+        return guestInfoDto;
+    }
+
+    public GuestInfoDto updateMyInfo(GuestInfoDto guestInfoDto) {
+        Guest guest = guestRepository.findById(guestInfoDto.getGuestId()).orElse(null);
+        if (guest != null) {
+            guest.setGuestName(guestInfoDto.getGuestName());
+            guest.setGuestEmail(guestInfoDto.getGuestEmail());
+            guestRepository.save(guest);
+            return GuestInfoDto.of(guest);
+        }
+        return null;
+    }
 
     public void deleteGuest(String guestId) {
         Guest guest = guestRepository.findById(guestId).orElse(null);

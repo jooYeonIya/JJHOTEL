@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import CustomButton from "../components/CustomButton"
 import Header from "../components/Header"
 import '../css/CreateGuest.css'
 
 function CreateGuest() {
+  const navigate = useNavigate()
   const [guestId, setGuestId] = useState("")
   const [password, setPassword] = useState("")
   const [guestName, setGuestName] = useState("")
@@ -22,6 +24,8 @@ function CreateGuest() {
       return alert("성함을 입력해주세요.")
     } else if(!guestEmail){
       return alert("이메일을 입력해주세요.")
+    } else if(!validateEmail(guestEmail)){
+      return alert("이메일을 형식을 지켜주세요.")
     }
   
     const guestCreateDto = {
@@ -36,14 +40,20 @@ function CreateGuest() {
         let guest = json.data
         setGuestData(guest)
         alert("회원가입이 완료되었습니다.")
+        navigate('/login')
       } else {
         setGuestData(null)
         alert("회원가입을 실패했습니다. 다시 시도해주세요.")
       }
     }).catch((error) => {
       console.error("ERROR: ", error)
-      alert("다시 입력해주세요.")
+      alert("이미 존재하는 아이디입니다.")
     })
+  }
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
   }
 
   useEffect(() => {
