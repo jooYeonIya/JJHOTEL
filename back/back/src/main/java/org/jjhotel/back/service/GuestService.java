@@ -46,7 +46,7 @@ public class GuestService {
     }
 
     public List<ReservationInfoDto> getGuestReservationInfo(String guestId) {
-        List<Reservation> reservationList = reservationRepository.findByGuest_GuestId(guestId);
+        List<Reservation> reservationList = reservationRepository.findByGuest_GuestIdAndIsCanceledIsFalse(guestId);
         List<ReservationInfoDto> dtoList = new ArrayList<>();
 
         for (Reservation reservation : reservationList) {
