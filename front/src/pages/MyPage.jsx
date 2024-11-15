@@ -43,17 +43,21 @@ export default function MyPage() {
     }
   }
 
-  const deleteGuest = () => {
-    axios.patch("http://localhost:8080/guest/delete")
-    .then((response) => {
-      if (response.status == 200) {
-        alert("탈퇴 되었습니다.")
+  const deleteGuest = async () => {
+    const isCanceled = false
+    const checkResponse = await axios.get(`http://localhost:8080/guest/reservation/check/${isCanceled}`, { withCredentials: true })
+    if (checkResponse.data.length > 0){
+      alert("예약 내역이 남아 있어 탈퇴할 수 없습니다")
+    } else {
+      const deleteResponse = await axios.patch("http://localhost:8080/guest/delete", null, { withCredentials: true })
+      if (deleteResponse.status === 200) {
+        alert("탈퇴가 완료되었습니다")
         doLogout()
         navigate("/")
       } else {
         alert("문제가 발생했습니다")
       }
-    })
+    }
   }
 
   return (

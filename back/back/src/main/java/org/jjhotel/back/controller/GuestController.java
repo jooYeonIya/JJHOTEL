@@ -11,6 +11,8 @@ import org.jjhotel.back.domain.dto.GuestLoginDto;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
 import org.jjhotel.back.service.GuestService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,11 +75,13 @@ public class GuestController {
     }
 
     @PatchMapping("/delete")
-    public void deleteGuest(HttpServletRequest request) {
+    public ResponseEntity<Void> deleteGuest(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
             guestService.deleteGuest(guestId);
+            return ResponseEntity.ok().build();
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }
