@@ -59,9 +59,8 @@ public class GuestService {
         return dtoList;
     }
 
-    public Boolean findGuest(GuestLoginDto guestLoginDto) {
-        Guest guest = guestRepository.findById(guestLoginDto.getGuestId()).orElse(null);
-        return guest != null && guest.getPassword().equals(guestLoginDto.getPassword());
+    public Guest findGuest(GuestLoginDto guestLoginDto) {
+        return guestRepository.findByGuestIdAndIsActiveIsTrue(guestLoginDto.getGuestId()).orElse(null);
   }
 
     public void deleteGuest(String guestId) {
