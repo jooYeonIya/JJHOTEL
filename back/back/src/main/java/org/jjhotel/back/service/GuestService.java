@@ -40,13 +40,16 @@ public class GuestService {
                 guestCreateDto.getGuestId(),
                 guestCreateDto.getPassword(),
                 guestCreateDto.getGuestName(),
-                guestCreateDto.getGuestEmail());
+                guestCreateDto.getGuestEmail(),
+                true);
         guestRepository.save(guest);
         return guestCreateDto;
     }
 
-    public List<ReservationInfoDto> getGuestReservationInfo(String guestId) {
-        List<Reservation> reservationList = reservationRepository.findByGuest_GuestId(guestId);
+    public List<ReservationInfoDto> getGuestReservationInfo(String guestId, boolean isCanceled) {
+        List<Reservation> reservationList = isCanceled
+            ? reservationRepository.findByGuest_GuestIdAndIsCanceledIsTrue(guestId)
+            : reservationRepository.findByGuest_GuestIdAndIsCanceledIsFalse(guestId);
         List<ReservationInfoDto> dtoList = new ArrayList<>();
 
         for (Reservation reservation : reservationList) {
@@ -56,8 +59,13 @@ public class GuestService {
         return dtoList;
     }
 
-    public Boolean findGuest(GuestLoginDto guestLoginDto) {
-        Guest guest = guestRepository.findById(guestLoginDto.getGuestId()).orElse(null);
-        return guest != null && guest.getPassword().equals(guestLoginDto.getPassword());
+    public Guest findGuest(GuestLoginDto guestLoginDto) {
+        return guestRepository.findByGuestIdAndIsActiveIsTrue(guestLoginDto.getGuestId()).orElse(null);
   }
+
+    public void deleteGuest(String guestId) {
+        Guest guest = guestRepository.findById(guestId).orElse(null);
+        guest.setActive(false);
+        guestRepository.save(guest);
+    }
 }

@@ -10,7 +10,10 @@ import org.jjhotel.back.constants.Constant;
 import org.jjhotel.back.domain.dto.GuestLoginDto;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
+import org.jjhotel.back.domain.entity.Guest;
 import org.jjhotel.back.service.GuestService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,32 +31,34 @@ public class GuestController {
         return "redirect:/login";
     }
 
-    @GetMapping("/reservation/check")
-    public List<ReservationInfoDto> getGuestReservationInfo(HttpServletRequest request) {
+    @GetMapping("/reservation/check/{isCanceled}")
+    public List<ReservationInfoDto> getGuestReservationInfo(@PathVariable boolean isCanceled, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return null;
         }
         String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
-        List<ReservationInfoDto> guestReservationInfo = guestService.getGuestReservationInfo(guestId);
+        List<ReservationInfoDto> guestReservationInfo = guestService.getGuestReservationInfo(guestId, isCanceled);
         return guestReservationInfo;
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestBody GuestLoginDto guestLoginDto, HttpServletRequest request, HttpServletResponse response) {
-        boolean result = guestService.findGuest(guestLoginDto);
+    public ResponseEntity<String> login(@RequestBody GuestLoginDto guestLoginDto, HttpServletRequest request, HttpServletResponse response) {
+        Guest guest = guestService.findGuest(guestLoginDto);
 
-        if (result) {
+        if (guest != null && guest.getPassword().equals(guestLoginDto.getPassword())) {
             HttpSession session = request.getSession(true);
             session.setAttribute(Constant.GUEST_SESSION, guestLoginDto.getGuestId());
             Cookie cookie = new Cookie(Constant.GUEST_COOKIE, Constant.GUEST_SESSION);
             cookie.setMaxAge(30 * 60);
             cookie.setPath("/");
             response.addCookie(cookie);
-            return true;
+            return ResponseEntity.ok().build();
         }
 
-        return false;
+        return guest == null
+            ? ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("회원 정보가 존재하지 않습니다")
+            : ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("아이디 및 비밀번호를 확인해 주세요");
     }
 
     @GetMapping("/logout")
@@ -70,5 +75,16 @@ public class GuestController {
         }
 
         return "일단 문자열 반환";
+    }
+
+    @PatchMapping("/delete")
+    public ResponseEntity<Void> deleteGuest(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
+            guestService.deleteGuest(guestId);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }
