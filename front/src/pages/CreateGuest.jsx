@@ -4,10 +4,8 @@ import axios from "axios"
 import CustomButton from "../components/CustomButton"
 import Header from "../components/Header"
 import '../css/CreateGuest.css'
-import { useNavigate } from "react-router-dom"
 
 function CreateGuest() {
-  const navigate = useNavigate()
   const [guestId, setGuestId] = useState("")
   const [password, setPassword] = useState("")
   const [guestName, setGuestName] = useState("")
