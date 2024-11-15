@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://3.35.14.52")
+@CrossOrigin(origins = {"http://3.35.14.52", "http://www.jjhotel.kro.kr"})
 @RequestMapping("/reservation")
 public class ReservationController {
     private final ReservationService reservationService;
