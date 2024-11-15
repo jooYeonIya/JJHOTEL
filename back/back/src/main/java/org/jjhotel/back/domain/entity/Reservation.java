@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.jjhotel.back.domain.dto.RoomReservationDto;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -22,7 +23,7 @@ public class Reservation {
   @JoinColumn(name = "room_id")
   private Room room;
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "guest_id")
+  @JoinColumn(name = "guest_id", nullable = true)
   private Guest guest;
   private LocalDate checkInDate;
   private LocalDate checkOutDate;
