@@ -38,12 +38,15 @@ public class ReservationController {
         Object attribute = session == null ? null : session.getAttribute(Constant.GUEST_SESSION);
         String guestId = attribute == null ? "nonGuest" : attribute.toString();
         String reservation = reservationService.doReservation(info, guestId);
+        String checkInDate = info.getCheckInDate().replaceAll("T.*?Z", "");
+        String checkOutDate = info.getCheckOutDate().replaceAll("T.*?Z", "");
+
         EmailMessage message = EmailMessage.builder()
             .to(info.getGuestEmail())
             .title("예약 확인 메일입니다.")
             .message("안녕하세요. JJ 호텔입니다."
                 + "<br><br><br> 이용 날짜: "
-                + "<strong>" + info.getCheckInDate() + " ~ "  + info.getCheckOutDate() + "</strong>"
+                + "<strong>" + checkInDate + " ~ "  + checkOutDate + "</strong>"
                 + "<br><br> 예약 번호: <strong>" + reservation + "</strong>"
                 + "<br><br><br> 예약이 완료되었습니다. <br> 저희 호텔을 이용해주셔서 감사합니다. ")
             .build();
