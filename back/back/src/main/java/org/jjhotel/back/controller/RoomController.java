@@ -1,7 +1,7 @@
 package org.jjhotel.back.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.jjhotel.back.domain.dto.ReservationInfo;
+import org.jjhotel.back.domain.dto.DoReservationInfoDto;
 import org.jjhotel.back.domain.dto.RoomFilterOutputDto;
 import lombok.extern.slf4j.Slf4j;
 import org.jjhotel.back.domain.dto.RoomListDto;
@@ -25,7 +25,7 @@ public class RoomController {
   }
 
   @PostMapping("/filtered")
-  public List<RoomFilterOutputDto> getFilterdRooms(@RequestBody ReservationInfo reservationInfo) {
+  public List<RoomFilterOutputDto> getFilterdRooms(@RequestBody DoReservationInfoDto reservationInfo) {
     return roomService.getFilterdRooms(reservationInfo);
   }
 
