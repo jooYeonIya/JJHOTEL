@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 import org.jjhotel.back.constants.Constant;
+import org.jjhotel.back.domain.dto.GuestInfoDto;
 import org.jjhotel.back.domain.dto.GuestLoginDto;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.dto.GuestCreateDto;
@@ -28,7 +29,7 @@ public class GuestController {
     @PostMapping("/add")
     public String createGuest(@RequestBody GuestCreateDto guestCreateDto) {
         guestService.createGuest(guestCreateDto);
-        return "redirect:/login";
+        return "redirect:/guest/login";
     }
 
     @GetMapping("/reservation/check/{isCanceled}")
@@ -40,6 +41,22 @@ public class GuestController {
         String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
         List<ReservationInfoDto> guestReservationInfo = guestService.getGuestReservationInfo(guestId, isCanceled);
         return guestReservationInfo;
+    }
+
+    @GetMapping("/myinfo")
+    public GuestInfoDto getMyInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return null;
+        }
+        String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
+        return guestService.getMyInfo(guestId);
+    }
+
+    @PutMapping("/update")
+    public GuestInfoDto updateMyInfo(@RequestBody GuestInfoDto guestInfoDto) {
+        String guestId = guestInfoDto.getGuestId();
+        return guestService.updateMyInfo(guestInfoDto);
     }
 
     @PostMapping("/login")

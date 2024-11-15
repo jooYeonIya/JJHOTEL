@@ -11,6 +11,7 @@ import CheckReservation from "./pages/CheckReservation";
 import Facilities from "./pages/Facilities";
 import RoomDescription from "./pages/RoomDescription";
 import ReservationInputCustomInfo from "./pages/ReservationInputCustomInfo";
+import GuestInfo from './pages/GuestInfo';
 
 
 // css
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/inputCustomInfo" element={<ReservationInputCustomInfo />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/mypage" element={<MyPage />} />
+                <Route path="/myinfo" element={<GuestInfo />} />
                 <Route path="/createguest" element={<CreateGuest />} />
               </Routes>
             </div>
