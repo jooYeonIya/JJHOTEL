@@ -31,7 +31,7 @@ function CreateGuest() {
       guestEmail: guestEmail
     }
 
-     axios.post("http://localhost:8080/guest/add", guestCreateDto).then((json) => {
+     axios.post("http://3.35.14.52:8080/guest/add", guestCreateDto).then((json) => {
       if(Object.keys(json.data).length > 0){   
         let guest = json.data
         setGuestData(guest)

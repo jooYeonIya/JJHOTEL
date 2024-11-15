@@ -16,7 +16,7 @@ export default function MyPage() {
 
 
   const checkReservation = () => {
-    axios.get("http://localhost:8080/guest/reservation/check", { withCredentials: true })
+    axios.get("http://3.35.14.52:8080/guest/reservation/check", { withCredentials: true })
     .then((response) => {
       if (response.data.length > 0) {
         setIsClicked(true)
@@ -30,7 +30,7 @@ export default function MyPage() {
   }
 
   const logout = () => {
-    axios.get("http://localhost:8080/guest/logout", { withCredentials: true })
+    axios.get("http://3.35.14.52:8080/guest/logout", { withCredentials: true })
     .then(() => {
       doLogout()
       navigate('/')  

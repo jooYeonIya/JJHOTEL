@@ -25,7 +25,7 @@ export default function Login() {
       password: pw
     }
 
-    axios.post("http://localhost:8080/guest/login", guestCreateDto, { withCredentials: true})
+    axios.post("http://3.35.14.52:8080/guest/login", guestCreateDto, { withCredentials: true})
       .then((response) => {
         if (response.data) {
           checkLogin()

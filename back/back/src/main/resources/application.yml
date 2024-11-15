@@ -1,11 +1,12 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/jjhotel?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://3.35.14.52:3306/jjhotel?serverTimezone=Asia/Seoul
     username: root
-    password: 1111
+    password: 1234
 
   jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect  # 여기에 Dialect 추가
     properties:
       hibernate:
         format_sql: true
@@ -16,8 +17,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${mail.username} # 3
-    password: ${mail.password} # 4
+    username: conn0204 # 3
+    password: bkqq tqot yugb nmpl
     properties:
       mail:
         smtp:

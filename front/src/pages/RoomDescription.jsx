@@ -19,7 +19,7 @@ export default function RoomDescription() {
 
   async function getRoomInfo(roomId) {
     console.log("RoomDescription.jsx roomId: ", roomId)
-    axios.get(`http://localhost:8080/room/detail/${roomId}`)
+    axios.get(`http://3.35.14.52:8080/room/detail/${roomId}`)
       .then(res => {
         let room = res.data
         setRoom(room)

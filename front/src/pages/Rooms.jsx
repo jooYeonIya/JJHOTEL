@@ -40,7 +40,7 @@ function Rooms() {
   }
 
   async function getAllRooms() {
-    axios.get("http://localhost:8080/room/all")
+    axios.get("http://3.35.14.52:8080/room/all")
       .then((res) => setRooms(res.data))
   }
 
@@ -52,7 +52,7 @@ function Rooms() {
       checkOutDate: new Date(reservationInfo.checkOutDate).toISOString()
     }
 
-    axios.post("http://localhost:8080/room/filtered", formattedReservationInfo)
+    axios.post("http://3.35.14.52:8080/room/filtered", formattedReservationInfo)
       .then((res) => {
         setRooms(res.data);
       })

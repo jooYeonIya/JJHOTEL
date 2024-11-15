@@ -19,7 +19,7 @@ function CheckReservation() {
       reservationId: reservationId
     }
 
-     axios.post("http://localhost:8080/reservation/check", reservationInfoWithGuestDto).then((json) => {
+     axios.post("http://3.35.14.52:8080/reservation/check", reservationInfoWithGuestDto).then((json) => {
       if(Object.keys(json.data).length > 0){   
         let reservation = json.data
         setReservationData(reservation)
