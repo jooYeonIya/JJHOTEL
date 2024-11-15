@@ -1,6 +1,7 @@
 package org.jjhotel.back.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.dto.ReservationWithGuestInfoDto;
 import org.jjhotel.back.domain.dto.RoomReservationDto;
@@ -22,17 +23,20 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final GuestRepository guestRepository;
     private final RoomRepository roomRepository;
 
     public ReservationInfoDto getReservationInfo(ReservationWithGuestInfoDto reservationWithGuestInfoDto) {
-        Reservation reservation = reservationRepository.findByReservationIdAndGuest_GuestName(
-                reservationWithGuestInfoDto.getReservationId(),
-                reservationWithGuestInfoDto.getGuestName()).get();
-        ReservationInfoDto reservationInfoDto = ReservationInfoDto.of(reservation);
-        return reservation.isCanceled() ? null : reservationInfoDto;
+        Optional<Reservation> reservation = reservationRepository
+            .findByReservationIdAndIsCanceledIsFalse(reservationWithGuestInfoDto.getReservationId());
+        if (reservation.isPresent()) {
+            ReservationInfoDto reservationInfoDto = ReservationInfoDto.of(reservation.get());
+            return reservationInfoDto;
+        }
+        return null;
     }
 
     public void deleteReservation(String reservationId) {
