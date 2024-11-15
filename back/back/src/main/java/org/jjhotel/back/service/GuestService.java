@@ -63,4 +63,10 @@ public class GuestService {
         Guest guest = guestRepository.findById(guestLoginDto.getGuestId()).orElse(null);
         return guest != null && guest.getPassword().equals(guestLoginDto.getPassword());
   }
+
+    public void deleteGuest(String guestId) {
+        Guest guest = guestRepository.findById(guestId).orElse(null);
+        guest.setActive(false);
+        guestRepository.save(guest);
+    }
 }

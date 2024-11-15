@@ -37,6 +37,25 @@ export default function MyPage() {
     })
   }
 
+  const useConfirm = () => {
+    if (window.confirm("탈퇴하시겠습니까?")) {
+      deleteGuest()
+    }
+  }
+
+  const deleteGuest = () => {
+    axios.patch("http://localhost:8080/guest/delete")
+    .then((response) => {
+      if (response.status == 200) {
+        alert("탈퇴 되었습니다.")
+        doLogout()
+        navigate("/")
+      } else {
+        alert("문제가 발생했습니다")
+      }
+    })
+  }
+
   return (
     <>
       <Header isEvent={true} />
@@ -46,6 +65,8 @@ export default function MyPage() {
         <CustomButton title="취소 내역 확인" onClicked={() => checkReservation(true)} />
         <br />
         <CustomButton title="로그아웃" onClicked={logout} />
+        <br />
+        <CustomButton title="탈퇴하기" onClicked={useConfirm} />
         <br />
         {reservationState.isClicked && reservationState.hasData ? (
           reservationState.reservationList.map((data, index) => (

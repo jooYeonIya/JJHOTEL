@@ -71,4 +71,13 @@ public class GuestController {
 
         return "일단 문자열 반환";
     }
+
+    @PatchMapping("/delete")
+    public void deleteGuest(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            String guestId = session.getAttribute(Constant.GUEST_SESSION).toString();
+            guestService.deleteGuest(guestId);
+        }
+    }
 }
