@@ -18,18 +18,13 @@ export default function RoomDescription() {
   }, [roomId]);
 
   async function getRoomInfo(roomId) {
-    console.log("RoomDescription.jsx roomId: ", roomId);
-    axios.get(`http://3.35.14.52:8080/room/detail/${roomId}`).then((res) => {
-      let room = res.data;
-      setRoom(room);
-      setMainImage(room.imageURL1);
-      setSubImages([
-        room.imageURL1,
-        room.imageURL2,
-        room.imageURL3,
-        room.imageURL4,
-      ]);
-    });
+    axios.get(`http://localhost:8080/room/detail/${roomId}`)
+      .then(res => {
+        let room = res.data
+        setRoom(room)
+        setMainImage(room.imageURL1)
+        setSubImages([room.imageURL1, room.imageURL2, room.imageURL3, room.imageURL4])
+      })
   }
 
   const changeMainImage = (imageURL) => {

@@ -1,7 +1,6 @@
 package org.jjhotel.back.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.jjhotel.back.domain.dto.ReservationInfoDto;
 import org.jjhotel.back.domain.dto.ReservationWithGuestInfoDto;
 import org.jjhotel.back.domain.dto.RoomReservationDto;
@@ -23,7 +22,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final GuestRepository guestRepository;

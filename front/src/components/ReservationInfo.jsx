@@ -26,20 +26,18 @@ function ReservationInfo({ reservation, isCanceld }) {
 
   //예약 취소 함수
   const deleteReservation = (reservationId) => {
-    axios
-      .patch(`http://3.35.14.52:8080/reservation/check/delete/${reservationId}`)
-      .then((json) => {
-        console.log("예약 취소 버튼 클릭");
-        if (json.status == 200) {
-          console.log("예약 취소 버튼 클릭");
-          alert("예약이 취소되었습니다.");
-          navigate("/");
-          setIsDelete(true);
-        } else {
-          alert("예약을 취소할 수 없습니다. 다시 시도해주세요.");
-        }
-      });
-  };
+
+    axios.patch(`http://localhost:8080/reservation/check/delete/${reservationId}`).then((json) => {
+      if (json.status == 200) {
+        alert("예약이 취소되었습니다.")
+        navigate('/')
+        setIsDelete(true)
+      } else {
+        alert("예약을 취소할 수 없습니다. 다시 시도해주세요.")
+      }
+    })
+
+  }
 
   const useConfirm = () => {
     if (window.confirm("예약을 취소하시겠습니까?")) {

@@ -40,28 +40,35 @@ function GuestInfo({ guest }) {
       return alert("이메일을 형식을 지켜주세요.");
     }
 
-    axios
-      .put("http://3.35.14.52:8080/guest/update", guestInfoDto)
-      .then((json) => {
-        console.log(json);
-        if (json.data !== null) {
-          setGuestInfo({
-            guestId: guest.guestId,
-            guestName: guestName,
-            guestEmail: guestEmail,
-          });
-          alert("정보가 수정되었습니다.");
-          navigate("/mypage");
-        } else {
-          setGuestInfo(null);
-          alert("다시 시도해주세요.");
-        }
-      })
-      .catch((error) => {
-        console.error("ERROR: ", error);
-        alert("다시 입력해주세요.");
-      });
-  };
+    if(!guestName){
+      setIsUpdate(true)
+      return alert("성명을 입력해주세요.")
+    } else if(!guestEmail){
+      setIsUpdate(true)
+      return alert("이메일을 입력해주세요.")
+    } else if(!validateEmail(guestEmail)){
+      setIsUpdate(true)
+      return alert("이메일을 형식을 지켜주세요.")
+    }
+
+    axios.put("http://localhost:8080/guest/update", guestInfoDto).then((json) => {
+      if(json.data !== null){   
+        setGuestInfo({
+          guestId: guest.guestId,
+          guestName: guestName,
+          guestEmail: guestEmail})
+        alert("정보가 수정되었습니다.")
+        navigate('/mypage')
+      } else {
+        setGuestInfo(null)
+        alert("다시 시도해주세요.")
+      }
+    }).catch((error) => {
+      console.error("ERROR: ", error)
+      alert("다시 입력해주세요.")
+    })
+
+  }
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

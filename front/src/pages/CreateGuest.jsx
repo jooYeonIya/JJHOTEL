@@ -60,8 +60,8 @@ function CreateGuest() {
   };
 
   useEffect(() => {
-    console.log("예약 데이터가 업데이트됨:", guestData);
-  }, [guestData]);
+    console.log("데이터가 업데이트됨:", guestData)
+  }, [guestData])
 
   return (
     <div>
