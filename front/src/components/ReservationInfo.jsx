@@ -27,7 +27,7 @@ function ReservationInfo({ reservation, isCanceld }) {
   //예약 취소 함수
   const deleteReservation = (reservationId) => {
 
-    axios.patch(`http://localhost:8080/reservation/check/delete/${reservationId}`).then((json) => {
+    axios.patch(`http://3.35.14.52:8080/reservation/check/delete/${reservationId}`).then((json) => {
       if (json.status == 200) {
         alert("예약이 취소되었습니다.")
         navigate('/')

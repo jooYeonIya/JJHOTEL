@@ -51,7 +51,7 @@ function GuestInfo({ guest }) {
       return alert("이메일을 형식을 지켜주세요.")
     }
 
-    axios.put("http://localhost:8080/guest/update", guestInfoDto).then((json) => {
+    axios.put("http://3.35.14.52:8080/guest/update", guestInfoDto).then((json) => {
       if(json.data !== null){   
         setGuestInfo({
           guestId: guest.guestId,
