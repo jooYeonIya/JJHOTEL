@@ -18,7 +18,7 @@ export default function RoomDescription() {
   }, [roomId]);
 
   async function getRoomInfo(roomId) {
-    axios.get(`http://localhost:8080/room/detail/${roomId}`)
+    axios.get(`http://3.35.14.52:8080/room/detail/${roomId}`)
       .then(res => {
         let room = res.data
         setRoom(room)
