@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { titles } from "../text/titles";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Header from "../components/Header";
+import HeaderWhite from "../components/HeaderWhite"
 import TitleLabel from "../components/TitleLabel";
 import CustomButton from "../components/CustomButton";
 import axios from "axios";
@@ -61,7 +61,7 @@ function Rooms() {
 
   return (
     <>
-      <Header isEvent={true} />
+      <HeaderWhite isEvent={true} />
       <div className="container">
         <TitleLabel title={title.title} subTitle={title.subTitle} />
         <div className="section">

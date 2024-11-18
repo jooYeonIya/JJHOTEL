@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import TitleLabel from "../components/TitleLabel";
-import Header from "../components/Header";
+import HeaderWhite from "../components/HeaderWhite"
 import axios from "axios";
 
 import "../css/RoomDescription.css";
@@ -35,7 +35,7 @@ export default function RoomDescription() {
 
   return (
     <>
-      <Header isEvent={true} />
+      <HeaderWhite isEvent={true} />
 
       <div className="container">
         <TitleLabel title={room.roomName} subTitle={room.description} />
