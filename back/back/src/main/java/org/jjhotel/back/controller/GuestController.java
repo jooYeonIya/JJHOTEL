@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://3.35.14.52", "http://www.jjhotel.kro.kr", "http://192.168.0.37:5173"})
+@CrossOrigin(origins = {"http://3.35.14.52", "http://www.jjhotel.kro.kr"}, allowCredentials = "true")
 @RequestMapping("/guest")
 public class GuestController {
     private final GuestService guestService;

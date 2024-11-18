@@ -26,7 +26,7 @@ export default function Login() {
     };
 
     axios
-      .post("http://3.35.14.52:8080/guest/login", guestCreateDto)
+      .post("http://3.35.14.52:8080/guest/login", guestCreateDto, { withCredentials: true })
       .then((response) => {
         if (response.status === 200) {
           checkLogin();
