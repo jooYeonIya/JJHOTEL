@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
 import CustomButton from "../components/CustomButton";
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
 
 import "../css/ReservationInputCustomInfo.css";
 
@@ -46,10 +47,7 @@ export default function Login() {
         <div className="customInfoContainer">
           <p>Login</p>
           <pre>
-            아직 회원이 아니세요?{" "}
-            <a href="" onClick={() => navigate("/createguest")}>
-              SignIn
-            </a>
+            아직 회원이 아니세요?{" "}<Link to="/createguest">SignIn</Link>
           </pre>
           <div className="customInfoSection">
             <div className="infoSectionLeft">
