@@ -25,7 +25,7 @@ export default function MyPage() {
 
   const checkReservation = (isCanceled) => {
     axios
-      .get(`http://3.35.14.52:8080/guest/reservation/check/${isCanceled}`)
+      .get(`http://3.35.14.52:8080/guest/reservation/check/${isCanceled}`, { withCredentials: true })
       .then((response) => {
         setReservationState({
           isClicked: true,
@@ -37,7 +37,7 @@ export default function MyPage() {
   };
 
   const getMyInfo = () => {
-    axios.get("http://3.35.14.52:8080/guest/myinfo").then((response) => {
+    axios.get("http://3.35.14.52:8080/guest/myinfo", { withCredentials: true }).then((response) => {
       if (Object.keys(response.data).length > 0) {
         setIsGuest(true);
         setGuestInfo(response.data);
@@ -49,7 +49,7 @@ export default function MyPage() {
   };
 
   const logout = () => {
-    axios.get("http://3.35.14.52:8080/guest/logout").then(() => {
+    axios.get("http://3.35.14.52:8080/guest/logout", { withCredentials: true }).then(() => {
       doLogout();
       navigate("/");
     });
@@ -64,14 +64,13 @@ export default function MyPage() {
   const deleteGuest = async () => {
     const isCanceled = false;
     const checkResponse = await axios.get(
-      `http://3.35.14.52:8080/guest/reservation/check/${isCanceled}`
-    );
+      `http://3.35.14.52:8080/guest/reservation/check/${isCanceled}`, { withCredentials: true })
     if (checkResponse.data.length > 0) {
       alert("예약 내역이 남아 있어 탈퇴할 수 없습니다");
     } else {
       const deleteResponse = await axios.patch(
         "http://3.35.14.52:8080/guest/delete",
-        null
+        null, { withCredentials: true }
       );
       if (deleteResponse.status === 200) {
         alert("탈퇴가 완료되었습니다");
